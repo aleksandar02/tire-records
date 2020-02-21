@@ -1,24 +1,92 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    font-family: Montserrat, sans-serif;
+    padding-top: 70px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+* {
+    box-sizing: border-box
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.navbar {
+    font-family: 'Roboto';
+    background: #fff;
+    border-color: #fff;
+    box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.nav li a {
+    color: #212121 !important;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    color: #212121 !important;
+}
+
+.btn-general {
+    border: 1px solid;
+    border-radius: 0;
+    transition: all 350ms ease;
+}
+
+    .btn-general:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    .btn-general:hover {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    }
+
+.btn-default {
+    border-color: #f7f2f2;
+    background: #f7f2f2;
+    color: #000;
+}
+
+    .btn-default:hover {
+        border-color: #f0e9e9;
+        background: #f0e9e9;
+    }
+
+.btn-red {
+    border-color: #fa4d4d;
+    background: #fa4d4d;
+    color: #fff !important;
+}
+
+    .btn-red:hover {
+        border-color: #e84848;
+        background: #e84848;
+        color: #fff;
+    }
+
+.form-control {
+    border-radius: 0;
+    border: none;
+    box-shadow: none !important;
+    outline: none !important;
+    border-bottom: 1px solid #f0e9e9;
+    padding-left: 7px;
+    padding-right: 0;
+    margin-top: 10px;
+}
+
+    .form-control:disabled {
+        background: #f7f2f2;
+    }
+
+    textarea {
+        width: 100%;
+        height: 100px !important;
+        resize: none;
+    }
+
+.form-heading {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.mt-60 {
+    margin-top: 60px;
 }

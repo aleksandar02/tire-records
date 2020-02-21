@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TireRecords", "TireRecords\TireRecords.csproj", "{747A94AB-355F-4A5D-BAB6-0F5C44B780B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{B3AB01CB-FF2F-4AFD-876E-400F8EBD2EF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{0CA73F31-C48B-4BC9-82E6-72AC2E1DB833}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{CFF89416-EC97-4740-B350-CDC303C79FAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,20 @@ Global
 		{747A94AB-355F-4A5D-BAB6-0F5C44B780B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{747A94AB-355F-4A5D-BAB6-0F5C44B780B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{747A94AB-355F-4A5D-BAB6-0F5C44B780B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3AB01CB-FF2F-4AFD-876E-400F8EBD2EF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3AB01CB-FF2F-4AFD-876E-400F8EBD2EF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3AB01CB-FF2F-4AFD-876E-400F8EBD2EF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3AB01CB-FF2F-4AFD-876E-400F8EBD2EF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CA73F31-C48B-4BC9-82E6-72AC2E1DB833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CA73F31-C48B-4BC9-82E6-72AC2E1DB833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CA73F31-C48B-4BC9-82E6-72AC2E1DB833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CA73F31-C48B-4BC9-82E6-72AC2E1DB833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFF89416-EC97-4740-B350-CDC303C79FAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFF89416-EC97-4740-B350-CDC303C79FAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFF89416-EC97-4740-B350-CDC303C79FAE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CFF89416-EC97-4740-B350-CDC303C79FAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFF89416-EC97-4740-B350-CDC303C79FAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFF89416-EC97-4740-B350-CDC303C79FAE}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
