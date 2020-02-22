@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TireRecords.Models
 {
@@ -39,6 +40,18 @@ namespace TireRecords.Models
             clientDto.Email = client.Email;
 
             return clientDto;
+        }
+
+        public static ClientDto MapFrom(FormCollection collection)
+        {
+            var client = new ClientDto();
+
+            client.FirstName = Convert.ToString(collection["firstName"]);
+            client.LastName = Convert.ToString(collection["lastName"]);
+            client.MobilePhone = Convert.ToString(collection["mobilePhone"]);
+            client.Email = Convert.ToString(collection["email"]);
+
+            return client;
         }
     }
 }

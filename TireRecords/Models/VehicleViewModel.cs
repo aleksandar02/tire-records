@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TireRecords.Models
 {
@@ -41,6 +42,17 @@ namespace TireRecords.Models
             vehicleDto.Chassis = vehicle.Chassis;
 
             return vehicleDto;
+        }
+
+        public static VehicleDto MapFrom(FormCollection collection)
+        {
+            var vehicle = new VehicleDto();
+
+            vehicle.Brand = Convert.ToString(collection["vehicleBrand"]);
+            vehicle.RegistrationNumber = Convert.ToString(collection["registrationNumber"]);
+            vehicle.ClientId = clientId;
+
+            return vehicle;
         }
     }
 }

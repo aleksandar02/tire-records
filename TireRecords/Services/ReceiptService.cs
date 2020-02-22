@@ -43,9 +43,9 @@ namespace TireRecords.Services
             return _tireDAL.InsertTires(tires);
         }
 
-        //public async Task<int> CountReceiptRows()
-        //{
-        //    return await _receiptDAL.CountReceiptRows();
-        //}
+        public bool InsertReceipt(ClientDto client, VehicleDto vehicle, ReceiptDto receipt, List<TireDto> tires)
+        {
+            return _receiptDAL.InsertReceipt(client, vehicle, receipt, tires);
+        }
     }
 }

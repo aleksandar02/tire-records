@@ -19,6 +19,7 @@ namespace TireRecords.Controllers
         }
 
         // GET: Receipt
+        [Authorize]
         public ActionResult Index()
         {
             return View();
@@ -37,107 +38,18 @@ namespace TireRecords.Controllers
         }
 
         // POST: Receipt/Create
+        [Authorize]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             try
             {
-                // Client
-                var client = new ClientViewModel();
+                var clientDto = ClientViewModel.MapFrom(collection);
+                var vehicledDto = VehicleViewModel.MapFrom(collection);
+                var receiptDto = ReceiptViewModel.MapFrom(collection, User.Identity.Name);
+                var tires = GetTires(collection);
 
-                client.FirstName = Convert.ToString(collection["firstName"]);
-                client.LastName = Convert.ToString(collection["lastName"]);
-                client.MobilePhone = Convert.ToString(collection["mobilePhone"]);
-                client.Email = Convert.ToString(collection["email"]);
-
-                var clientDto = ClientViewModel.MapFrom(client);
-                int clientId = _receiptService.InsertClient(clientDto);
-
-                // Vehicle
-                var vehicle = new VehicleViewModel();
-
-                vehicle.Brand = Convert.ToString(collection["vehicleBrand"]);
-                vehicle.RegistrationNumber = Convert.ToString(collection["registrationNumber"]);
-                vehicle.ClientId = clientId;
-
-                var vehicledDto = VehicleViewModel.MapFrom(vehicle);
-                int vehicleId = _receiptService.InsertVehicle(vehicledDto);
-
-                // Receipt
-                var receipt = new ReceiptViewModel();
-                //int rows = _receiptService.CountReceiptRows();
-                int rows = new Random().Next(1, 100);
-
-                receipt.Number = rows;
-                receipt.Message = Convert.ToString(collection["message"]);
-                receipt.UserName = User.Identity.Name;
-                receipt.CreatedAt = DateTime.Now;
-                receipt.ClientId = clientId;
-                receipt.VehicleId = vehicleId;
-
-                var receiptDto = ReceiptViewModel.MapFrom(receipt);
-                int receiptId = _receiptService.InsertReceipt(receiptDto);
-
-                // Tires
-                var tireTL = new TireViewModel();
-                var tireTR = new TireViewModel();
-                var tireBL = new TireViewModel();
-                var tireBR = new TireViewModel();
-
-                tireTL.Position = PositionEnum.PL;
-                tireTL.Brand = Convert.ToString(collection["tireBrandPL"]);
-                tireTL.Model = Convert.ToString(collection["tireModelPL"]);
-                tireTL.Dimension = Convert.ToString(collection["dimensionPL"]);
-                tireTL.Index = Convert.ToString(collection["indexPL"]);
-                tireTL.DOT = Convert.ToInt32(collection["dotPL"]);
-                tireTL.Depth = Convert.ToDouble(collection["depthPL"]);
-                tireTL.ReceiptId = receiptId;
-                tireTL.VehicleId = vehicleId;
-
-                tireTR.Position = PositionEnum.PD;
-                tireTR.Brand = Convert.ToString(collection["tireBrandPD"]);
-                tireTR.Model = Convert.ToString(collection["tireModelPD"]);
-                tireTR.Dimension = Convert.ToString(collection["dimensionPD"]);
-                tireTR.Index = Convert.ToString(collection["indexPD"]);
-                tireTR.DOT = Convert.ToInt32(collection["dotPD"]);
-                tireTR.Depth = Convert.ToDouble(collection["depthPD"]);
-                tireTR.ReceiptId = receiptId;
-                tireTR.VehicleId = vehicleId;
-
-                tireBL.Position = PositionEnum.ZL;
-                tireBL.Brand = Convert.ToString(collection["tireBrandZL"]);
-                tireBL.Model = Convert.ToString(collection["tireModelZL"]);
-                tireBL.Dimension = Convert.ToString(collection["dimensionZL"]);
-                tireBL.Index = Convert.ToString(collection["indexZL"]);
-                tireBL.DOT = Convert.ToInt32(collection["dotZL"]);
-                tireBL.Depth = Convert.ToDouble(collection["depthZL"]);
-                tireBL.ReceiptId = receiptId;
-                tireBL.VehicleId = vehicleId;
-
-                tireBR.Position = PositionEnum.ZD;
-                tireBR.Brand = Convert.ToString(collection["tireBrandZD"]);
-                tireBR.Model = Convert.ToString(collection["tireModelZD"]);
-                tireBR.Dimension = Convert.ToString(collection["dimensionZD"]);
-                tireBR.Index = Convert.ToString(collection["indexZD"]);
-                tireBR.DOT = Convert.ToInt32(collection["dotZD"]);
-                tireBR.Depth = Convert.ToDouble(collection["depthZD"]);
-                tireBR.ReceiptId = receiptId;
-                tireBR.VehicleId = vehicleId;
-
-                var tireTLDto = TireViewModel.MapFrom(tireTL);
-                var tireTRDto = TireViewModel.MapFrom(tireTR);
-                var tireBLDto = TireViewModel.MapFrom(tireBL);
-                var tireBRDto = TireViewModel.MapFrom(tireBR);
-
-                var tires = new List<TireDto>();
-                
-                tires.Add(tireTLDto);
-                tires.Add(tireTRDto);
-                tires.Add(tireBLDto);
-                tires.Add(tireBRDto);
-
-                bool result = _receiptService.InsertTires(tires);
-
+                bool result = _receiptService.InsertReceipt(clientDto, vehicledDto, receiptDto, tires);
 
                 return RedirectToAction("Index");
             }
@@ -145,6 +57,59 @@ namespace TireRecords.Controllers
             {
                 return View();
             }
+        }
+
+        private static List<TireDto> GetTires(FormCollection collection)
+        {
+
+            var tires = new List<TireDto>();
+
+            var tireTL = new TireDto();
+            var tireTR = new TireDto();
+            var tireBL = new TireDto();
+            var tireBR = new TireDto();
+
+            tireTL.Position = PositionEnum.PL;
+            tireTL.Brand = Convert.ToString(collection["tireBrandPL"]);
+            tireTL.Model = Convert.ToString(collection["tireModelPL"]);
+            tireTL.Dimension = Convert.ToString(collection["dimensionPL"]);
+            tireTL.Index = Convert.ToString(collection["indexPL"]);
+            tireTL.DOT = Convert.ToInt32(collection["dotPL"]);
+            tireTL.Depth = Convert.ToDouble(collection["depthPL"]);
+
+            tires.Add(tireTL);
+
+            tireTR.Position = PositionEnum.PD;
+            tireTR.Brand = Convert.ToString(collection["tireBrandPD"]);
+            tireTR.Model = Convert.ToString(collection["tireModelPD"]);
+            tireTR.Dimension = Convert.ToString(collection["dimensionPD"]);
+            tireTR.Index = Convert.ToString(collection["indexPD"]);
+            tireTR.DOT = Convert.ToInt32(collection["dotPD"]);
+            tireTR.Depth = Convert.ToDouble(collection["depthPD"]);
+
+            tires.Add(tireTR);
+
+            tireBL.Position = PositionEnum.ZL;
+            tireBL.Brand = Convert.ToString(collection["tireBrandZL"]);
+            tireBL.Model = Convert.ToString(collection["tireModelZL"]);
+            tireBL.Dimension = Convert.ToString(collection["dimensionZL"]);
+            tireBL.Index = Convert.ToString(collection["indexZL"]);
+            tireBL.DOT = Convert.ToInt32(collection["dotZL"]);
+            tireBL.Depth = Convert.ToDouble(collection["depthZL"]);
+
+            tires.Add(tireBL);
+
+            tireBR.Position = PositionEnum.ZD;
+            tireBR.Brand = Convert.ToString(collection["tireBrandZD"]);
+            tireBR.Model = Convert.ToString(collection["tireModelZD"]);
+            tireBR.Dimension = Convert.ToString(collection["dimensionZD"]);
+            tireBR.Index = Convert.ToString(collection["indexZD"]);
+            tireBR.DOT = Convert.ToInt32(collection["dotZD"]);
+            tireBR.Depth = Convert.ToDouble(collection["depthZD"]);
+
+            tires.Add(tireBR);
+
+            return tires;
         }
 
         // GET: Receipt/Edit/5

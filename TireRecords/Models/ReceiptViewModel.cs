@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TireRecords.Models
 {
@@ -44,6 +45,21 @@ namespace TireRecords.Models
             receiptDto.Message = receipt.Message;
 
             return receiptDto;
+        }
+
+        public static ReceiptDto MapFrom(FormCollection collection, string userName)
+        {
+            var receipt = new ReceiptDto();
+            int number = new Random().Next(1, 100);
+
+            receipt.Number = number;
+            receipt.Message = Convert.ToString(collection["message"]);
+            receipt.UserName = userName;
+            receipt.CreatedAt = DateTime.Now;
+            receipt.ClientId = clientId;
+            receipt.VehicleId = vehicleId;
+
+            return receipt;
         }
     }
 }
