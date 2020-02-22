@@ -50,7 +50,6 @@ namespace TireRecords.Models
 
             vehicle.Brand = Convert.ToString(collection["vehicleBrand"]);
             vehicle.RegistrationNumber = Convert.ToString(collection["registrationNumber"]);
-            vehicle.ClientId = clientId;
 
             return vehicle;
         }

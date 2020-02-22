@@ -56,8 +56,6 @@ namespace TireRecords.Models
             receipt.Message = Convert.ToString(collection["message"]);
             receipt.UserName = userName;
             receipt.CreatedAt = DateTime.Now;
-            receipt.ClientId = clientId;
-            receipt.VehicleId = vehicleId;
 
             return receipt;
         }
