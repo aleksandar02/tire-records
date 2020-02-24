@@ -58,16 +58,17 @@ namespace TireRecords.Controllers
         {
             var clientReceiptViewModels = new List<ClientReceiptViewModel>();
 
-            for (int i = 0; i < clientReceiptDtos.Count(); i++)
+            foreach (var receipt in clientReceiptDtos)
             {
                 var clientReceipt = new ClientReceiptViewModel();
 
-                clientReceipt.Client = ClientViewModel.MapTo(clientReceiptDtos[i].Client);
-                clientReceipt.Vehicle = VehicleViewModel.MapTo(clientReceiptDtos[i].Vehicle);
-                clientReceipt.Receipt = ReceiptViewModel.MapTo(clientReceiptDtos[i].Receipt);
+                clientReceipt.Client = ClientViewModel.MapTo(receipt.Client);
+                clientReceipt.Vehicle = VehicleViewModel.MapTo(receipt.Vehicle);
+                clientReceipt.Receipt = ReceiptViewModel.MapTo(receipt.Receipt);
 
                 clientReceiptViewModels.Add(clientReceipt);
             }
+
 
             return clientReceiptViewModels;
         }
