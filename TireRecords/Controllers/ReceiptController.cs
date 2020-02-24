@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TireRecords.Models;
@@ -20,9 +21,55 @@ namespace TireRecords.Controllers
 
         // GET: Receipt
         [Authorize]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var filter = new FilterDto();
+
+            filter.FirstName = "";
+            filter.LastName = "";
+            filter.RegistrationNumber = "";
+            filter.DateFrom = DateTime.Now.AddDays(-30);
+            filter.DateTo = DateTime.Now.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
+            
+            var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
+            var clientReceiptViewModels = MapReceiptsToViewModels(clientReceiptDtos);
+
+            return View(clientReceiptViewModels);
+        }
+
+        [Authorize]
+        public async Task<ActionResult> Search(FormCollection collection)
+        {
+            var filter = new FilterDto();
+
+            filter.FirstName = Convert.ToString(collection["firstName"]);
+            filter.LastName = Convert.ToString(collection["lastName"]);
+            filter.RegistrationNumber = Convert.ToString(collection["registrationNumber"]);
+            filter.DateFrom = Convert.ToDateTime(collection["dateFrom"]);
+            filter.DateTo = Convert.ToDateTime(collection["dateTo"]);
+
+            var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
+            var clientReceiptViewModels = MapReceiptsToViewModels(clientReceiptDtos);
+
+            return View("Index", clientReceiptViewModels);
+        }
+
+        private List<ClientReceiptViewModel> MapReceiptsToViewModels(List<ClientReceiptDto> clientReceiptDtos)
+        {
+            var clientReceiptViewModels = new List<ClientReceiptViewModel>();
+
+            for (int i = 0; i < clientReceiptDtos.Count(); i++)
+            {
+                var clientReceipt = new ClientReceiptViewModel();
+
+                clientReceipt.Client = ClientViewModel.MapTo(clientReceiptDtos[i].Client);
+                clientReceipt.Vehicle = VehicleViewModel.MapTo(clientReceiptDtos[i].Vehicle);
+                clientReceipt.Receipt = ReceiptViewModel.MapTo(clientReceiptDtos[i].Receipt);
+
+                clientReceiptViewModels.Add(clientReceipt);
+            }
+
+            return clientReceiptViewModels;
         }
 
         // GET: Receipt/Details/5
@@ -125,28 +172,6 @@ namespace TireRecords.Controllers
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Receipt/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Receipt/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
             }

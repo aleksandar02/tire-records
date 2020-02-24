@@ -146,5 +146,56 @@ namespace Infrastructure.DAL
 
             return result;
         }
+
+        public async Task<List<ClientReceiptDto>> SearchReceipts(FilterDto filter)
+        {
+            var clientReceipts = new List<ClientReceiptDto>();
+
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    string sqlProcedure = "SearchReceipts";
+                    var command = new SqlCommand(sqlProcedure, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@FirstName", filter.FirstName);
+                    command.Parameters.AddWithValue("@LastName", filter.LastName);
+                    command.Parameters.AddWithValue("@RegistrationNumber", filter.RegistrationNumber);
+                    command.Parameters.AddWithValue("@DateFrom", filter.DateFrom);
+                    command.Parameters.AddWithValue("@DateTo", filter.DateTo);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (await reader.ReadAsync().ConfigureAwait(false))
+                        {
+                            var clientReceipt = new ClientReceiptDto();
+                            clientReceipt = MapToClientReceipt(reader);
+
+                            clientReceipts.Add(clientReceipt);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+
+            return clientReceipts;
+        }
+
+        private ClientReceiptDto MapToClientReceipt(SqlDataReader reader)
+        {
+            var clientReceipt = new ClientReceiptDto();
+
+            clientReceipt.Client = ClientDto.MapTo(reader);
+            clientReceipt.Vehicle = VehicleDto.MapTo(reader);
+            clientReceipt.Receipt = ReceiptDto.MapTo(reader);
+
+            return clientReceipt;
+        }
     }
 }

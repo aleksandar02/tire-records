@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\ClientDto.cs" />
+    <Compile Include="Entities\ClientReceiptDto.cs" />
+    <Compile Include="Entities\FilterDto.cs" />
     <Compile Include="Entities\ReceiptDto.cs" />
     <Compile Include="Entities\VehicleDto.cs" />
     <Compile Include="Enums\PositionEnum.cs" />

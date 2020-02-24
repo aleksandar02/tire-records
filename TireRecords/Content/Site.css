@@ -9,18 +9,26 @@ body {
     padding-top: 70px;
     position: relative;
     min-height: 100vh;
-    background: #fafcff;
 }
 
 * {
     box-sizing: border-box
 }
 
+a {
+    text-decoration: none !important;
+}
+
+ul {
+    list-style: none !important;
+}
+
+/* Navigation */
 .navbar {
     font-family: 'Roboto';
-    background: #0c6acf !important;
+    background: #007bff !important;
     padding: 5px 0;
-    border-color: #0c6acf;
+    border-color: #4285f4;
     box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
@@ -34,12 +42,14 @@ body {
     color: #fff !important;
 }
 
+/* Buttons */
+
 .btn-general {
     border: 1px solid;
     border-radius: 0;
     transition: all 350ms ease;
-    padding: 8px 22px;
-    font-size: 16px;
+    padding: 8px 18px;
+    font-size: 15px;
 }
 
     .btn-general:focus {
@@ -48,7 +58,7 @@ body {
     }
 
     .btn-general:hover {
-        box-shadow: 0 0px 6px -1px rgba(0, 0, 0, 0.1), 0 4px 4px -1px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
     }
 
 .btn-default {
@@ -58,21 +68,41 @@ body {
 }
 
     .btn-default:hover {
-        border-color: #f0e9e9;
-        background: #f0e9e9;
+        /*border-color: #f0e9e9;
+        background: #f0e9e9;*/
+        border-color: #f7f2f2;
+        background: #f7f2f2;
     }
 
 .btn-blue {
-    border-color: #0c6acf;
-    background: #0c6acf;
+    border-color: #007bff;
+    background: #007bff;
     color: #fff !important;
 }
 
     .btn-blue:hover {
-        border-color: #0c63c2;
-        background: #0c63c2;
+        border-color: #007bff;
+        background: #007bff;
         color: #fff;
     }
+
+.btn-green {
+    border-color: #00c851;
+    background: #00c851;
+    color: #fff !important;
+}
+
+    .btn-green:hover {
+        border-color: #00c851;
+        background: #00c851;
+        color: #fff;
+    }
+
+.btn-small {
+    padding: 6px 16px !important;
+    font-size: 12px !important;
+}
+
 
 .form-control {
     /*border-radius: 0;
@@ -89,12 +119,12 @@ body {
         background: #f7f2f2;
     }
 
-    textarea {
-        width: 100%;
-        height: 100px !important;
-        resize: none;
-        margin-top: 30px;
-    }
+textarea {
+    width: 100%;
+    height: 100px !important;
+    resize: none;
+    margin-top: 30px;
+}
 
 
 .form-section {
@@ -114,6 +144,8 @@ body {
     margin-top: 30px;
 }
 
+/* Login */
+
 .login {
     width: 100%;
     height: 100vh;
@@ -131,18 +163,17 @@ body {
     padding: 30px 80px;
     border: 1px solid #f7f2f2;
     border-radius: 6px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.06);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.06);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.06);
 }
 
 .login-heading {
     text-align: center;
     font-size: 36px;
     font-weight: 600;
-}
-
-.login img {
-    width: 15%;
-    padding: 30px 0px 10px 0;
+    padding-top: 50px;
+    margin: 0;
 }
 
 .login-subheading {
@@ -154,5 +185,49 @@ body {
 }
 
 .control-label {
-    font-weight: 600;
+    font-weight: 500;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+}
+
+.page-heading {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* Data table */
+table tr td {
+    border: none !important;
+    border-bottom: 1px solid #eff9f9 !important;
+    border-color: #eff9f9 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+
+
+
+table tbody tr {
+    transition: background 250ms ease;
+}
+
+    table tbody tr:hover {
+        background: #f1fbfb;
+    }
+
+table tr th {
+    border-color: #e3f0f0 !important;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    vertical-align: middle !important;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.paginate_button.active a {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
 }

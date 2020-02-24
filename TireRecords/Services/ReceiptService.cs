@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using TireRecords.Models;
 
 namespace TireRecords.Services
 {
@@ -46,6 +47,11 @@ namespace TireRecords.Services
         public bool InsertReceipt(ClientDto client, VehicleDto vehicle, ReceiptDto receipt, List<TireDto> tires)
         {
             return _receiptDAL.InsertReceipt(client, vehicle, receipt, tires);
+        }
+
+        public async Task<List<ClientReceiptDto>> SearchReceipts(FilterDto filter)
+        {
+            return await _receiptDAL.SearchReceipts(filter);
         }
     }
 }

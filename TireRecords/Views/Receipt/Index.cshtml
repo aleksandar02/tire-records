@@ -1,26 +1,74 @@
-﻿@model IEnumerable<TireRecords.Models.ReceiptViewModel>
+﻿@model IEnumerable<TireRecords.Models.ClientReceiptViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
-    <div class="container">
-        <h2 class="text-center">Sve priznanice</h2>
+<div class="container">
+    <h2 class="page-heading">Sve priznanice</h2>
 
-        @*<table class="table">
+    <div class="filter-section">
+        <form action="/Receipt/Search" method="post">
+            <div class="row">
+                <div class="col-md-2">
+                    <input type="text" name="firstName" id="firstName" class="form-control input-sm" placeholder="Ime" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" name="lastName" id="lastName" class="form-control input-sm" placeholder="Prezime" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" name="registrationNumber" id="registrationNumber" class="form-control input-sm" placeholder="Registarski broj" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" name="dateFrom" class="form-control input-sm" id="dateFrom" placeholder="Od" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control input-sm" name="dateTo" id="dateTo" placeholder="Do" />
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-general btn-green btn-small">Pretraži</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <table class="table" id="receiptTable">
+        <thead>
             <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Telefon</th>
+                <th>Marka vozila</th>
+                <th>Registarski broj</th>
                 <th></th>
             </tr>
+        </thead>
 
-            @foreach (var item in Model) {
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
+                    <td>@item.Client.FirstName</td>
+                    <td>@item.Client.LastName</td>
+                    <td>@item.Client.MobilePhone</td>
+                    <td>@item.Vehicle.Brand</td>
+                    <td>@item.Vehicle.RegistrationNumber</td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        <a href="/Receipt/Detalji" class="btn btn-general btn-default btn-small">Detalji</a>
                     </td>
                 </tr>
             }
+        </tbody>
+    </table>
+</div>
 
-        </table>*@
-    </div>
+@section Scripts {
+    <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/datatables.min.css" rel="stylesheet" />
+    <link href="~/Content/responsive.bootstrap4.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/datatables.min.js"></script>
+    <script src="~/Scripts/responsive.bootstrap4.min.js"></script>
+    <script src="~/Scripts/receipt.js"></script>
+}
