@@ -87,14 +87,14 @@ ul {
     }
 
 .btn-green {
-    border-color: #00c851;
-    background: #00c851;
+    border-color: #e8e310;
+    background: #e8e310;
     color: #fff !important;
 }
 
     .btn-green:hover {
-        border-color: #00c851;
-        background: #00c851;
+        border-color: #dbd70f;
+        background: #dbd70f;
         color: #fff;
     }
 
@@ -103,6 +103,7 @@ ul {
     font-size: 12px !important;
 }
 
+/* Form */
 
 .form-control {
     /*border-radius: 0;
@@ -115,9 +116,15 @@ ul {
     margin-top: 10px;*/
 }
 
-    .form-control:disabled {
-        background: #f7f2f2;
+@media(max-width: 991px) {
+    .form-control {
+        margin-bottom: 10px;
     }
+}
+
+.form-control:disabled {
+    background: #f7f2f2;
+}
 
 textarea {
     width: 100%;
@@ -191,12 +198,13 @@ textarea {
 }
 
 .page-heading {
+    margin-top: 20px;
     margin-bottom: 40px;
     text-align: center;
 }
 
 /* Data table */
-table tr td {
+#receiptTable tr td {
     border: none !important;
     border-bottom: 1px solid #eff9f9 !important;
     border-color: #eff9f9 !important;
@@ -204,18 +212,15 @@ table tr td {
     padding-bottom: 10px !important;
 }
 
-
-
-
-table tbody tr {
+#receiptTable tbody tr {
     transition: background 250ms ease;
 }
 
-    table tbody tr:hover {
+    #receiptTable tbody tr:hover {
         background: #f1fbfb;
     }
 
-table tr th {
+#receiptTable tr th {
     border-color: #e3f0f0 !important;
 }
 
@@ -230,4 +235,106 @@ table tr th {
 .paginate_button.active a {
     background-color: #007bff !important;
     border-color: #007bff !important;
+}
+
+.paginate_button.page-item.active {
+    z-index: 5 !important;
+}
+/* Datepicker */
+#ui-datepicker-div {
+    background: #fff;
+    z-index: 6 !important;
+}
+
+.ui-widget {
+    font-family: Montserrat, sans-serif !important;
+}
+
+.ui-widget-header {
+    background: #007bff !important;
+    color: #fff !important;
+    border: 1px solid #f7f2f2 !important;
+}
+
+.ui-state-default {
+    background: #f7f2f2 !important;
+    border: #f7f2f2 !important;
+    text-align: center !important;
+    color: #000 !important;
+    font-family: Montserrat !important;
+    font-weight: 400 !important;
+    border-radius: 4px !important;
+}
+
+    .ui-state-default:hover {
+        background: #f0eeee !important;
+    }
+
+    .ui-state-default.ui-state-active {
+        background: #007bff !important;
+        color: #fff !important;
+        font-weight: 400 !important;
+    }
+
+.ui-datepicker-calendar th {
+    font-weight: 500 !important;
+}
+
+.ui-state-hover.ui-datepicker-prev-hover,
+.ui-state-hover.ui-datepicker-next-hover {
+    background-image: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: #007bff !important;
+    cursor: pointer;
+}
+
+span.ui-icon {
+    background: none !important;
+}
+
+span.ui-icon {
+    display: block;
+    text-indent: 0 !important;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+    top: 40% !important;
+}
+
+    .ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span:hover {
+        top: 40% !important;
+        left: 50% !important;
+        color: #f7f2f2 !important;
+        margin-left: -8px !important;
+        margin-top: -8px !important;
+    }
+
+.ui-datepicker .ui-datepicker-next span, .ui-datepicker .ui-datepicker-prev span {
+    top: 40% !important;
+}
+
+    .ui-datepicker .ui-datepicker-next span, .ui-datepicker .ui-datepicker-prev span:hover {
+        top: 40% !important;
+        left: 50% !important;
+        color: #f7f2f2 !important;
+        margin-left: -8px !important;
+        margin-top: -8px !important;
+    }
+
+.ui-datepicker-title {
+    font-weight: 600;
+}
+
+._card {
+    text-align: center;
+    padding: 30px;
+    background: #Fff;
+    border: 1px solid #fff;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    height: 150px;
 }

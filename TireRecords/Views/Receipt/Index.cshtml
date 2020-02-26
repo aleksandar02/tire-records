@@ -54,7 +54,7 @@
                     <td>@item.Vehicle.Brand</td>
                     <td>@item.Vehicle.RegistrationNumber</td>
                     <td>
-                        <a href="/Receipt/Detalji" class="btn btn-general btn-default btn-small">Detalji</a>
+                        <a href="/Receipt/Details/@item.Receipt.Id" class="btn btn-general btn-default btn-small" id="redirectToDetails">Detalji</a>
                     </td>
                 </tr>
             }
