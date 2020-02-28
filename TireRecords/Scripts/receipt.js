@@ -19,6 +19,9 @@
         
     });
 
-    $('#dateFrom').datepicker('setDate', '-30d');
-    $('#dateTo').datepicker('setDate', 'now');
+    var dateTo = new Date();
+    dateTo.setDate(dateTo.getDate() + 1);
+
+    $('#dateFrom').datepicker("setDate", "-30d");
+    $('#dateTo').datepicker('setDate', dateTo);
 });

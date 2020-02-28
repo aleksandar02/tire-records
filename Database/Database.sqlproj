@@ -76,5 +76,6 @@
     <Build Include="dbo\StoredProcedures\InsertReceipt.sql" />
     <Build Include="dbo\StoredProcedures\InsertTire.sql" />
     <Build Include="dbo\StoredProcedures\SearchReceipts.sql" />
+    <Build Include="dbo\StoredProcedures\GetReceiptDetails.sql" />
   </ItemGroup>
 </Project>

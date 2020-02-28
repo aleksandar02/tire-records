@@ -187,6 +187,56 @@ namespace Infrastructure.DAL
             return clientReceipts;
         }
 
+        public async Task<ReceiptDetailsDto> GetReceiptDetails(int id)
+        {
+            var receiptDetails = new ReceiptDetailsDto();
+
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    string sqlProcedure = "GetReceiptDetails";
+                    var command = new SqlCommand(sqlProcedure, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@ReceiptId", id);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (await reader.ReadAsync().ConfigureAwait(false))
+                        {
+                            receiptDetails = MapToReceiptDetails(reader, receiptDetails);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+
+            return receiptDetails;
+        }
+
+        private ReceiptDetailsDto MapToReceiptDetails(SqlDataReader reader, ReceiptDetailsDto receiptDetails)
+        {
+            if (receiptDetails.Client == null || receiptDetails.Vehicle == null || receiptDetails.Receipt == null)
+            {
+                receiptDetails.Client = ClientDto.MapTo(reader);
+                receiptDetails.Vehicle = VehicleDto.MapTo(reader);
+                receiptDetails.Receipt = ReceiptDto.MapTo(reader);
+                receiptDetails.Tires = new List<TireDto>();
+            }
+
+            var tire = TireDto.MapTo(reader);
+
+            receiptDetails.Tires.Add(tire);
+
+            return receiptDetails;
+        }
+
         private ClientReceiptDto MapToClientReceipt(SqlDataReader reader)
         {
             var clientReceipt = new ClientReceiptDto();

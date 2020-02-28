@@ -192,6 +192,7 @@
     <Compile Include="Models\ClientViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ReceiptDetailsViewModel.cs" />
     <Compile Include="Models\ReceiptViewModel.cs" />
     <Compile Include="Models\TireViewModel.cs" />
     <Compile Include="Models\VehicleViewModel.cs" />
@@ -265,6 +266,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Receipt\Index.cshtml" />
     <Content Include="Views\Receipt\Create.cshtml" />
+    <Content Include="Views\Receipt\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

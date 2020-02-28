@@ -21,8 +21,8 @@ namespace Core.Entities
             var vehicle = new VehicleDto();
 
             vehicle.Id = Convert.ToInt32(reader["VehicleId"]);
-            vehicle.Brand = Convert.ToString(reader["Brand"]);
-            vehicle.Model = Convert.ToString(reader["Model"]);
+            vehicle.Brand = Convert.ToString(reader["VehicleBrand"]);
+            vehicle.Model = Convert.ToString(reader["VehicleModel"]);
             vehicle.ClientId = Convert.ToInt32(reader["ClientId"]);
             vehicle.RegistrationNumber = Convert.ToString(reader["RegistrationNumber"]);
 

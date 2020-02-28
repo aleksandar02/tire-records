@@ -14,12 +14,12 @@ namespace TireRecords.Models
         public int VehicleId { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
-        public PositionEnum Position { get; set; }
-        public int PositionValue
+        public int Position { get; set; }
+        public PositionEnum PositionText
         {
             get
             {
-                return Convert.ToInt32((PositionEnum)Position);
+                return (PositionEnum)Position;
             }
             set
             {
@@ -41,7 +41,6 @@ namespace TireRecords.Models
             tire.Brand = tireDto.Brand;
             tire.Model = tireDto.Model;
             tire.Position = tireDto.Position;
-            tire.PositionValue = tireDto.PositionValue;
             tire.Dimension = tireDto.Dimension;
             tire.Index = tireDto.Index;
             tire.DOT = tireDto.DOT;
@@ -60,7 +59,6 @@ namespace TireRecords.Models
             tireDto.Brand = tire.Brand;
             tireDto.Model = tire.Model;
             tireDto.Position = tire.Position;
-            tireDto.PositionValue = tire.PositionValue;
             tireDto.Dimension = tire.Dimension;
             tireDto.Index = tire.Index;
             tireDto.DOT = tire.DOT;

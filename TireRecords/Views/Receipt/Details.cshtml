@@ -1,0 +1,90 @@
+﻿@model TireRecords.Models.ReceiptDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="page-heading">Detalji priznanice</h2>
+<br />
+
+<div class="container">
+    <form>
+
+        <div class="form-section">
+            <h4 class="form-heading">Klijent</h4>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" class="form-control form-disabled" value="@Model.Client.FirstName" disabled />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control form-disabled" value="@Model.Client.LastName" disabled />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control form-disabled" value="@Model.Client.MobilePhone" disabled />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control form-disabled" value="@Model.Client.Email" disabled />
+                </div>
+            </div>
+        </div>
+        <div class="form-section">
+            <h4 class="form-heading">Vozilo</h4>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" class="form-control form-disabled" value="@Model.Vehicle.Brand" disabled />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control form-disabled" value="@Model.Vehicle.RegistrationNumber" disabled />
+                </div>
+            </div>
+        </div>
+        <div class="form-section">
+
+            <h4 class="form-heading">Gume</h4>
+
+            @foreach (var tire in Model.Tires)
+            {
+                <div class="row">
+                    <div class="col-md-1">
+                        <input type="text" class="form-control" disabled value="@tire.PositionText" />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control form-disabled" value="@tire.Brand" disabled />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control form-disabled" value="@tire.Model" disabled />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control form-disabled" value="@tire.Dimension" disabled />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control form-disabled" value="@tire.Index" disabled />
+                    </div>
+                    <div class="col-md-1">
+                        <input type="text" class="form-control form-disabled" value="@tire.DOT" disabled />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control form-disabled" value="@tire.Depth" disabled />
+                    </div>
+                </div>
+                <br />
+            }
+
+            <textarea class="form-control form-disabled" disabled>@Model.Receipt.Message</textarea>
+
+        </div>
+
+        <div class="pull-right">
+            <button type="submit" class="btn btn-general btn-red mt-30">Export</button>
+        </div>
+    </form>
+
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

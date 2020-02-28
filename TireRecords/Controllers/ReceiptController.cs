@@ -19,7 +19,6 @@ namespace TireRecords.Controllers
             _receiptService = new ReceiptService(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }
 
-        // GET: Receipt
         [Authorize]
         public async Task<ActionResult> Index()
         {
@@ -32,7 +31,7 @@ namespace TireRecords.Controllers
             filter.DateTo = DateTime.Now.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
             
             var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
-            var clientReceiptViewModels = MapReceiptsToViewModels(clientReceiptDtos);
+            var clientReceiptViewModels = ClientReceiptViewModel.MapTo(clientReceiptDtos);
 
             return View(clientReceiptViewModels);
         }
@@ -42,50 +41,31 @@ namespace TireRecords.Controllers
         {
             var filter = new FilterDto();
 
-            filter.FirstName = Convert.ToString(collection["firstName"]);
-            filter.LastName = Convert.ToString(collection["lastName"]);
-            filter.RegistrationNumber = Convert.ToString(collection["registrationNumber"]);
+            filter.FirstName = Convert.ToString(collection["firstName"]).Trim();
+            filter.LastName = Convert.ToString(collection["lastName"]).Trim();
+            filter.RegistrationNumber = Convert.ToString(collection["registrationNumber"]).Trim();
             filter.DateFrom = Convert.ToDateTime(collection["dateFrom"]);
             filter.DateTo = Convert.ToDateTime(collection["dateTo"]);
 
             var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
-            var clientReceiptViewModels = MapReceiptsToViewModels(clientReceiptDtos);
+            var clientReceiptViewModels = ClientReceiptViewModel.MapTo(clientReceiptDtos);
 
             return View("Index", clientReceiptViewModels);
         }
 
-        private List<ClientReceiptViewModel> MapReceiptsToViewModels(List<ClientReceiptDto> clientReceiptDtos)
+        public async Task<ActionResult> Details(int id)
         {
-            var clientReceiptViewModels = new List<ClientReceiptViewModel>();
+            var receiptDetailsDto = await _receiptService.GetReceiptDetails(id);
+            var receiptDetailsViewModel = ReceiptDetailsViewModel.MapTo(receiptDetailsDto);
 
-            foreach (var receipt in clientReceiptDtos)
-            {
-                var clientReceipt = new ClientReceiptViewModel();
-
-                clientReceipt.Client = ClientViewModel.MapTo(receipt.Client);
-                clientReceipt.Vehicle = VehicleViewModel.MapTo(receipt.Vehicle);
-                clientReceipt.Receipt = ReceiptViewModel.MapTo(receipt.Receipt);
-
-                clientReceiptViewModels.Add(clientReceipt);
-            }
-
-
-            return clientReceiptViewModels;
+            return View(receiptDetailsViewModel);
         }
 
-        // GET: Receipt/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Receipt/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Receipt/Create
         [Authorize]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -117,7 +97,7 @@ namespace TireRecords.Controllers
             var tireBL = new TireDto();
             var tireBR = new TireDto();
 
-            tireTL.Position = PositionEnum.PL;
+            tireTL.Position = (int)PositionEnum.PL;
             tireTL.Brand = Convert.ToString(collection["tireBrandPL"]);
             tireTL.Model = Convert.ToString(collection["tireModelPL"]);
             tireTL.Dimension = Convert.ToString(collection["dimensionPL"]);
@@ -127,7 +107,7 @@ namespace TireRecords.Controllers
 
             tires.Add(tireTL);
 
-            tireTR.Position = PositionEnum.PD;
+            tireTR.Position = (int)PositionEnum.PD;
             tireTR.Brand = Convert.ToString(collection["tireBrandPD"]);
             tireTR.Model = Convert.ToString(collection["tireModelPD"]);
             tireTR.Dimension = Convert.ToString(collection["dimensionPD"]);
@@ -137,7 +117,7 @@ namespace TireRecords.Controllers
 
             tires.Add(tireTR);
 
-            tireBL.Position = PositionEnum.ZL;
+            tireBL.Position = (int)PositionEnum.ZL;
             tireBL.Brand = Convert.ToString(collection["tireBrandZL"]);
             tireBL.Model = Convert.ToString(collection["tireModelZL"]);
             tireBL.Dimension = Convert.ToString(collection["dimensionZL"]);
@@ -147,7 +127,7 @@ namespace TireRecords.Controllers
 
             tires.Add(tireBL);
 
-            tireBR.Position = PositionEnum.ZD;
+            tireBR.Position = (int)PositionEnum.ZD;
             tireBR.Brand = Convert.ToString(collection["tireBrandZD"]);
             tireBR.Model = Convert.ToString(collection["tireModelZD"]);
             tireBR.Dimension = Convert.ToString(collection["dimensionZD"]);
@@ -160,13 +140,11 @@ namespace TireRecords.Controllers
             return tires;
         }
 
-        // GET: Receipt/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Receipt/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
