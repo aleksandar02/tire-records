@@ -1,7 +1,10 @@
 ﻿using Core.Entities;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -53,6 +56,7 @@ namespace TireRecords.Controllers
             return View("Index", clientReceiptViewModels);
         }
 
+        [Authorize]
         public async Task<ActionResult> Details(int id)
         {
             var receiptDetailsDto = await _receiptService.GetReceiptDetails(id);
@@ -61,6 +65,7 @@ namespace TireRecords.Controllers
             return View(receiptDetailsViewModel);
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -140,12 +145,37 @@ namespace TireRecords.Controllers
             return tires;
         }
 
+        [Authorize]
+        public async Task<ActionResult> ExportPdf(int id)
+        {
+            var pdf = new byte[0];
+
+            try
+            {
+                var receiptDetailsDto = await _receiptService.GetReceiptDetails(id);
+                var receiptDetailsViewModel = ReceiptDetailsViewModel.MapTo(receiptDetailsDto);
+
+                pdf = PdfService.CreatePdf(receiptDetailsViewModel);
+
+                return File(pdf, "application/pdf");
+
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+
+                return new HttpStatusCodeResult(404);
+            }
+        }
+
+        [Authorize]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
