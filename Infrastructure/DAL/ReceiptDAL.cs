@@ -119,7 +119,7 @@ namespace Infrastructure.DAL
                         cmdTire.CommandType = CommandType.StoredProcedure;
 
                         #region tireParams
-                        cmdTire.Parameters.AddWithValue("@Position", tire.PositionValue);
+                        cmdTire.Parameters.AddWithValue("@Position", tire.Position);
                         cmdTire.Parameters.AddWithValue("@Brand", tire.Brand);
                         cmdTire.Parameters.AddWithValue("@Model", tire.Model);
                         cmdTire.Parameters.AddWithValue("@Dimension", tire.Dimension);

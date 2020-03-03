@@ -15,7 +15,6 @@ namespace Core.Entities
         public string Brand { get; set; }
         public string Model { get; set; }
         public int Position { get; set; }
-        public int PositionValue { get; set; }
         public string Dimension { get; set; }
         public string Index { get; set; }
         public int DOT { get; set; }

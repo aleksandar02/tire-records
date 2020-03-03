@@ -34,7 +34,7 @@ namespace Infrastructure.DAL
                         var command = new SqlCommand(sqlProcedure, connection);
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@Position", tire.PositionValue);
+                        command.Parameters.AddWithValue("@Position", tire.Position);
                         command.Parameters.AddWithValue("@Brand", tire.Brand);
                         command.Parameters.AddWithValue("@Model", tire.Model);
                         command.Parameters.AddWithValue("@Dimension", tire.Dimension);
