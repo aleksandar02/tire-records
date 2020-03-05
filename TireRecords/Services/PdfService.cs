@@ -12,7 +12,7 @@ namespace TireRecords.Services
 {
     public class PdfService
     {
-        public static byte[] CreatePdf(ReceiptDetailsViewModel receiptDetailsViewModel)
+        public static byte[] CreatePdf(ReceiptDetailsViewModel receiptDetailsViewModel, List<string> imagePaths)
         {
             var fileStream = new MemoryStream();
 
@@ -25,15 +25,15 @@ namespace TireRecords.Services
             page.Orientation = PdfSharp.PageOrientation.Landscape;
             page.Size = PdfSharp.PageSize.A4;
 
-            PdfService.GenerateLeftSide(receiptDetailsViewModel, page, options);
-            PdfService.GenerateRightSide(receiptDetailsViewModel, page, options);
+            PdfService.GenerateLeftSide(receiptDetailsViewModel, page, options, imagePaths);
+            PdfService.GenerateRightSide(receiptDetailsViewModel, page, options, imagePaths);
 
             document.Save(fileStream);
 
             return fileStream.ToArray();
         }
 
-        public static void GenerateLeftSide(ReceiptDetailsViewModel receiptDetails, PdfPage page, XPdfFontOptions options)
+        public static void GenerateLeftSide(ReceiptDetailsViewModel receiptDetails, PdfPage page, XPdfFontOptions options, List<string> imagePaths)
         {
             XFont font = new XFont("Calibri", 12, XFontStyle.Bold, options);
 
@@ -45,7 +45,7 @@ namespace TireRecords.Services
                 gfx.DrawLine(splitLine, page.Width / 2, 10, page.Width / 2, page.Height - 10);
 
                 // Vulco image
-                XImage vulcoImage = XImage.FromFile($"D:\\TiresPdf\\images\\vulco-logo.png");
+                XImage vulcoImage = XImage.FromFile(imagePaths.ElementAt(0));
                 gfx.DrawImage(vulcoImage, 20, 15, 120, 50);
 
                 XTextFormatter tf = new XTextFormatter(gfx);
@@ -69,7 +69,7 @@ namespace TireRecords.Services
                 tf.DrawString("035 8 223 689 | 063 433 644", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 // Auto logo
-                XImage logoImage = XImage.FromFile($"D:\\TiresPdf\\images\\logo.png");
+                XImage logoImage = XImage.FromFile(imagePaths.ElementAt(1));
                 gfx.DrawImage(logoImage, 315, 10, 90, 60);
 
                 // Website and gmail
@@ -316,14 +316,14 @@ namespace TireRecords.Services
             }
         }
 
-        public static void GenerateRightSide(ReceiptDetailsViewModel receiptDetails, PdfPage page, XPdfFontOptions options)
+        public static void GenerateRightSide(ReceiptDetailsViewModel receiptDetails, PdfPage page, XPdfFontOptions options, List<string> imagePaths)
         {
             XFont font = new XFont("Calibri", 12, XFontStyle.Bold, options);
 
             using (XGraphics gfx = XGraphics.FromPdfPage(page))
             {
                 // Vulco image
-                XImage vulcoImage = XImage.FromFile($"D:\\TiresPdf\\images\\vulco-logo.png");
+                XImage vulcoImage = XImage.FromFile(imagePaths.ElementAt(0));
                 gfx.DrawImage(vulcoImage, page.Width / 2 + 20, 15, 120, 50);
 
                 XTextFormatter tf = new XTextFormatter(gfx);
@@ -347,7 +347,7 @@ namespace TireRecords.Services
                 tf.DrawString("035 8 223 689 | 063 433 644", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 // Auto logo
-                XImage logoImage = XImage.FromFile($"D:\\TiresPdf\\images\\logo.png");
+                XImage logoImage = XImage.FromFile(imagePaths.ElementAt(1));
                 gfx.DrawImage(logoImage, page.Width / 2 + 315, 10, 90, 60);
 
                 // Website and gmail

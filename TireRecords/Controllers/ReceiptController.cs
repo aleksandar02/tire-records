@@ -32,7 +32,7 @@ namespace TireRecords.Controllers
             filter.RegistrationNumber = "";
             filter.DateFrom = DateTime.Now.AddDays(-30);
             filter.DateTo = DateTime.Now.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
-            
+
             var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
             var clientReceiptViewModels = ClientReceiptViewModel.MapTo(clientReceiptDtos);
 
@@ -152,10 +152,13 @@ namespace TireRecords.Controllers
 
             try
             {
+
+                var imagePaths = new  List<string> {  Server.MapPath("~/Content/images/pdf/vulco-logo.png"), Server.MapPath("~/Content/images/pdf/logo.png") };
+
                 var receiptDetailsDto = await _receiptService.GetReceiptDetails(id);
                 var receiptDetailsViewModel = ReceiptDetailsViewModel.MapTo(receiptDetailsDto);
 
-                pdf = PdfService.CreatePdf(receiptDetailsViewModel);
+                pdf = PdfService.CreatePdf(receiptDetailsViewModel, imagePaths);
 
                 return File(pdf, "application/pdf");
 
