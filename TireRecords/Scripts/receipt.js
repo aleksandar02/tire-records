@@ -24,4 +24,8 @@
 
     $('#dateFrom').datepicker("setDate", "-30d");
     $('#dateTo').datepicker('setDate', dateTo);
+
+    $('#receiptCreatedPanel').click(function () {
+        $('#msgPanel').fadeOut("fast");
+    });
 });

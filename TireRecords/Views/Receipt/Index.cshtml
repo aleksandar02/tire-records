@@ -4,10 +4,62 @@
     ViewBag.Title = "Index";
 }
 
+
+
     <div class="container">
         <h2 class="page-heading">Priznanice</h2>
 
-        <div class="filter-section panel">
+        @{
+            if (TempData.ContainsKey("ReceiptId"))
+            {
+                string txtReceiptId = Convert.ToString(TempData["ReceiptId"]);
+
+                if (!string.IsNullOrEmpty(txtReceiptId))
+                {
+
+                    if (txtReceiptId != "-1")
+                    {
+                        <div class="panel panel-white" id="msgPanel">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        Priznanica je uspešno kreirana
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pull-right">
+                                            <a href="/Receipt/ExportPdf/@txtReceiptId" target="_blank" class="mr-20 btn btn-general btn-blue btn-small"><i class="fa fa-print"></i>&nbsp;&nbsp;Štampaj</a>
+                                            <a href="/Receipt/ExportPdf/@txtReceiptId" class="mr-20 btn btn-general btn-blue btn-small"><i class="fa fa-eye"></i>&nbsp;&nbsp;Prikaži</a>
+                                            <span id="receiptCreatedPanel"><i class="fa fa-times" style="cursor: pointer;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="panel panel-red" id="msgPanel">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        Došlo je do greške, pokušajte ponovo!
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pull-right">
+                                            <span id="receiptCreatedPanel"><i class="fa fa-times" style="cursor: pointer;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+
+            }
+        }
+
+        <div class="filter-section _panel">
             <form action="/Receipt/Search" method="post">
                 <div class="row">
                     <div class="col-md-3">
@@ -28,7 +80,7 @@
                     <div class="col-md-3">
                         <input type="text" name="registrationNumber" id="registrationNumber" class="form-control" placeholder="Registarski broj" />
                     </div>
-                    
+
                     <div class="col-md-3">
                         <button type="submit" class="btn btn-general btn-blue pull-right"><i class="fa fa-search"></i>&nbsp;&nbsp;Pretraži</button>
                     </div>
@@ -36,7 +88,7 @@
             </form>
         </div>
 
-        <div class="panel">
+        <div class="_panel">
             <a href="/Receipt/Create" class="btn btn-general btn-red mb-15"><i class="fa fa-plus"></i>&nbsp;&nbsp;Nova priznanica</a>
 
             <table class="table" id="receiptTable">
@@ -61,7 +113,7 @@
                             <td>@item.Vehicle.Brand</td>
                             <td>@item.Vehicle.RegistrationNumber</td>
                             <td>
-                                <a href="/Receipt/Details/@item.Receipt.Id" class="btn btn-general btn-default btn-small" id="redirectToDetails"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;Detalji</a>
+                                <a href="/Receipt/Details/@item.Receipt.Id" target="_blank" class="btn btn-general btn-default btn-small" id="redirectToDetails"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;Detalji</a>
                             </td>
                         </tr>
                     }

@@ -44,7 +44,7 @@ namespace TireRecords.Services
             return _tireDAL.InsertTires(tires);
         }
 
-        public bool InsertReceipt(ClientDto client, VehicleDto vehicle, ReceiptDto receipt, List<TireDto> tires)
+        public int InsertReceipt(ClientDto client, VehicleDto vehicle, ReceiptDto receipt, List<TireDto> tires)
         {
             return _receiptDAL.InsertReceipt(client, vehicle, receipt, tires);
         }

@@ -53,9 +53,9 @@ namespace Infrastructure.DAL
             return receiptId;
         }
 
-        public bool InsertReceipt(ClientDto client, VehicleDto vehicle, ReceiptDto receipt, List<TireDto> tires)
+        public int InsertReceipt(ClientDto client, VehicleDto vehicle, ReceiptDto receipt, List<TireDto> tires)
         {
-            bool result = true;
+            int receiptId = -1;
             SqlTransaction transaction = null;
 
             try
@@ -65,7 +65,7 @@ namespace Infrastructure.DAL
                     connection.Open();
                     transaction = connection.BeginTransaction();
 
-                    string sqlClient = "InsertClient";
+                    string sqlClient = "InsetClient";
                     string sqlVehicle = "InsertVehicle";
                     string sqlReceipt = "InsertReceipt";
                     string sqlTire = "InsertTire";
@@ -111,7 +111,8 @@ namespace Infrastructure.DAL
                     #endregion
 
                     cmdReceipt.ExecuteNonQuery();
-                    int receiptId = Convert.ToInt32(cmdReceipt.Parameters["@ReceiptId"].Value);
+                    receiptId = Convert.ToInt32(cmdReceipt.Parameters["@ReceiptId"].Value);
+
 
                     foreach (var tire in tires)
                     {
@@ -141,10 +142,10 @@ namespace Infrastructure.DAL
                 transaction.Rollback();
 
                 string message = ex.Message;
-                result = false;
+                receiptId = -1;
             }
 
-            return result;
+            return receiptId;
         }
 
         public async Task<List<ClientReceiptDto>> SearchReceipts(FilterDto filter)

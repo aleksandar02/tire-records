@@ -82,13 +82,16 @@ namespace TireRecords.Controllers
                 var receiptDto = ReceiptViewModel.MapFrom(collection, User.Identity.Name);
                 var tires = GetTires(collection);
 
-                bool result = _receiptService.InsertReceipt(clientDto, vehicledDto, receiptDto, tires);
+                int receiptId = _receiptService.InsertReceipt(clientDto, vehicledDto, receiptDto, tires);
+                TempData["ReceiptId"] = receiptId;
+
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                TempData["ReceiptId"] = -1;
+                return RedirectToAction("Index");
             }
         }
 
@@ -153,7 +156,7 @@ namespace TireRecords.Controllers
             try
             {
 
-                var imagePaths = new  List<string> {  Server.MapPath("~/Content/images/pdf/vulco-logo.png"), Server.MapPath("~/Content/images/pdf/logo.png") };
+                var imagePaths = new List<string> { Server.MapPath("~/Content/images/pdf/vulco-logo.png"), Server.MapPath("~/Content/images/pdf/logo.png") };
 
                 var receiptDetailsDto = await _receiptService.GetReceiptDetails(id);
                 var receiptDetailsViewModel = ReceiptDetailsViewModel.MapTo(receiptDetailsDto);

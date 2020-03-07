@@ -194,6 +194,10 @@ textarea {
     margin-right: 10px;
 }
 
+.mr-20 {
+    margin-right: 20px;
+}
+
 .tire-icon {
     width: 20px;
     height: 20px;
@@ -510,12 +514,40 @@ span.ui-icon {
     cursor: default;
 }
 
-.panel {
+._panel {
     background: #fff;
     box-shadow: 0 0px 6px -1px rgba(0, 0, 0, 0.1), 0 4px 4px -1px rgba(0, 0, 0, 0.06);
     border-radius: 0;
     margin-bottom: 20px;
     padding: 30px;
+}
+
+.panel-white {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 0px;
+    box-shadow: 0 0px 6px -1px rgba(0, 0, 0, 0.1), 0 4px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-top: 10px;
+    background: #fff;
+    font-weight: 600;
+    color: #007bff;
+}
+
+.panel-red {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 0px;
+    box-shadow: 0 0px 6px -1px rgba(0, 0, 0, 0.1), 0 4px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-top: 10px;
+    background: #fff;
+    font-weight: 600;
+    color: #fff;
+    background: #dc3545;
+}
+
+.panel-heading .row {
+    display: flex !important;
+    align-items: center !important;  
 }
 
 #receiptTable_wrapper .row:last-child {
