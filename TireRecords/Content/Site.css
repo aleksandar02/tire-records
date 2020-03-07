@@ -54,6 +54,7 @@ ul {
     padding: 7px 18px;
     font-size: 14px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
 }
 
     .btn-general:focus {
@@ -64,6 +65,13 @@ ul {
     .btn-general:hover {
         box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12) !important;
     }
+
+.btn-logout {
+    background: transparent;
+    color: #fff;
+    box-shadow: none !important;
+    outline: none !important;
+}
 
 .btn-default {
     border-color: #f7f2f2;
@@ -265,14 +273,16 @@ textarea {
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.06);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.06);
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.06);
+    background: #fff;
 }
 
 .login-heading {
     text-align: center;
-    font-size: 36px;
-    font-weight: 600;
-    padding-top: 50px;
+    font-size: 48px;
+    font-weight: 700;
+    padding-top: 80px;
     margin: 0;
+    color: #007bff;
 }
 
 .login-subheading {
@@ -552,6 +562,44 @@ span.ui-icon {
 
 #receiptTable_wrapper .row:last-child {
     margin-top: 20px !important;
+}
+
+#logoutForm {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-collapse.collapse {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.navbar-right {
+    margin-left: auto !important;
+}
+
+
+.logout-dropdown span:hover {
+    color: #fff;
+    box-shadow: none !important;
+    outline: none !important;
+}
+.logout-dropdown .dropdown-menu {
+    border-radius: 3px !important;
+}
+
+.logout-dropdown .dropdown-menu li {
+    padding: 2px 15px !important;
+}
+
+    .logout-dropdown .dropdown-menu li:hover {
+        background: #f7f2f2;
+    }
+
+    .logout-dropdown .dropdown-menu li a {
+        color: #111113 !important;
+        display: block !important;
+    }
 }
 
 .bootstrap-select .filter-option {

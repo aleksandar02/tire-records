@@ -1,17 +1,31 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
+
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Zdravo " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        @*<li>
+                @Html.ActionLink("Zdravo " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>*@
+
+        <li class="dropdown logout-dropdown">
+            <span class="btn btn-logout dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-user"></i>
+                &nbsp;&nbsp;@User.Identity.GetUserName()
+                <span class="caret"></span>
+            </span>
+            <ul class="dropdown-menu">
+                <li>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Odjavi se</a>
+                    }
+                </li>
+
+            </ul>
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Odjavi se</a></li>
     </ul>
-    }
 }
 else
 {

@@ -1,0 +1,75 @@
+﻿
+﻿body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.login-left {
+    background: #007bff;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-left h1 {
+    font-weight: 700;
+    font-size: 48px;
+    color: #fff;
+}
+
+.login {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.login-heading {
+    font-weight: 200;
+}
+
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+    border-radius: 2px !important;
+}
+
+#validationMessages ul {
+    list-style-type: none;
+    padding: 0 !important;
+}
+
+.card {
+    border-color: #dc3545;
+}
+
+.login-logo {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-size: 36px;
+    color: #007bff;
+}
+
+
+.invalid-login {
+    color: #dc3545;
+    font-size: 16px;
+}
+
+    .invalid-login p {
+        margin: 0 0 !important;
+    }
+
+.control-label {
+    font-weight: 500;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+}
+
+.page-heading {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+}
