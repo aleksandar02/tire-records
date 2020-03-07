@@ -10,8 +10,8 @@
 <div class="container" id="details">
     <form>
 
-        <div class="form-section">
-            <h4 class="form-heading">Klijent</h4>
+        <div class="form-section form-section-client">
+            <h4 class="form-heading"><i class="fa fa-user"></i>&nbsp;&nbsp;Klijent</h4>
             <div class="row">
                 <div class="col-md-3">
                     <input type="text" class="form-control form-disabled" value="@Model.Client.FirstName" disabled />
@@ -27,8 +27,8 @@
                 </div>
             </div>
         </div>
-        <div class="form-section">
-            <h4 class="form-heading">Vozilo</h4>
+        <div class="form-section form-section-vehicle">
+            <h4 class="form-heading"><i class="fa fa-car"></i>&nbsp;&nbsp;Vozilo</h4>
             <div class="row">
                 <div class="col-md-3">
                     <input type="text" class="form-control form-disabled" value="@Model.Vehicle.Brand" disabled />
@@ -38,9 +38,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-section">
+        <div class="form-section form-section-tires">
 
-            <h4 class="form-heading">Gume</h4>
+            <h4 class="form-heading"><i class="fa fa-wrench"></i>&nbsp;&nbsp;Gume</h4>
 
             @foreach (var tire in Model.Tires)
             {
@@ -75,7 +75,7 @@
         </div>
 
         <div class="pull-right">
-            <a href="/Receipt/ExportPdf/@Model.Receipt.Id" target="_blank" class="btn btn-general btn-red mt-30">Export</a>
+            <a href="/Receipt/ExportPdf/@Model.Receipt.Id" target="_blank" class="btn btn-general btn-red mt-10"><i class="fa fa-print"></i>&nbsp;&nbsp;Štampaj</a>
         </div>
     </form>
 

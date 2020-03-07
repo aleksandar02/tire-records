@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2 class="page-heading">Kreiraj priznanicu</h2>
+<h2 class="page-heading">Nova priznanica</h2>
 <br />
 
 
@@ -25,8 +25,8 @@
 
     <form action="/Receipt/Create" method="post">
 
-        <div class="form-section">
-            <h4 class="form-heading">Klijent</h4>
+        <div class="form-section form-section-client">
+            <h4 class="form-heading"><i class="fa fa-user"></i>&nbsp;Klijent</h4>
             <div class="row">
                 <div class="col-md-3">
                     <input type="text" id="firstName" name="firstName" class="form-control" value="" placeholder="Ime" />
@@ -42,9 +42,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-section">
+        <div class="form-section form-section-vehicle">
 
-            <h4 class="form-heading">Vozilo</h4>
+            <h4 class="form-heading"><i class="fa fa-car"></i>&nbsp;Vozilo</h4>
             <div class="row">
                 <div class="col-md-3">
                     <input type="text" id="vehicleBrand" name="vehicleBrand" class="form-control" value="" placeholder="Marka" />
@@ -54,9 +54,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-section">
+        <div class="form-section form-section-tires">
 
-            <h4 class="form-heading">Gume</h4>
+            <h4 class="form-heading"><i class="fa fa-wrench"></i>&nbsp;Gume</h4>
             <div class="row">
                 <div class="col-md-1">
                     <input type="text" id="positionPLText" name="positionPLText" class="form-control" disabled value="PL" />
@@ -156,7 +156,7 @@
         </div>
 
         <div class="pull-right">
-            <button type="submit" class="btn btn-general btn-blue mt-30">Unesi</button>
+            <button type="submit" class="btn btn-general btn-blue mt-10"><i class="fa fa-save"></i>&nbsp;&nbsp;Kreiraj priznanicu</button>
         </div>
     </form>
 

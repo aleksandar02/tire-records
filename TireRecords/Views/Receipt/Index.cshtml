@@ -5,65 +5,70 @@
 }
 
     <div class="container">
-        <h2 class="page-heading">Sve priznanice</h2>
+        <h2 class="page-heading">Priznanice</h2>
 
-        <div class="filter-section">
+        <div class="filter-section panel">
             <form action="/Receipt/Search" method="post">
                 <div class="row">
-                    <div class="col-md-2">
-                        <input type="text" name="firstName" id="firstName" class="form-control input-sm" placeholder="Ime" />
+                    <div class="col-md-3">
+                        <input type="text" name="dateFrom" class="form-control" id="dateFrom" placeholder="Od" />
                     </div>
-                    <div class="col-md-2">
-                        <input type="text" name="lastName" id="lastName" class="form-control input-sm" placeholder="Prezime" />
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="dateTo" id="dateTo" placeholder="Do" />
                     </div>
-                    <div class="col-md-2">
-                        <input type="text" name="registrationNumber" id="registrationNumber" class="form-control input-sm" placeholder="Registarski broj" />
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Ime" />
                     </div>
-                    <div class="col-md-2">
-                        <input type="text" name="dateFrom" class="form-control input-sm" id="dateFrom" placeholder="Od" />
+                    <div class="col-md-3">
+                        <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Prezime" />
                     </div>
-                    <div class="col-md-2">
-                        <input type="text" class="form-control input-sm" name="dateTo" id="dateTo" placeholder="Do" />
+                    <div class="col-md-3">
+                        <input type="text" name="registrationNumber" id="registrationNumber" class="form-control" placeholder="Registarski broj" />
                     </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-general btn-blue btn-small">Pretraži</button>
+                    
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-general btn-blue pull-right"><i class="fa fa-search"></i>&nbsp;&nbsp;Pretraži</button>
                     </div>
                 </div>
             </form>
         </div>
 
-        <a href="/Receipt/Create" class="btn btn-general btn-yellow btn-small mb-15">Nova priznanicu</a>
+        <div class="panel">
+            <a href="/Receipt/Create" class="btn btn-general btn-red mb-15"><i class="fa fa-plus"></i>&nbsp;&nbsp;Nova priznanica</a>
 
-        <table class="table" id="receiptTable">
-            <thead>
-                <tr>
-                    <th>Ime</th>
-                    <th>Prezime</th>
-                    <th>Telefon</th>
-                    <th>Marka vozila</th>
-                    <th>Registarski broj</th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach (var item in Model)
-                {
+            <table class="table" id="receiptTable">
+                <thead>
                     <tr>
-                        <td>@item.Client.FirstName</td>
-                        <td>@item.Client.LastName</td>
-                        <td>@item.Client.MobilePhone</td>
-                        <td>@item.Vehicle.Brand</td>
-                        <td>@item.Vehicle.RegistrationNumber</td>
-                        <td>
-                            <a href="/Receipt/Details/@item.Receipt.Id" style="color: #007bff" id="redirectToDetails">Detalji</a>
-                        </td>
+                        <th>Ime</th>
+                        <th>Prezime</th>
+                        <th>Telefon</th>
+                        <th>Marka vozila</th>
+                        <th>Registarski broj</th>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+                </thead>
 
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Client.FirstName</td>
+                            <td>@item.Client.LastName</td>
+                            <td>@item.Client.MobilePhone</td>
+                            <td>@item.Vehicle.Brand</td>
+                            <td>@item.Vehicle.RegistrationNumber</td>
+                            <td>
+                                <a href="/Receipt/Details/@item.Receipt.Id" class="btn btn-general btn-default btn-small" id="redirectToDetails"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;Detalji</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 @section Scripts {
     <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
     <link href="~/Content/datatables.min.css" rel="stylesheet" />

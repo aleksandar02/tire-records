@@ -26,13 +26,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Vulkanizer", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("STOŠIĆ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Pocetna", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Početna", "Index", "Home")</li>
                     <li>@Html.ActionLink("Priznanice", "Index", "Receipt")</li>
-                    <li>@Html.ActionLink("Unesi priznanicu", "Create", "Receipt")</li>
+                    <li>@Html.ActionLink("Vozila", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Klijenti", "Index", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -1,6 +1,8 @@
 ﻿/* Colors 
     #dae330 - yellow
     #0c6acf - blue
+    #00c851 - green
+    #dc3545 - red
 
 */
 
@@ -9,6 +11,7 @@ body {
     padding-top: 70px;
     position: relative;
     min-height: 100vh;
+    background: rgba(66, 135, 245, 0.02);
 }
 
 * {
@@ -46,10 +49,10 @@ ul {
 
 .btn-general {
     border: 1px solid;
-    border-radius: 3px;
+    border-radius: 0;
     transition: all 350ms ease;
-    padding: 8px 18px;
-    font-size: 15px;
+    padding: 7px 18px;
+    font-size: 14px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
@@ -110,21 +113,37 @@ ul {
     }
 
 .btn-red {
-    border-color: #ff3547;
-    background: #ff3547;
+    border-color: #dc3545;
+    background: #dc3545;
     color: #fff !important;
 }
 
     .btn-red:hover {
-        border-color: #ff3547;
-        background: #ff3547;
+        border-color: #dc3545;
+        background: #dc3545;
         color: #fff;
     }
 
     .btn-red:focus {
-        border-color: #ff3547;
+        border-color: #dc3545;
     }
 
+
+.btn-green {
+    border-color: #00c851;
+    background: #00c851;
+    color: #fff !important;
+}
+
+    .btn-green:hover {
+        border-color: #00c851;
+        background: #00c851;
+        color: #fff;
+    }
+
+    .btn-green:focus {
+        border-color: #00c851;
+    }
 .btn-small {
     padding: 6px 16px !important;
     font-size: 12px !important;
@@ -133,6 +152,11 @@ ul {
 /* Form */
 
 .form-control {
+    border-color: rgba(0, 0, 0, 0.2) !important;
+    font-weight: 500 !important;
+}
+
+.form-control::placeholder {
     /*border-radius: 0;
     border: none;
     box-shadow: none !important;
@@ -141,6 +165,8 @@ ul {
     padding-left: 7px;
     padding-right: 0;
     margin-top: 10px;*/
+    color: rgba(0, 0, 0, 0.6) !important;
+    font-weight: 500 !important;
 }
 
 @media(max-width: 991px) {
@@ -179,15 +205,24 @@ textarea {
     background: #fff;
     padding: 20px 30px 30px 30px;
     box-shadow: 0 0px 6px -1px rgba(0, 0, 0, 0.1), 0 4px 4px -1px rgba(0, 0, 0, 0.06);
-    margin-bottom: 20px;
-    border-radius: 16px;
-    border-left: 3px solid #007bff;
-    color: #525866;
+    margin-bottom: 30px;
+    border-radius: 0;
+    color: #111113;
 }
 
-#details .form-section {
-    border-left: 3px solid #ff3547;
+.form-section-client {
+    border-top: 3px solid #007bff !important;
 }
+
+
+.form-section-vehicle {
+    border-top: 3px solid #28a745;
+}
+
+.form-section-tires {
+    border-top: 3px solid #dc3545 !important;
+}
+
 
 .form-heading {
     /*margin-top: 30px;*/
@@ -261,8 +296,8 @@ textarea {
     border: none !important;
     border-bottom: 1px solid #eff9f9 !important;
     border-color: #eff9f9 !important;
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 
 
@@ -384,14 +419,15 @@ span.ui-icon {
 
 ._card {
     padding: 20px 30px;
-    background: #Fff;
-    border-radius: 16px;
+    background: #fff;
+    border-radius: 0;
     margin-bottom: 30px;
     box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    height: 150px;
+    min-height: 150px;
     position: relative;
     transition: box-shadow 350ms ease;
     cursor: pointer;
+    min-height: 180px;
 }
 
     ._card:hover {
@@ -399,24 +435,26 @@ span.ui-icon {
     }
 
     .client-card {
-        border-left: 3px solid #007bff !important;
+        border-top: 3px solid #007bff !important;
     }
 
 
 .vehicle-card {
-    border-left: 3px solid #007bff;
+    border-top: 3px solid #28a745;
 }
 
 .receipt-card {
-    border-left: 3px solid #007bff !important;
+    border-top: 3px solid #dc3545 !important;
+}
+
+._card-small {
+    min-height: 50px !important;
+    border-color: transparent !important;
 }
 
     ._card i {
         text-align: left;
         display: inline-block;
-        font-size: 20px;
-        color: #525866;
-        opacity: 0.6;
     }
 
     ._card h3 {
@@ -424,13 +462,10 @@ span.ui-icon {
         margin: 0;
         padding: 0;
         margin-left: 10px;
-        font-size: 20px;
         font-weight: 500;
-        color: #525866;
-        opacity: 0.6;
     }
     ._card p {
-        font-size: 42px;
+        font-size: 48px;
         font-weight: 400;
         text-align: center;
         position: absolute;
@@ -439,6 +474,24 @@ span.ui-icon {
         transform: translate(-50%, -50%);
         color: #525866;
     }
+
+.client-card i,
+.client-card h3 {
+    color: #007bff;
+    font-size: 22px;
+}
+
+.vehicle-card i,
+.vehicle-card h3 {
+    color: #28a745;
+    font-size: 22px;
+}
+
+.receipt-card i,
+.receipt-card h3 {
+    color: #dc3545;
+    font-size: 22px;
+}
 
 
 /* Details page */
@@ -455,4 +508,16 @@ span.ui-icon {
 .form-disabled:disabled {
     background: #fff;
     cursor: default;
+}
+
+.panel {
+    background: #fff;
+    box-shadow: 0 0px 6px -1px rgba(0, 0, 0, 0.1), 0 4px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 0;
+    margin-bottom: 20px;
+    padding: 30px;
+}
+
+#receiptTable_wrapper .row:last-child {
+    margin-top: 20px !important;
 }
