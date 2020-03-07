@@ -7,6 +7,7 @@
 <h2 class="page-heading">Nova priznanica</h2>
 <br />
 
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
 <div class="container">
     @*@using (Html.BeginForm())
@@ -47,7 +48,10 @@
             <h4 class="form-heading"><i class="fa fa-car"></i>&nbsp;Vozilo</h4>
             <div class="row">
                 <div class="col-md-3">
-                    <input type="text" id="vehicleBrand" name="vehicleBrand" class="form-control" value="" placeholder="Marka" />
+                    <select name="vehicleBrand" class="selectpicker show-tick" id="vehicleBrandPicker">
+                        <option data-hidden="true">Marka</option>
+
+                    </select>
                 </div>
                 <div class="col-md-3">
                     <input type="text" id="registrationNumber" name="registrationNumber" class="form-control" value="" placeholder="Registarski broj" />
@@ -168,4 +172,95 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/bootstrap-select.min.js"></script>
 }
+
+<script>
+    $(document).ready(function () {
+        var vehicleBrands = [
+            "Abarth",
+            "Alfa Romeo",
+            "Aston Martin",
+            "Audi",
+            "Bentley",
+            "BMW",
+            "Bugatti",
+            "Cadillac",
+            "Chevrolet",
+            "Chrysler",
+            "Citroën",
+            "Dacia",
+            "Daewoo",
+            "Daihatsu",
+            "Dodge",
+            "Donkervoort",
+            "DS",
+            "Ferrari",
+            "Fiat",
+            "Fisker",
+            "Ford",
+            "Honda",
+            "Hummer",
+            "Hyundai",
+            "Infiniti",
+            "Iveco",
+            "Jaguar",
+            "Jeep",
+            "Kia",
+            "KTM",
+            "Lada",
+            "Lamborghini",
+            "Lancia",
+            "Land Rover",
+            "Landwind",
+            "Lexus",
+            "Lotus",
+            "Maserati",
+            "Maybach",
+            "Mazda",
+            "McLaren",
+            "Mercedes-Benz",
+            "MG",
+            "Mini",
+            "Mitsubishi",
+            "Morgan",
+            "Nissan",
+            "Opel",
+            "Peugeot",
+            "Porsche",
+            "Renault",
+            "Rolls-Royce",
+            "Rover",
+            "Saab",
+            "Seat",
+            "Skoda",
+            "Smart",
+            "SsangYong",
+            "Subaru",
+            "Suzuki",
+            "Tesla",
+            "Toyota",
+            "Volkswagen",
+            "Volvo"
+        ];
+
+        var container = $('#vehicleBrandPicker');
+        console.log(container);
+
+        $.each(vehicleBrands, function (index, item) {
+            container.append(`<option value="${item.trim()}">
+                                       ${item.trim()}
+                                  </option>`);
+        });
+
+        $('.selectpicker').selectpicker({
+            liveSearch: true,
+            showSubtext: true,
+            noneResultsText: "Nema rezultata!"
+        });
+    });
+
+</script>
