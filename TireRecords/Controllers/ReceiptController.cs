@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using NLog;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using System;
@@ -17,6 +18,8 @@ namespace TireRecords.Controllers
     public class ReceiptController : Controller
     {
         private ReceiptService _receiptService;
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
         public ReceiptController()
         {
             _receiptService = new ReceiptService(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
@@ -26,6 +29,8 @@ namespace TireRecords.Controllers
         public async Task<ActionResult> Index()
         {
             var filter = new FilterDto();
+
+            _logger.Info("{user} visited ReceiptController.Index", User.Identity.Name);
 
             filter.FirstName = "";
             filter.LastName = "";

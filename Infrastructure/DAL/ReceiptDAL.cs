@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,6 +13,8 @@ namespace Infrastructure.DAL
     public class ReceiptDAL
     {
         private readonly string _connectionString;
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
 
         public ReceiptDAL(string connectionString)
         {
@@ -46,7 +49,6 @@ namespace Infrastructure.DAL
             }
             catch (Exception ex)
             {
-                string message = ex.Message;
                 receiptId = 0;
             }
 
@@ -65,7 +67,7 @@ namespace Infrastructure.DAL
                     connection.Open();
                     transaction = connection.BeginTransaction();
 
-                    string sqlClient = "InsetClient";
+                    string sqlClient = "InsertClient";
                     string sqlVehicle = "InsertVehicle";
                     string sqlReceipt = "InsertReceipt";
                     string sqlTire = "InsertTire";
@@ -139,6 +141,8 @@ namespace Infrastructure.DAL
             }
             catch (Exception ex)
             {
+                _logger.Error(ex);
+
                 transaction.Rollback();
 
                 string message = ex.Message;
