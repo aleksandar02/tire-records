@@ -48,10 +48,14 @@ namespace TireRecords.Models
 
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Obavezno polje!")]
+
         [Display(Name = "Email")]
         [EmailAddress(ErrorMessage = "Unesite validnu email adresu!")]
         public string Email { get; set; }
+
+        [Display(Name = "UserName")]
+        [Required(ErrorMessage = "Unesite korisničko ime!")]
+        public string UserName { get; set; }
 
         [Required(ErrorMessage = "Obavezno polje!")]
         [DataType(DataType.Password)]
@@ -64,6 +68,10 @@ namespace TireRecords.Models
 
     public class RegisterViewModel
     {
+        [Display(Name = "UserName")]
+        [Required(ErrorMessage = "Unesite korisničko ime!")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
