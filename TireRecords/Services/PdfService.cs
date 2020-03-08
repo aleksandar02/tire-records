@@ -46,31 +46,31 @@ namespace TireRecords.Services
 
                 // Vulco image
                 XImage vulcoImage = XImage.FromFile(imagePaths.ElementAt(0));
-                gfx.DrawImage(vulcoImage, 20, 15, 120, 50);
+                gfx.DrawImage(vulcoImage, 20, 20, 120, 50);
 
                 XTextFormatter tf = new XTextFormatter(gfx);
                 tf.Alignment = XParagraphAlignment.Center;
 
                 // Text between images
-                var rect = new XRect(150, 20, 150, 12);
+                var rect = new XRect(150, 25, 150, 12);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
                 tf.DrawString("AUTO GUMI CENTAR STOŠIĆ", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-                rect = new XRect(150, 34, 150, 12);
+                rect = new XRect(150, 39, 150, 12);
                 font = new XFont("Calibri", 9, XFontStyle.Regular, options);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
                 tf.DrawString("Kapetana Koče 47, 35000 Jagodina", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-                rect = new XRect(150, 46, 150, 12);
+                rect = new XRect(150, 51, 150, 12);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
                 tf.DrawString("035 8 223 689 | 063 433 644", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 // Auto logo
                 XImage logoImage = XImage.FromFile(imagePaths.ElementAt(1));
-                gfx.DrawImage(logoImage, 315, 10, 90, 60);
+                gfx.DrawImage(logoImage, 315, 20, 90, 60);
 
                 // Website and gmail
                 rect = new XRect(20, 70, 115, 10);
@@ -129,7 +129,7 @@ namespace TireRecords.Services
                 rect = new XRect(20, 160, page.Width / 2 - 40, 15);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
-                tf.DrawString($"broj {receiptDetails.Receipt.Number} izdata dana: {receiptDetails.Receipt.CreatedAt.ToString("dd.mm.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                tf.DrawString($"broj {receiptDetails.Receipt.Number} izdata dana: {receiptDetails.Receipt.CreatedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 // Client and Vehicle Info
                 font = new XFont("Calibri", 11, XFontStyle.Regular, options);
@@ -258,16 +258,16 @@ namespace TireRecords.Services
 
                 font = new XFont("Calibri", 10, XFontStyle.Regular, options);
 
-                rect = new XRect(20, 355, page.Width / 2 - 40, 110);
+                rect = new XRect(22, 355, page.Width / 2 - 40, 110);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
                 tf.DrawString($"{receiptDetails.Receipt.Message}", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 afterLine = new XPen(XColors.Black, 1);
 
-                gfx.DrawLine(afterLine, 20, 355, page.Width / 2 - 20, 355);
-                gfx.DrawLine(afterLine, 20, 465, page.Width / 2 - 20, 465);
-                gfx.DrawLine(afterLine, 20, 355, 20, 465);
+                gfx.DrawLine(afterLine, 22, 355, page.Width / 2 - 20, 355);
+                gfx.DrawLine(afterLine, 22, 465, page.Width / 2 - 20, 465);
+                gfx.DrawLine(afterLine, 22, 355, 22, 465);
                 gfx.DrawLine(afterLine, page.Width / 2 - 20, 355, page.Width / 2 - 20, 465);
 
                 font = new XFont("Calibri", 9, XFontStyle.Regular, options);
@@ -324,31 +324,31 @@ namespace TireRecords.Services
             {
                 // Vulco image
                 XImage vulcoImage = XImage.FromFile(imagePaths.ElementAt(0));
-                gfx.DrawImage(vulcoImage, page.Width / 2 + 20, 15, 120, 50);
+                gfx.DrawImage(vulcoImage, page.Width / 2 + 20, 20, 120, 50);
 
                 XTextFormatter tf = new XTextFormatter(gfx);
                 tf.Alignment = XParagraphAlignment.Center;
 
                 // Text between images
-                var rect = new XRect(page.Width / 2 + 150, 20, 150, 12);
+                var rect = new XRect(page.Width / 2 + 150, 25, 150, 12);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
                 tf.DrawString("AUTO GUMI CENTAR STOŠIĆ", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-                rect = new XRect(page.Width / 2 + 150, 34, 150, 12);
+                rect = new XRect(page.Width / 2 + 150, 39, 150, 12);
                 font = new XFont("Calibri", 9, XFontStyle.Regular, options);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
                 tf.DrawString("Kapetana Koče 47, 35000 Jagodina", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-                rect = new XRect(page.Width / 2 + 150, 46, 150, 12);
+                rect = new XRect(page.Width / 2 + 150, 51, 150, 12);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
                 tf.DrawString("035 8 223 689 | 063 433 644", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 // Auto logo
                 XImage logoImage = XImage.FromFile(imagePaths.ElementAt(1));
-                gfx.DrawImage(logoImage, page.Width / 2 + 315, 10, 90, 60);
+                gfx.DrawImage(logoImage, page.Width / 2 + 315, 20, 90, 60);
 
                 // Website and gmail
                 rect = new XRect(page.Width / 2 + 20, 70, 115, 10);
@@ -407,7 +407,7 @@ namespace TireRecords.Services
                 rect = new XRect(page.Width / 2 + 20, 160, page.Width / 2 - 40, 15);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
-                tf.DrawString($"broj {receiptDetails.Receipt.Number} izdata dana: {receiptDetails.Receipt.CreatedAt.ToString("dd.mm.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                tf.DrawString($"broj {receiptDetails.Receipt.Number} izdata dana: {receiptDetails.Receipt.CreatedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 // Client and Vehicle Info
                 font = new XFont("Calibri", 11, XFontStyle.Regular, options);

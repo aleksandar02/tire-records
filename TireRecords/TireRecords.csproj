@@ -204,7 +204,6 @@
     <Compile Include="Models\TireViewModel.cs" />
     <Compile Include="Models\VehicleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ExportService.cs" />
     <Compile Include="Services\PdfService.cs" />
     <Compile Include="Services\ReceiptService.cs" />
     <Compile Include="Startup.cs" />
