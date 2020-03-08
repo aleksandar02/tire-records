@@ -67,6 +67,9 @@ namespace TireRecords.Controllers
             var receiptDetailsDto = await _receiptService.GetReceiptDetails(id);
             var receiptDetailsViewModel = ReceiptDetailsViewModel.MapTo(receiptDetailsDto);
 
+            TempData["Receipt"] = receiptDetailsViewModel;
+
+
             return View(receiptDetailsViewModel);
         }
 
@@ -157,18 +160,28 @@ namespace TireRecords.Controllers
         public async Task<ActionResult> ExportPdf(int id)
         {
             var pdf = new byte[0];
+            var imagePaths = new List<string> { Server.MapPath("~/Content/images/pdf/vulco-logo.png"), Server.MapPath("~/Content/images/pdf/logo.png") };
 
             try
             {
+                var tempReceipt = TempData["Receipt"] as ReceiptDetailsViewModel;
 
-                var imagePaths = new List<string> { Server.MapPath("~/Content/images/pdf/vulco-logo.png"), Server.MapPath("~/Content/images/pdf/logo.png") };
+                if (tempReceipt != null)
+                {
+                    pdf = PdfService.CreatePdf(tempReceipt, imagePaths);
+                    return File(pdf, "application/pdf");
+                }
+                else
+                {
+                    var receiptDetailsDto = await _receiptService.GetReceiptDetails(id);
+                    var receiptDetailsViewModel = ReceiptDetailsViewModel.MapTo(receiptDetailsDto);
 
-                var receiptDetailsDto = await _receiptService.GetReceiptDetails(id);
-                var receiptDetailsViewModel = ReceiptDetailsViewModel.MapTo(receiptDetailsDto);
+                    pdf = PdfService.CreatePdf(receiptDetailsViewModel, imagePaths);
 
-                pdf = PdfService.CreatePdf(receiptDetailsViewModel, imagePaths);
+                    return File(pdf, "application/pdf");
+                }
 
-                return File(pdf, "application/pdf");
+
 
             }
             catch (Exception ex)
