@@ -58,6 +58,7 @@ namespace TireRecords.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+
             return View();
         }
 
@@ -449,7 +450,8 @@ namespace TireRecords.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Receipt");
+
+            return RedirectToAction("Index", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
