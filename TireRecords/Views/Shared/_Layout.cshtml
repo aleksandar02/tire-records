@@ -18,7 +18,7 @@
 
     @if (User.Identity.IsAuthenticated)
     {
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -38,9 +38,29 @@
                     @Html.Partial("_LoginPartial")
                 </div>
             </div>
+        </div>*@
+
+        <aside>
+            <header>
+                STOŠIĆ
+            </header>
+            <div>
+                <h3 class="nav-heading">Glavni meni</h3>
+                <ul class="nav-menu">
+                    <li><a href="/Home/Index"><i class="fa fa-home"></i>Početna</a></li>
+                    <li><a href="/Receipt/Index"><i class="fa fa-paste"></i>Priznanice</a></li>
+                    <li><a href="/Home/Index"><i class="fa fa-car"></i>Vozila</a></li>
+                    <li><a href="/Home/Index"><i class="fa fa-user"></i>Klijenti</a></li>
+                </ul>
+            </div>
+        </aside>
+        <div class="toolbar">
+            <i class="fa fa-bars nav-toggler"></i>
+            @Html.Partial("_LoginPartial")
         </div>
+
     }
-    <div>
+    <div class="content-wrapper">
         @RenderBody()
     </div>
 
@@ -54,5 +74,15 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+<script>
+    $(function () {
+        $('.nav-toggler').click(function () {
+            $('aside').toggleClass('js-aside-toggled');
+            $('.toolbar').toggleClass('js-toolbar-right');
+            $('.content').toggleClass('js-content');
+        })
+    })
+</script>
 </body>
 </html>

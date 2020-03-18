@@ -5,120 +5,121 @@
 }
 
 
+    <div class="content">
+        <div class="container">
+            <h2 class="page-heading">Priznanice</h2>
 
-    <div class="container">
-        <h2 class="page-heading">Priznanice</h2>
-
-        @{
-            if (TempData.ContainsKey("ReceiptId"))
-            {
-                string txtReceiptId = Convert.ToString(TempData["ReceiptId"]);
-
-                if (!string.IsNullOrEmpty(txtReceiptId))
+            @{
+                if (TempData.ContainsKey("ReceiptId"))
                 {
+                    string txtReceiptId = Convert.ToString(TempData["ReceiptId"]);
 
-                    if (txtReceiptId != "-1")
+                    if (!string.IsNullOrEmpty(txtReceiptId))
                     {
-                        <div class="panel panel-white" id="msgPanel">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        Priznanica je uspešno kreirana
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="pull-right">
-                                            <a href="/Receipt/ExportPdf/@txtReceiptId" target="_blank" class="mr-20 btn btn-general btn-blue btn-small"><i class="fa fa-print"></i>&nbsp;&nbsp;Štampaj</a>
-                                            <a href="/Receipt/Details/@txtReceiptId" class="mr-20 btn btn-general btn-blue btn-small"><i class="fa fa-eye"></i>&nbsp;&nbsp;Prikaži</a>
-                                            <span id="receiptCreatedPanel"><i class="fa fa-times" style="cursor: pointer;"></i></span>
+
+                        if (txtReceiptId != "-1")
+                        {
+                            <div class="panel panel-white" id="msgPanel">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            Priznanica je uspešno kreirana
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="pull-right">
+                                                <a href="/Receipt/ExportPdf/@txtReceiptId" target="_blank" class="mr-20 btn btn-general btn-blue btn-small"><i class="fa fa-print"></i>&nbsp;&nbsp;Štampaj</a>
+                                                <a href="/Receipt/Details/@txtReceiptId" class="mr-20 btn btn-general btn-blue btn-small"><i class="fa fa-eye"></i>&nbsp;&nbsp;Prikaži</a>
+                                                <span id="receiptCreatedPanel"><i class="fa fa-times" style="cursor: pointer;"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="panel panel-red" id="msgPanel">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        Došlo je do greške, pokušajte ponovo!
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="pull-right">
-                                            <span id="receiptCreatedPanel"><i class="fa fa-times" style="cursor: pointer;"></i></span>
+                        }
+                        else
+                        {
+                            <div class="panel panel-red" id="msgPanel">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            Došlo je do greške, pokušajte ponovo!
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="pull-right">
+                                                <span id="receiptCreatedPanel"><i class="fa fa-times" style="cursor: pointer;"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
+
                     }
 
                 }
-
             }
-        }
 
-        <div class="filter-section _panel">
-            <form action="/Receipt/Search" method="post">
-                <div class="row">
-                    <div class="col-md-3">
-                        <input type="text" name="dateFrom" class="form-control" id="dateFrom" placeholder="Od" />
+            <div class="filter-section _panel">
+                <form action="/Receipt/Search" method="post">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="text" name="dateFrom" class="form-control" id="dateFrom" placeholder="Od" />
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" name="dateTo" id="dateTo" placeholder="Do" />
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" name="dateTo" id="dateTo" placeholder="Do" />
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-3">
-                        <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Ime" />
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Prezime" />
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" name="registrationNumber" id="registrationNumber" class="form-control" placeholder="Registarski broj" />
-                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Ime" />
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Prezime" />
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="registrationNumber" id="registrationNumber" class="form-control" placeholder="Registarski broj" />
+                        </div>
 
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-general btn-blue pull-right"><i class="fa fa-search"></i>&nbsp;&nbsp;Pretraži</button>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-general btn-blue pull-right"><i class="fa fa-search"></i>&nbsp;&nbsp;Pretraži</button>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
 
-        <div class="_panel">
-            <a href="/Receipt/Create" class="btn btn-general btn-red mb-15"><i class="fa fa-plus"></i>&nbsp;&nbsp;Nova priznanica</a>
+            <div class="_panel">
+                <a href="/Receipt/Create" class="btn btn-general btn-red mb-15"><i class="fa fa-plus"></i>&nbsp;&nbsp;Nova priznanica</a>
 
-            <table class="table" id="receiptTable">
-                <thead>
-                    <tr>
-                        <th>Ime</th>
-                        <th>Prezime</th>
-                        <th>Telefon</th>
-                        <th>Marka vozila</th>
-                        <th>Registarski broj</th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach (var item in Model)
-                    {
+                <table class="table" id="receiptTable">
+                    <thead>
                         <tr>
-                            <td>@item.Client.FirstName</td>
-                            <td>@item.Client.LastName</td>
-                            <td>@item.Client.MobilePhone</td>
-                            <td>@item.Vehicle.Brand</td>
-                            <td>@item.Vehicle.RegistrationNumber</td>
-                            <td>
-                                <a href="/Receipt/Details/@item.Receipt.Id" target="_blank" class="btn btn-general btn-default btn-small" id="redirectToDetails"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;Detalji</a>
-                            </td>
+                            <th>Ime</th>
+                            <th>Prezime</th>
+                            <th>Telefon</th>
+                            <th>Marka vozila</th>
+                            <th>Registarski broj</th>
+                            <th></th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Client.FirstName</td>
+                                <td>@item.Client.LastName</td>
+                                <td>@item.Client.MobilePhone</td>
+                                <td>@item.Vehicle.Brand</td>
+                                <td>@item.Vehicle.RegistrationNumber</td>
+                                <td>
+                                    <a href="/Receipt/Details/@item.Receipt.Id" target="_blank" class="btn btn-general btn-default btn-small" id="redirectToDetails"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;Detalji</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @section Scripts {

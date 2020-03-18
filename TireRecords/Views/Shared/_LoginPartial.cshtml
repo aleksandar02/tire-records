@@ -3,10 +3,10 @@
 {
 
 
-    <ul class="nav navbar-nav navbar-right">
-        @*<li>
+    @*<ul class="nav navbar-nav navbar-right">
+        <li>
                 @Html.ActionLink("Zdravo " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            </li>*@
+            </li>
 
         <li class="dropdown logout-dropdown">
             <span class="btn btn-logout dropdown-toggle" data-toggle="dropdown">
@@ -19,12 +19,28 @@
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                     {
                         @Html.AntiForgeryToken()
-                    <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Odjavi se</a>
+                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Odjavi se</a>
                     }
                 </li>
 
             </ul>
         </li>
+    </ul>*@
+
+    <span class="btn btn-logout dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-user"></i>
+        &nbsp;&nbsp;@User.Identity.GetUserName()
+        <i class="fa fa-angle-down"></i>
+    </span>
+    <ul class="dropdown-menu logout-dropdown">
+        <li>
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Odjavi se</a>
+            }
+        </li>
+
     </ul>
 }
 else

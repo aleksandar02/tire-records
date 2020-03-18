@@ -8,10 +8,14 @@
 
 body {
     font-family: Montserrat, sans-serif;
-    padding-top: 70px;
     position: relative;
     min-height: 100vh;
-    background: rgba(66, 135, 245, 0.02);
+    background: rgba(66, 135, 245, 0.04);
+    overflow-x: hidden;
+}
+
+input:read-only  {
+    cursor: pointer;
 }
 
 * {
@@ -24,10 +28,12 @@ a {
 
 ul {
     list-style: none !important;
+    margin: 0;
+    padding: 0;
 }
 
 /* Navigation */
-.navbar {
+/*.navbar {
     font-family: 'Roboto';
     background: #007bff !important;
     padding: 5px 0;
@@ -43,6 +49,94 @@ ul {
 .navbar-brand {
     font-weight: 600;
     color: #fff !important;
+}*/
+
+aside {
+    width: 17vw;
+    height: 100vh;
+    background: #007bff;
+    color: #fff;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: all 250ms ease;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background: #006FFF;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 10px 20px;
+    height: 8vh;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: #fff;
+    height: 8vh;
+    box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 17vw;
+    z-index: 999 !important;
+    padding: 0 35px;
+    transition: all 250ms ease;
+}
+
+aside div {
+    width: 100%;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.nav-heading {
+    font-weight: 300;
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.nav-menu {
+}
+
+.nav-menu li {
+    margin: 3px 0;
+    padding: 10px 15px;
+    transition: all 350ms ease;
+}
+
+    .nav-menu li:hover {
+        background: #006FFF;
+        border-radius: 12px;
+    }
+
+    .nav-menu li a {
+        display: block;
+        color: #fff;
+    }
+
+    .nav-menu li a i {
+        margin-right: 6px;
+    }
+
+.active {
+    background: #006FFF;
+    border-radius: 16px;
+}
+
+    .content-wrapper {
+        margin-top: 8vh;
+        min-height: 100vh;
+    }
+
+.content {
+    margin-left: 17vw;
+    transition: all 250ms ease;
 }
 
 /* Buttons */
@@ -68,9 +162,10 @@ ul {
 
 .btn-logout {
     background: transparent;
-    color: #fff;
+    color: #111113;
     box-shadow: none !important;
     outline: none !important;
+    z-index: 9999999 !important;
 }
 
 .btn-default {
@@ -437,7 +532,6 @@ span.ui-icon {
     border-radius: 0;
     margin-bottom: 30px;
     box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    min-height: 150px;
     position: relative;
     transition: box-shadow 350ms ease;
     cursor: pointer;
@@ -465,6 +559,7 @@ span.ui-icon {
     min-height: 50px !important;
     border-color: transparent !important;
 }
+
 
     ._card i {
         text-align: left;
@@ -584,19 +679,19 @@ span.ui-icon {
     box-shadow: none !important;
     outline: none !important;
 }
-.logout-dropdown .dropdown-menu {
+.logout-dropdown.dropdown-menu {
     border-radius: 3px !important;
 }
 
-.logout-dropdown .dropdown-menu li {
+.logout-dropdown.dropdown-menu li {
     padding: 2px 15px !important;
 }
 
-    .logout-dropdown .dropdown-menu li:hover {
+    .logout-dropdown.dropdown-menu li:hover {
         background: #f7f2f2;
     }
 
-    .logout-dropdown .dropdown-menu li a {
+    .logout-dropdown.dropdown-menu li a {
         color: #111113 !important;
         display: block !important;
     }
@@ -627,4 +722,79 @@ span.ui-icon {
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
     background-color: #007bff;
+}
+
+.logout-dropdown {
+    left: unset;
+    right: 30px;
+}
+
+.nav-toggler {
+    display: none;
+}
+
+
+
+@media(max-width: 991px) {
+    aside {
+        left: -17vw;
+    }
+
+    .toolbar {
+        left: 0;
+        justify-content: space-between;
+    }
+
+    .nav-toggler {
+        display: block;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .js-aside-toggled {
+        left: 0;
+        width: 25vw;
+    }
+
+    .js-toolbar-right {
+        left: 25vw;
+    }
+
+    .js-content {
+        margin-left: 25vw;
+    }
+}
+
+@media(max-width: 768px) {
+    .js-aside-toggled {
+        left: 0;
+        width: 40vw;
+    }
+
+    .js-toolbar-right {
+        left: 40vw;
+    }
+
+    .js-content {
+        margin-left: 40vw;
+    }
+}
+
+@media(max-width: 567px) {
+    .js-aside-toggled {
+        left: 0;
+        width: 50vw;
+    }
+
+    .js-toolbar-right {
+        left: 50vw;
+    }
+
+    .js-content {
+        margin-left: 50vw;
+    }
 }
