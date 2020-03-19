@@ -52,7 +52,7 @@ ul {
 }*/
 
 aside {
-    width: 17vw;
+    width: 15vw;
     height: 100vh;
     background: #007bff;
     color: #fff;
@@ -82,7 +82,7 @@ header {
     position: fixed;
     top: 0;
     right: 0;
-    left: 17vw;
+    left: 15vw;
     z-index: 999 !important;
     padding: 0 35px;
     transition: all 250ms ease;
@@ -91,17 +91,14 @@ header {
 aside div {
     width: 100%;
     margin-top: 30px;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 .nav-heading {
     font-weight: 300;
-    font-size: 12px;
+    font-size: 13px;
     color: #fff;
     margin-bottom: 20px;
-}
-
-.nav-menu {
 }
 
 .nav-menu li {
@@ -118,6 +115,7 @@ aside div {
     .nav-menu li a {
         display: block;
         color: #fff;
+        font-size: 15px;
     }
 
     .nav-menu li a i {
@@ -129,13 +127,37 @@ aside div {
     border-radius: 16px;
 }
 
+.navbar-collapse.collapse {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.navbar-right {
+    margin-left: auto !important;
+}
+
+.nav-dropdown-lvl {
+    margin-top: 15px;
+}
+
+    .nav-dropdown-lvl li {
+        padding: 5px 10px;
+        margin: 3px 0;
+    }
+
+        .nav-dropdown-lvl li a {
+            font-size: 14px;
+        }
+
+
     .content-wrapper {
         margin-top: 8vh;
         min-height: 100vh;
     }
 
 .content {
-    margin-left: 17vw;
+    margin-left: 15vw;
+    padding: 10px 20px 0 20px;
     transition: all 250ms ease;
 }
 
@@ -147,7 +169,7 @@ aside div {
     transition: all 350ms ease;
     padding: 7px 18px;
     font-size: 14px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 
 }
 
@@ -317,6 +339,13 @@ textarea {
     color: #111113;
 }
 
+.form-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
 .form-section-client {
     border-top: 3px solid #007bff !important;
 }
@@ -397,7 +426,6 @@ textarea {
 .page-heading {
     margin-top: 20px;
     margin-bottom: 40px;
-    text-align: center;
 }
 
 /* Data table */
@@ -438,6 +466,17 @@ textarea {
 .paginate_button.page-item.active {
     z-index: 5 !important;
 }
+
+/* Modal */
+.modal-content {
+    border-radius: 0;
+  
+}
+
+.modal-title {
+    display: inline-block;
+}
+
 /* Datepicker */
 #ui-datepicker-div {
     background: #fff;
@@ -664,21 +703,12 @@ span.ui-icon {
     padding: 0;
 }
 
-.navbar-collapse.collapse {
-    display: flex !important;
-    align-items: center !important;
-}
 
-.navbar-right {
-    margin-left: auto !important;
-}
-
-
-.logout-dropdown span:hover {
-    color: #fff;
-    box-shadow: none !important;
-    outline: none !important;
-}
+    .logout-dropdown span:hover {
+        color: #fff;
+        box-shadow: none !important;
+        outline: none !important;
+    }
 .logout-dropdown.dropdown-menu {
     border-radius: 3px !important;
 }

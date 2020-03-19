@@ -28,6 +28,8 @@ namespace TireRecords.Controllers
         [Authorize]
         public async Task<ActionResult> Index()
         {
+            TempData["vehicleType"] = String.IsNullOrEmpty(Request.QueryString["vehicleType"]) ? "" : Request.QueryString["vehicleType"];
+
             var filter = new FilterDto();
 
             _logger.Info("{user} visited ReceiptController.Index", User.Identity.Name);
@@ -40,6 +42,7 @@ namespace TireRecords.Controllers
 
             var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
             var clientReceiptViewModels = ClientReceiptViewModel.MapTo(clientReceiptDtos);
+
 
             return View(clientReceiptViewModels);
         }

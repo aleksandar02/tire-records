@@ -8,9 +8,8 @@
 
 
 <div class="content">
-    <div class="container">
-        <h2 class="page-heading">Nova priznanica</h2>
-        <br />
+    <div class="container-fluid">
+        <h1 class="page-heading">Nova priznanica</h1>
 
         <form action="/Receipt/Create" method="post">
 
@@ -48,7 +47,13 @@
             </div>
             <div class="form-section form-section-tires" id="tireSection">
 
-                <h4 class="form-heading"><i class="fa fa-wrench"></i>&nbsp;Gume</h4>
+                <div class="form-section-heading">
+
+                    <h4 class="form-heading" style="line-height: 22px; margin: 0px;"><i class="fa fa-wrench"></i>&nbsp;Gume</h4>
+                    <div>
+                        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-general btn-red">Dodaj gumu</button>
+                    </div>
+                </div>
                 <div class="row" id="plRow">
                     <div class="col-md-1">
                         <input type="text" id="positionPLText" name="positionPLText" class="form-control copy-tire" readonly value="PL" />
@@ -152,6 +157,61 @@
             </div>
         </form>
 
+    </div>
+</div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Dodaj gumu</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select class="form-control">
+                                <option disabled selected value="">Pozicija</option>
+                                <option value="PL">PL</option>
+                                <option value="PD">PD</option>
+                                <option value="ZL">ZL</option>
+                                <option value="ZD">ZD</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" placeholder="Marka" />
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" placeholder="Model" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" placeholder="Dimenzija" />
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" placeholder="Index" />
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" placeholder="Dot" />
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" placeholder="Dubina" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-general btn-red">Dodaj</button>
+                <button type="button" class="btn btn-general btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
     </div>
 </div>
 <br />

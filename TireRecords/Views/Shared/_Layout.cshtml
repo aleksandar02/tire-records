@@ -19,26 +19,26 @@
     @if (User.Identity.IsAuthenticated)
     {
         @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("STOŠIĆ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("STOŠIĆ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Početna", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Priznanice", "Index", "Receipt")</li>
+                            <li>@Html.ActionLink("Vozila", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Klijenti", "Index", "Home")</li>
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Početna", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Priznanice", "Index", "Receipt")</li>
-                        <li>@Html.ActionLink("Vozila", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Klijenti", "Index", "Home")</li>
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </div>
-        </div>*@
+            </div>*@
 
         <aside>
             <header>
@@ -48,7 +48,15 @@
                 <h3 class="nav-heading">Glavni meni</h3>
                 <ul class="nav-menu">
                     <li><a href="/Home/Index"><i class="fa fa-home"></i>Početna</a></li>
-                    <li><a href="/Receipt/Index"><i class="fa fa-paste"></i>Priznanice</a></li>
+                    <li data-toggle="collapse" data-target="#nav-level" >
+                        <a style="cursor: pointer;"><i class="fa fa-paste"></i>Priznanice <i class="fa fa-angle-down pull-right" style="margin-top: 4px;"></i></a>
+
+                        <ul id="nav-level" class="collapse nav-dropdown-lvl">
+                            <li><a href="/Receipt/Index?vehicleType=1"><i class="fa fa-car"></i>Putnička vozila</a></li>
+                            <li><a href="/Receipt/Index?vehicleType=2"><i class="fa fa-truck"></i>Teretna vozila</a></li>
+                        </ul>
+                    </li>
+
                     <li><a href="/Home/Index"><i class="fa fa-car"></i>Vozila</a></li>
                     <li><a href="/Home/Index"><i class="fa fa-user"></i>Klijenti</a></li>
                 </ul>
@@ -75,14 +83,14 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-<script>
-    $(function () {
-        $('.nav-toggler').click(function () {
-            $('aside').toggleClass('js-aside-toggled');
-            $('.toolbar').toggleClass('js-toolbar-right');
-            $('.content').toggleClass('js-content');
+    <script>
+        $(function () {
+            $('.nav-toggler').click(function () {
+                $('aside').toggleClass('js-aside-toggled');
+                $('.toolbar').toggleClass('js-toolbar-right');
+                $('.content').toggleClass('js-content');
+            })
         })
-    })
-</script>
+    </script>
 </body>
 </html>
