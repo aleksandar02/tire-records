@@ -197,6 +197,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClientReceiptViewModel.cs" />
     <Compile Include="Models\ClientViewModel.cs" />
+    <Compile Include="Models\ClientAndVehicleViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ReceiptDetailsViewModel.cs" />
@@ -232,6 +233,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\createReceipt.js" />
     <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\DatePickerSerbian.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

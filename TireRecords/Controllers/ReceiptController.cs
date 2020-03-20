@@ -1,14 +1,9 @@
 ﻿using Core.Entities;
 using NLog;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using TireRecords.Models;
 using TireRecords.Services;
@@ -28,7 +23,8 @@ namespace TireRecords.Controllers
         [Authorize]
         public async Task<ActionResult> Index()
         {
-            TempData["vehicleType"] = String.IsNullOrEmpty(Request.QueryString["vehicleType"]) ? "" : Request.QueryString["vehicleType"];
+            string vehicleType = string.IsNullOrEmpty(Request.QueryString["vehicleType"]) ? "" : Request.QueryString["vehicleType"];
+            TempData["vehicleType"] = vehicleType;
 
             var filter = new FilterDto();
 
@@ -39,6 +35,7 @@ namespace TireRecords.Controllers
             filter.RegistrationNumber = "";
             filter.DateFrom = DateTime.Now.AddDays(-30);
             filter.DateTo = DateTime.Now.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
+            filter.VehicleType = string.IsNullOrEmpty(vehicleType) ? -1 : Convert.ToInt32(vehicleType);
 
             var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
             var clientReceiptViewModels = ClientReceiptViewModel.MapTo(clientReceiptDtos);
@@ -57,9 +54,12 @@ namespace TireRecords.Controllers
             filter.RegistrationNumber = Convert.ToString(collection["registrationNumber"]).Trim();
             filter.DateFrom = Convert.ToDateTime(collection["dateFrom"]);
             filter.DateTo = Convert.ToDateTime(collection["dateTo"]);
+            filter.VehicleType = Convert.ToInt32(collection["vehicleType"]);
 
             var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
             var clientReceiptViewModels = ClientReceiptViewModel.MapTo(clientReceiptDtos);
+
+            TempData["vehicleType"] = Convert.ToString(collection["vehicleType"]);
 
             return View("Index", clientReceiptViewModels);
         }
@@ -72,14 +72,27 @@ namespace TireRecords.Controllers
 
             TempData["Receipt"] = receiptDetailsViewModel;
 
-
             return View(receiptDetailsViewModel);
         }
 
         [Authorize]
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            string vehicleId = Request.QueryString["id"];
+
+            var clientAndVehicle = new ClientAndVehicleViewModel();
+
+            if (string.IsNullOrEmpty(vehicleId))
+            {
+                clientAndVehicle.Client = new ClientViewModel();
+                clientAndVehicle.Vehicle = new VehicleViewModel();
+
+                return View(clientAndVehicle);
+            }
+            var clientAndVehicleDto = await _receiptService.GetClientAndVehicle(Convert.ToInt32(vehicleId));
+            clientAndVehicle = ClientAndVehicleViewModel.MapTo(clientAndVehicleDto);
+
+            return View(clientAndVehicle);
         }
 
         [Authorize]
@@ -183,9 +196,6 @@ namespace TireRecords.Controllers
 
                     return File(pdf, "application/pdf");
                 }
-
-
-
             }
             catch (Exception ex)
             {

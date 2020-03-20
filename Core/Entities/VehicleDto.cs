@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Entities
 {
@@ -15,12 +11,14 @@ namespace Core.Entities
         public int ClientId { get; set; }
         public string RegistrationNumber { get; set; }
         public string Chassis { get; set; }
+        public int Type { get; set; }
 
         public static VehicleDto MapTo(SqlDataReader reader)
         {
             var vehicle = new VehicleDto();
 
             vehicle.Id = Convert.ToInt32(reader["VehicleId"]);
+            vehicle.Type = Convert.ToInt32(reader["VehicleType"]);
             vehicle.Brand = Convert.ToString(reader["VehicleBrand"]);
             vehicle.Model = Convert.ToString(reader["VehicleModel"]);
             vehicle.ClientId = Convert.ToInt32(reader["ClientId"]);

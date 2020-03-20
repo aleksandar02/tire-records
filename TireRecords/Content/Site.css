@@ -33,24 +33,6 @@ ul {
 }
 
 /* Navigation */
-/*.navbar {
-    font-family: 'Roboto';
-    background: #007bff !important;
-    padding: 5px 0;
-    border-color: #4285f4;
-    box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.nav li a {
-    color: #fff !important;
-    font-size: 15px;
-}
-
-.navbar-brand {
-    font-weight: 600;
-    color: #fff !important;
-}*/
-
 aside {
     width: 15vw;
     height: 100vh;
@@ -90,8 +72,10 @@ header {
 
 aside div {
     width: 100%;
-    margin-top: 30px;
+    height: 100%;
+    box-shadow: 2px 30px 15px -1px rgba(0, 0, 0, 0.1), 2px 30px 15px -1px rgba(0, 0, 0, 0.06);
     padding: 0 15px;
+    padding-top: 10px;
 }
 
 .nav-heading {
@@ -475,6 +459,17 @@ textarea {
 
 .modal-title {
     display: inline-block;
+}
+
+#clientFirstAndLastName {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#hiddenVehicleId {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Datepicker */

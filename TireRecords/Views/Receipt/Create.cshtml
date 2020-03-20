@@ -1,7 +1,12 @@
-﻿@model TireRecords.Models.ReceiptViewModel
+﻿@model TireRecords.Models.ClientAndVehicleViewModel
 
 @{
     ViewBag.Title = "Create";
+}
+
+@{
+    var client = Model.Client;
+    var vehicle = Model.Vehicle;
 }
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -17,16 +22,16 @@
                 <h4 class="form-heading"><i class="fa fa-user"></i>&nbsp;Klijent</h4>
                 <div class="row">
                     <div class="col-md-3">
-                        <input type="text" id="firstName" name="firstName" class="form-control" value="" placeholder="Ime" />
+                        <input type="text" id="firstName" name="firstName" class="form-control" value="@client.FirstName" placeholder="Ime" />
                     </div>
                     <div class="col-md-3">
-                        <input type="text" id="lastName" name="lastName" class="form-control" value="" placeholder="Prezime" />
+                        <input type="text" id="lastName" name="lastName" class="form-control" value="@client.LastName" placeholder="Prezime" />
                     </div>
                     <div class="col-md-3">
-                        <input type="text" id="mobilePhone" name="mobilePhone" class="form-control" value="" placeholder="Telefon" />
+                        <input type="text" id="mobilePhone" name="mobilePhone" class="form-control" value="@client.MobilePhone" placeholder="Telefon" />
                     </div>
                     <div class="col-md-3">
-                        <input type="text" id="email" name="email" class="form-control" value="" placeholder="Email" />
+                        <input type="text" id="email" name="email" class="form-control" value="@client.Email" placeholder="Email" />
                     </div>
                 </div>
             </div>
@@ -35,13 +40,30 @@
                 <h4 class="form-heading"><i class="fa fa-car"></i>&nbsp;Vozilo</h4>
                 <div class="row">
                     <div class="col-md-3">
+                        @if (vehicle.Type == 1)
+                        {
+                            <select name="vehicleType" class="form-control" id="vehicleType">
+                                <option value="1" selected>Putničko vozilo</option>
+                                <option value="2">Teretno vozilo</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <select name="vehicleType" class="form-control" id="vehicleType">
+                                <option value="1">Putničko vozilo</option>
+                                <option value="2" selected>Teretno vozilo</option>
+                            </select>
+                        }
+
+                    </div>
+                    <div class="col-md-3">
                         <select name="vehicleBrand" class="selectpicker show-tick" id="vehicleBrandPicker">
                             <option data-hidden="true">Marka</option>
 
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <input type="text" id="registrationNumber" name="registrationNumber" class="form-control" value="" placeholder="Registarski broj" />
+                        <input type="text" id="registrationNumber" name="registrationNumber" class="form-control" value="@vehicle.RegistrationNumber" placeholder="Registarski broj" />
                     </div>
                 </div>
             </div>
@@ -214,6 +236,9 @@
         </div>
     </div>
 </div>
+
+<input type="hidden" id="vehicleBrandHidden" value="@vehicle.Brand" />
+
 <br />
 <br />
 <br />

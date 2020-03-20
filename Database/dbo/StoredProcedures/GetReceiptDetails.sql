@@ -17,6 +17,7 @@ AS
 			  ,R.[CreatedAt]
 			  ,R.[Message]
 			  ,V.[Id] AS VehicleId
+			  ,V.[Type] AS VehicleType
 			  ,V.[Brand] AS VehicleBrand
 			  ,V.[Model] AS VehicleModel
 			  ,V.[RegistrationNumber]

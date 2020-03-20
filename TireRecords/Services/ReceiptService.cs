@@ -58,5 +58,10 @@ namespace TireRecords.Services
         {
             return await _receiptDAL.GetReceiptDetails(id);
         }
+
+        public async Task<ClientAndVehicleDto> GetClientAndVehicle(int vehicleId)
+        {
+            return await _receiptDAL.GetClientAndVehicle(vehicleId);
+        }
     }
 }

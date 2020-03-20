@@ -7,5 +7,6 @@
     [RegistrationNumber] NVARCHAR(128) NULL, 
     [Chassis] NVARCHAR(128) NULL, 
 
+    [Type] INT NULL, 
     CONSTRAINT [FK_Vehicle_Client] FOREIGN KEY ([ClientId]) REFERENCES [Client]([Id])
 )

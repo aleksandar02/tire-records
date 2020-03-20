@@ -86,9 +86,9 @@
                     {
                         <div class="col-md-2">
                             <select class="form-control" name="vehicleType" id="vehicleType">
-                                <option value="1">Sve</option>
-                                <option value="2" selected>Putnička vozila</option>
-                                <option value="3">Teretna vozila</option>
+                                <option value="-1">Sve</option>
+                                <option value="1" selected>Putnička vozila</option>
+                                <option value="2">Teretna vozila</option>
                             </select>
                         </div>
                     }
@@ -96,9 +96,9 @@
                     {
                         <div class="col-md-2">
                             <select class="form-control" name="vehicleType" id="vehicleType">
-                                <option value="1">Sve</option>
-                                <option value="2">Putnička vozila</option>
-                                <option value="3" selected>Teretna vozila</option>
+                                <option value="-1">Sve</option>
+                                <option value="1">Putnička vozila</option>
+                                <option value="2" selected>Teretna vozila</option>
                             </select>
                         </div>
                     }
@@ -106,9 +106,9 @@
                     {
                         <div class="col-md-2">
                             <select class="form-control" name="vehicleType" id="vehicleType">
-                                <option value="1" selected>Sve</option>
-                                <option value="2">Putnička vozila</option>
-                                <option value="3">Teretna vozila</option>
+                                <option value="-1" selected>Sve</option>
+                                <option value="1">Putnička vozila</option>
+                                <option value="2">Teretna vozila</option>
                             </select>
                         </div>
                     }
@@ -139,14 +139,14 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr data-toggle="modal" data-target="#addReceiptModal" class="receiptDataTr">
                             <td>@item.Client.FirstName</td>
                             <td>@item.Client.LastName</td>
                             <td>@item.Client.MobilePhone</td>
                             <td>@item.Vehicle.Brand</td>
                             <td>@item.Vehicle.RegistrationNumber</td>
                             <td>
-                                <a href="/Receipt/Details/@item.Receipt.Id" target="_blank" class="btn btn-general btn-default btn-small" id="redirectToDetails"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;Detalji</a>
+                                <a href="/Receipt/Details/@item.Receipt.Id" target="_blank" class="btn btn-general btn-default btn-small" data-vehicleid="@item.Vehicle.Id" id="redirectToDetails"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;Detalji</a>
                             </td>
                         </tr>
                     }
@@ -155,6 +155,28 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="addReceiptModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Dodaj priznanicu</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                Dodaj priznanicu za klijenta: <span id="clientFirstAndLastName"></span>
+                                              <span id="hiddenVehicleId"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-general btn-red" id="addReceiptBtn">Dodaj</button>
+                <button type="button" class="btn btn-general btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 @section Scripts {
     <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
     <link href="~/Content/datatables.min.css" rel="stylesheet" />

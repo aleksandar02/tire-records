@@ -1,8 +1,5 @@
 ﻿using Core.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace TireRecords.Models
@@ -15,7 +12,16 @@ namespace TireRecords.Models
         public int ClientId { get; set; }
         public string RegistrationNumber { get; set; }
         public string Chassis { get; set; }
-
+        public int Type { get; set; }
+        public string TypeText
+        {
+            get
+            {
+                if (Type == 1) return "Putničko vozilo";
+                else if (Type == 2) return "Teretno vozilo";
+                else return "";
+            }
+        }
         public static VehicleViewModel MapTo(VehicleDto vehicleDto)
         {
             var vehicle = new VehicleViewModel();
@@ -26,6 +32,7 @@ namespace TireRecords.Models
             vehicle.ClientId = vehicleDto.ClientId;
             vehicle.RegistrationNumber = vehicleDto.RegistrationNumber;
             vehicle.Chassis = vehicleDto.Chassis;
+            vehicle.Type = vehicleDto.Type;
 
             return vehicle;
         }
@@ -40,6 +47,7 @@ namespace TireRecords.Models
             vehicleDto.ClientId = vehicle.ClientId;
             vehicleDto.RegistrationNumber = vehicle.RegistrationNumber;
             vehicleDto.Chassis = vehicle.Chassis;
+            vehicleDto.Type = vehicle.Type;
 
             return vehicleDto;
         }
@@ -48,6 +56,7 @@ namespace TireRecords.Models
         {
             var vehicle = new VehicleDto();
 
+            vehicle.Type = Convert.ToInt32(collection["vehicleType"]);
             vehicle.Brand = Convert.ToString(collection["vehicleBrand"]);
             vehicle.RegistrationNumber = Convert.ToString(collection["registrationNumber"]);
 

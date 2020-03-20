@@ -67,7 +67,6 @@
     ];
 
     var container = $('#vehicleBrandPicker');
-    console.log(container);
 
     $.each(vehicleBrands, function (index, item) {
         container.append(`<option value="${item.trim()}">
@@ -81,6 +80,7 @@
         noneResultsText: "Nema rezultata!"
     });
 
+    $('.selectpicker').selectpicker('val', $("#vehicleBrandHidden").val())
 
     $('.copy-tire').click(function () {
         var id = $(this).closest('.row').attr('id');

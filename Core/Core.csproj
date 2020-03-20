@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ClientAndVehicleDto.cs" />
     <Compile Include="Entities\ClientDto.cs" />
     <Compile Include="Entities\ClientReceiptDto.cs" />
     <Compile Include="Entities\FilterDto.cs" />

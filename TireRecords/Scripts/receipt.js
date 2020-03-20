@@ -28,4 +28,22 @@
     $('#receiptCreatedPanel').click(function () {
         $('#msgPanel').fadeOut("fast");
     });
+
+    $(".receiptDataTr").click(function () {
+        var firstName = $(this)[0].children[0].innerHTML;
+        var lastName = $(this)[0].children[1].innerHTML;
+
+        var vehicleId = $(this)[0].children[5].children[0].attributes['data-vehicleid'].value;
+
+        var firstAndLastName = firstName + " " + lastName;
+
+        $("#clientFirstAndLastName").text(firstAndLastName);
+        $("#hiddenVehicleId").text(vehicleId);
+    });
+
+    $("#addReceiptBtn").click(function () {
+        var vehicleId = $("#hiddenVehicleId").text();
+
+        location.href = `/Receipt/Create?id=${vehicleId}`;
+    });
 });

@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Infrastructure.DAL
@@ -55,6 +53,39 @@ namespace Infrastructure.DAL
             return receiptId;
         }
 
+        public async Task<ClientAndVehicleDto> GetClientAndVehicle(int id)
+        {
+            var clientAndVehicle = new ClientAndVehicleDto();
+
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    string sqlProcedure = "GetClientAndVehicle";
+                    var command = new SqlCommand(sqlProcedure, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@VehicleId", id);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (await reader.ReadAsync().ConfigureAwait(false))
+                        {
+                            clientAndVehicle = MapToClientAndVehicle(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+
+            return clientAndVehicle;
+        }
+
         public int InsertReceipt(ClientDto client, VehicleDto vehicle, ReceiptDto receipt, List<TireDto> tires)
         {
             int receiptId = -1;
@@ -90,6 +121,7 @@ namespace Infrastructure.DAL
                     cmdVehicle.CommandType = CommandType.StoredProcedure;
 
                     #region vehicleParams
+                    cmdVehicle.Parameters.AddWithValue("@Type", vehicle.Type);
                     cmdVehicle.Parameters.AddWithValue("@Brand", vehicle.Brand);
                     cmdVehicle.Parameters.AddWithValue("@RegistrationNumber", vehicle.RegistrationNumber);
                     cmdVehicle.Parameters.AddWithValue("@ClientId", clientId);
@@ -171,6 +203,7 @@ namespace Infrastructure.DAL
                     command.Parameters.AddWithValue("@RegistrationNumber", filter.RegistrationNumber);
                     command.Parameters.AddWithValue("@DateFrom", filter.DateFrom);
                     command.Parameters.AddWithValue("@DateTo", filter.DateTo);
+                    command.Parameters.AddWithValue("@VehicleType", filter.VehicleType);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -251,6 +284,16 @@ namespace Infrastructure.DAL
             clientReceipt.Receipt = ReceiptDto.MapTo(reader);
 
             return clientReceipt;
+        }
+
+        private ClientAndVehicleDto MapToClientAndVehicle(SqlDataReader reader)
+        {
+            var clientAndVehicleDto = new ClientAndVehicleDto();
+
+            clientAndVehicleDto.Client = ClientDto.MapTo(reader);
+            clientAndVehicleDto.Vehicle = VehicleDto.MapTo(reader);
+
+            return clientAndVehicleDto;
         }
     }
 }
