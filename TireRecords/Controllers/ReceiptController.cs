@@ -49,11 +49,16 @@ namespace TireRecords.Controllers
         {
             var filter = new FilterDto();
 
+            System.Globalization.CultureInfo cultureinfo = new System.Globalization.CultureInfo("sr-RS");
+
             filter.FirstName = Convert.ToString(collection["firstName"]).Trim();
             filter.LastName = Convert.ToString(collection["lastName"]).Trim();
             filter.RegistrationNumber = Convert.ToString(collection["registrationNumber"]).Trim();
-            filter.DateFrom = Convert.ToDateTime(collection["dateFrom"]);
-            filter.DateTo = Convert.ToDateTime(collection["dateTo"]);
+
+            filter.DateFrom = DateTime.Parse(collection["dateFrom"], cultureinfo);
+
+            filter.DateTo = DateTime.Parse(collection["dateTo"], cultureinfo);
+
             filter.VehicleType = Convert.ToInt32(collection["vehicleType"]);
 
             var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
@@ -79,7 +84,11 @@ namespace TireRecords.Controllers
         public async Task<ActionResult> Create()
         {
             string vehicleId = Request.QueryString["id"];
+            
+            string vehicleType = Request.QueryString["type"];
 
+            TempData["VehicleType"] = vehicleType;
+            
             var clientAndVehicle = new ClientAndVehicleViewModel();
 
             if (string.IsNullOrEmpty(vehicleId))
@@ -89,6 +98,7 @@ namespace TireRecords.Controllers
 
                 return View(clientAndVehicle);
             }
+
             var clientAndVehicleDto = await _receiptService.GetClientAndVehicle(Convert.ToInt32(vehicleId));
             clientAndVehicle = ClientAndVehicleViewModel.MapTo(clientAndVehicleDto);
 

@@ -468,7 +468,8 @@ textarea {
     font-weight: 600;
 }
 
-#hiddenVehicleId {
+#hiddenVehicleId,
+#hiddenVehicleType {
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
@@ -838,4 +839,9 @@ span.ui-icon {
 
     .w-150 {
         width: 150%;
+    }
+
+    .last-td {
+        width: 25%;
+
     }

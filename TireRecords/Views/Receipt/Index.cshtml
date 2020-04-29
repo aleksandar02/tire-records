@@ -94,10 +94,11 @@
                         </div>
                     }
                     <div class="col-md-3">
-                        <input type="text" name="dateFrom" class="form-control" id="dateFrom" placeholder="Od" />
+                        <input name="dateFrom" class="datepicker form-control dateFrom" placeholder="Od" data-provide="datepicker">
+
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" name="dateTo" id="dateTo" placeholder="Do" />
+                        <input name="dateTo" class="datepicker form-control dateTo" placeholder="Do" data-provide="datepicker">
                     </div>
                 </div>
                 <br />
@@ -137,14 +138,16 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr data-toggle="modal" data-target="#addReceiptModal" class="receiptDataTr">
+                        <tr class="receiptDataTr">
                             <td>@item.Client.FirstName</td>
                             <td>@item.Client.LastName</td>
                             <td>@item.Client.MobilePhone</td>
                             <td>@item.Vehicle.Brand</td>
                             <td>@item.Vehicle.RegistrationNumber</td>
-                            <td>
+                            <td class="last-td">
                                 <a href="/Receipt/Details/@item.Receipt.Id" target="_blank" class="btn btn-general btn-default btn-small" data-vehicleid="@item.Vehicle.Id" id="redirectToDetails"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;Detalji</a>
+
+                                <a href="#" data-toggle="modal" data-target="#addReceiptModal" class="btn btn-general btn-default btn-small pull-right redirectToCreateReceiptBtn" data-vehicleid="@item.Vehicle.Id" data-firstname="@item.Client.FirstName" data-lastname="@item.Client.LastName" data-vehicletype="@item.Vehicle.Type" id="redirectToCreateReceiptBtn"><i class="fa fa-paste"></i>&nbsp;&nbsp;Dodaj priznanicu</a>
                             </td>
                         </tr>
                     }
@@ -163,11 +166,12 @@
             </div>
             <div class="modal-body">
                 Dodaj priznanicu za klijenta: <span id="clientFirstAndLastName"></span>
-                                              <span id="hiddenVehicleId"></span>
+                <span id="hiddenVehicleId"></span>
+                <span id="hiddenVehicleType"></span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-general btn-red" id="addReceiptBtn">Dodaj</button>
-                <button type="button" class="btn btn-general btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-general btn-default" data-dismiss="modal">Zatvori</button>
             </div>
 
         </div>
@@ -180,7 +184,9 @@
     <link href="~/Content/datatables.min.css" rel="stylesheet" />
     <link href="~/Content/responsive.bootstrap4.min.css" rel="stylesheet" />
 
+
     <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+
     <script src="~/Scripts/datatables.min.js"></script>
     <script src="~/Scripts/responsive.bootstrap4.min.js"></script>
     <script src="~/Scripts/receipt.js"></script>
