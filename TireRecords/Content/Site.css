@@ -18,6 +18,8 @@ input:read-only  {
     cursor: pointer;
 }
 
+
+
 * {
     box-sizing: border-box
 }
@@ -823,3 +825,17 @@ span.ui-icon {
         margin-left: 50vw;
     }
 }
+.btn-plus {
+    padding: 5px 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+    .btn-plus i {
+        color: #007bff;
+    }
+
+    .w-150 {
+        width: 150%;
+    }

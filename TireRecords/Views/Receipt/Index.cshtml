@@ -63,6 +63,36 @@
         <div class="filter-section _panel">
             <form action="/Receipt/Search" method="post">
                 <div class="row">
+                    @if (vehicleType == "1")
+                    {
+                        <div class="col-md-3">
+                            <select class="form-control" name="vehicleType" id="vehicleType">
+                                <option value="-1">Sve</option>
+                                <option value="1" selected>Putnička vozila</option>
+                                <option value="2">Teretna vozila</option>
+                            </select>
+                        </div>
+                    }
+                    else if (vehicleType == "2")
+                    {
+                        <div class="col-md-3">
+                            <select class="form-control" name="vehicleType" id="vehicleType">
+                                <option value="-1">Sve</option>
+                                <option value="1">Putnička vozila</option>
+                                <option value="2" selected>Teretna vozila</option>
+                            </select>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3">
+                            <select class="form-control" name="vehicleType" id="vehicleType">
+                                <option value="-1" selected>Sve</option>
+                                <option value="1">Putnička vozila</option>
+                                <option value="2">Teretna vozila</option>
+                            </select>
+                        </div>
+                    }
                     <div class="col-md-3">
                         <input type="text" name="dateFrom" class="form-control" id="dateFrom" placeholder="Od" />
                     </div>
@@ -78,43 +108,11 @@
                     <div class="col-md-3">
                         <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Prezime" />
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <input type="text" name="registrationNumber" id="registrationNumber" class="form-control" placeholder="Registarski broj" />
                     </div>
 
-                    @if (vehicleType == "1")
-                    {
-                        <div class="col-md-2">
-                            <select class="form-control" name="vehicleType" id="vehicleType">
-                                <option value="-1">Sve</option>
-                                <option value="1" selected>Putnička vozila</option>
-                                <option value="2">Teretna vozila</option>
-                            </select>
-                        </div>
-                    }
-                    else if (vehicleType == "2")
-                    {
-                        <div class="col-md-2">
-                            <select class="form-control" name="vehicleType" id="vehicleType">
-                                <option value="-1">Sve</option>
-                                <option value="1">Putnička vozila</option>
-                                <option value="2" selected>Teretna vozila</option>
-                            </select>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="col-md-2">
-                            <select class="form-control" name="vehicleType" id="vehicleType">
-                                <option value="-1" selected>Sve</option>
-                                <option value="1">Putnička vozila</option>
-                                <option value="2">Teretna vozila</option>
-                            </select>
-                        </div>
-                    }
-
-
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <button type="submit" class="btn btn-general btn-blue pull-right"><i class="fa fa-search"></i>&nbsp;&nbsp;Pretraži</button>
                     </div>
                 </div>

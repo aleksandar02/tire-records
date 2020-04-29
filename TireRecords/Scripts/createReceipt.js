@@ -77,7 +77,8 @@
     $('.selectpicker').selectpicker({
         liveSearch: true,
         showSubtext: true,
-        noneResultsText: "Nema rezultata!"
+        noneResultsText: "Nema rezultata!",
+        noneSelectedText: "Marka"
     });
 
     $('.selectpicker').selectpicker('val', $("#vehicleBrandHidden").val())

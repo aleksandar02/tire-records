@@ -109,7 +109,6 @@ namespace TireRecords.Controllers
                 int receiptId = _receiptService.InsertReceipt(clientDto, vehicledDto, receiptDto, tires);
                 TempData["ReceiptId"] = receiptId;
 
-
                 return RedirectToAction("Index");
             }
             catch
