@@ -248,6 +248,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\receipt.js" />
     <Content Include="Scripts\responsive.bootstrap4.min.js" />
+    <Content Include="Scripts\validateReceipt.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -283,6 +284,7 @@
     <Content Include="Views\Receipt\Index.cshtml" />
     <Content Include="Views\Receipt\Create.cshtml" />
     <Content Include="Views\Receipt\Details.cshtml" />
+    <Content Include="Views\Home\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

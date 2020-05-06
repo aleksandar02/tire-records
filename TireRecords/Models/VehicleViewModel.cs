@@ -57,7 +57,7 @@ namespace TireRecords.Models
             var vehicle = new VehicleDto();
 
             vehicle.Type = Convert.ToInt32(collection["vehicleType"]);
-            vehicle.Brand = Convert.ToString(collection["vehicleBrand"]);
+            vehicle.Brand = Convert.ToString(collection["vehicleBrandPicker"]);
             vehicle.RegistrationNumber = Convert.ToString(collection["registrationNumber"]);
 
             return vehicle;

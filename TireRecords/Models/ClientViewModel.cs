@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace TireRecords.Models

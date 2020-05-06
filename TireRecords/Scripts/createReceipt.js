@@ -74,14 +74,18 @@
                                   </option>`);
     });
 
-    $('.selectpicker').selectpicker({
-        liveSearch: true,
-        showSubtext: true,
-        noneResultsText: "Nema rezultata!",
-        noneSelectedText: "Marka"
-    });
+    //$('.selectpicker').selectpicker({
+    //    liveSearch: true,
+    //    showSubtext: true,
+    //    noneResultsText: "Nema rezultata!",
+    //    noneSelectedText: "Marka"
+    //});
 
-    $('.selectpicker').selectpicker('val', $("#vehicleBrandHidden").val())
+    var vehicleBrand = $("#vehicleBrandHidden").val();
+    if (vehicleBrand) $(`.selectpicker option[value=${vehicleBrand}]`).attr('selected', 'selected');
+
+
+    //$('.selectpicker').selectpicker('val', $("#vehicleBrandHidden").val());
 
     $('.copy-tire').click(function () {
         var id = $(this).closest('.row').attr('id');

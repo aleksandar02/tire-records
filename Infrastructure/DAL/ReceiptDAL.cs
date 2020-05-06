@@ -107,10 +107,10 @@ namespace Infrastructure.DAL
                     cmdClient.CommandType = CommandType.StoredProcedure;
 
                     #region clientParams
-                    cmdClient.Parameters.AddWithValue("@FirstName", client.FirstName);
-                    cmdClient.Parameters.AddWithValue("@LastName", client.LastName);
+                    cmdClient.Parameters.AddWithValue("@FirstName", client.FirstName.Trim());
+                    cmdClient.Parameters.AddWithValue("@LastName", client.LastName.Trim());
                     cmdClient.Parameters.AddWithValue("@MobilePhone", client.MobilePhone);
-                    cmdClient.Parameters.AddWithValue("@Email", client.Email);
+                    cmdClient.Parameters.AddWithValue("@Email", client.Email.Trim());
                     cmdClient.Parameters.Add("@ClientId", SqlDbType.Int).Direction = ParameterDirection.Output;
                     #endregion
 
@@ -123,7 +123,7 @@ namespace Infrastructure.DAL
                     #region vehicleParams
                     cmdVehicle.Parameters.AddWithValue("@Type", vehicle.Type);
                     cmdVehicle.Parameters.AddWithValue("@Brand", vehicle.Brand);
-                    cmdVehicle.Parameters.AddWithValue("@RegistrationNumber", vehicle.RegistrationNumber);
+                    cmdVehicle.Parameters.AddWithValue("@RegistrationNumber", vehicle.RegistrationNumber.Trim());
                     cmdVehicle.Parameters.AddWithValue("@ClientId", clientId);
                     cmdVehicle.Parameters.Add("@VehicleId", SqlDbType.Int).Direction = ParameterDirection.Output;
                     #endregion
@@ -136,7 +136,7 @@ namespace Infrastructure.DAL
 
                     #region receiptParams
                     cmdReceipt.Parameters.AddWithValue("@Number", receipt.Number);
-                    cmdReceipt.Parameters.AddWithValue("@Message", receipt.Message);
+                    cmdReceipt.Parameters.AddWithValue("@Message", receipt.Message.TrimEnd());
                     cmdReceipt.Parameters.AddWithValue("@UserName", receipt.UserName);
                     cmdReceipt.Parameters.AddWithValue("@CreatedAt", receipt.CreatedAt);
                     cmdReceipt.Parameters.AddWithValue("@VehicleId", vehicleId);

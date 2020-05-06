@@ -18,7 +18,10 @@ input:read-only  {
     cursor: pointer;
 }
 
-
+.error {
+    font-weight: 500;
+    color: #dc3545;
+}
 
 * {
     box-sizing: border-box
