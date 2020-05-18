@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[InsertReceipt]
-	@Number NVARCHAR(50),
+	@RNumber NVARCHAR(50),
 	@Message NVARCHAR(MAX),
 	@UserName NVARCHAR(256),
 	@CreatedAt DATETIME2(7),
@@ -9,8 +9,8 @@
 
 AS
 	BEGIN
-		INSERT INTO Receipt([Number], [Message], [UserName], [CreatedAt], [VehicleId], [ClientId])
-					VALUES(@Number, @Message, @UserName, @CreatedAt, @VehicleId, @ClientId)
+		INSERT INTO Receipt([RNumber], [Message], [UserName], [CreatedAt], [VehicleId], [ClientId])
+					VALUES(@RNumber, @Message, @UserName, @CreatedAt, @VehicleId, @ClientId)
 
 		SELECT @ReceiptId = SCOPE_IDENTITY();
 	END

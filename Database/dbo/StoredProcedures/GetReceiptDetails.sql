@@ -12,7 +12,7 @@ AS
 			  ,T.[Depth]
 			  ,T.[DOT]
 			  ,R.[Id] AS ReceiptId
-			  ,R.[Number]
+			  ,R.[RNumber]
 			  ,R.[UserName]
 			  ,R.[CreatedAt]
 			  ,R.[Message]

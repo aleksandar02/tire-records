@@ -85,7 +85,7 @@ namespace TireRecords.Services
                 tf.DrawString("035 8 223 689 | 065 223 6891", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 // Auto logo
-                XImage logoImage = XImage.FromFile(imagePaths.ElementAt(1));
+                XImage logoImage = XImage.FromFile(imagePaths.ElementAt(0));
                 gfx.DrawImage(logoImage, 315, 20, 90, 60);
 
                 // Website and gmail
@@ -151,7 +151,7 @@ namespace TireRecords.Services
                 rect = new XRect(20, 160, page.Width / 2 - 40, 15);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
-                tf.DrawString($"broj {receiptDetails.Receipt.Number} izdata dana: {receiptDetails.Receipt.CreatedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                tf.DrawString($"broj {receiptDetails.Receipt.RNumber} izdata dana: {receiptDetails.Receipt.CreatedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 // Client and Vehicle Info
                 font = new XFont("Calibri", 11, XFontStyle.Regular, options);
@@ -385,7 +385,7 @@ namespace TireRecords.Services
                 tf.DrawString("035 8 223 689 | 065 223 6891", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 // Auto logo
-                XImage logoImage = XImage.FromFile(imagePaths.ElementAt(1));
+                XImage logoImage = XImage.FromFile(imagePaths.ElementAt(0));
                 gfx.DrawImage(logoImage, page.Width / 2 + 315, 20, 90, 60);
 
                 // Website and gmail
@@ -451,7 +451,7 @@ namespace TireRecords.Services
                 rect = new XRect(page.Width / 2 + 20, 160, page.Width / 2 - 40, 15);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
-                tf.DrawString($"broj {receiptDetails.Receipt.Number} izdata dana: {receiptDetails.Receipt.CreatedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                tf.DrawString($"broj {receiptDetails.Receipt.RNumber} izdata dana: {receiptDetails.Receipt.CreatedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 // Client and Vehicle Info
                 font = new XFont("Calibri", 11, XFontStyle.Regular, options);

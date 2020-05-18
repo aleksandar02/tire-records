@@ -22,7 +22,7 @@ AS
 			V.[Model] AS VehicleModel,
 			V.[RegistrationNumber],
 			R.[Id] AS ReceiptId,
-			R.[Number],
+			R.[RNumber],
 			R.[UserName],
 			R.[Message],
 			R.[CreatedAt]

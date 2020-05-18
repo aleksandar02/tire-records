@@ -118,7 +118,7 @@ namespace TireRecords.Controllers
 
                 if (!string.IsNullOrEmpty(receiptNumber))
                 {
-                    receiptDto.Number = receiptNumber;
+                    receiptDto.RNumber = receiptNumber;
 
                     int receiptId = _receiptService.InsertReceipt(clientDto, vehicledDto, receiptDto, tires);
                     TempData["ReceiptId"] = receiptId;
@@ -133,6 +133,7 @@ namespace TireRecords.Controllers
             catch(Exception ex)
             {
                 TempData["ReceiptId"] = -1;
+                _logger.Error(ex);
                 return RedirectToAction("Index");
             }
         }

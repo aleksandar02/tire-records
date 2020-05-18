@@ -32,7 +32,7 @@ namespace Infrastructure.DAL
                     var command = new SqlCommand(sqlProcedure, connection);
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@Number", receipt.Number);
+                    command.Parameters.AddWithValue("@Number", receipt.RNumber);
                     command.Parameters.AddWithValue("@Message", receipt.Message);
                     command.Parameters.AddWithValue("@UserName", receipt.UserName);
                     command.Parameters.AddWithValue("@CreatedAt", receipt.CreatedAt);
@@ -169,12 +169,13 @@ namespace Infrastructure.DAL
                     cmdReceipt.CommandType = CommandType.StoredProcedure;
 
                     #region receiptParams
-                    cmdReceipt.Parameters.AddWithValue("@Number", receipt.Number);
+                    cmdReceipt.Parameters.AddWithValue("@RNumber", receipt.RNumber);
                     cmdReceipt.Parameters.AddWithValue("@Message", receipt.Message.TrimEnd());
                     cmdReceipt.Parameters.AddWithValue("@UserName", receipt.UserName);
                     cmdReceipt.Parameters.AddWithValue("@CreatedAt", receipt.CreatedAt);
                     cmdReceipt.Parameters.AddWithValue("@VehicleId", vehicleId);
                     cmdReceipt.Parameters.AddWithValue("@ClientId", clientId);
+
                     cmdReceipt.Parameters.Add("@ReceiptId", SqlDbType.Int).Direction = ParameterDirection.Output;
                     #endregion
 

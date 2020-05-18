@@ -7,7 +7,7 @@ namespace TireRecords.Models
     public class ReceiptViewModel
     {
         public int Id { get; set; }
-        public string Number { get; set; }
+        public string RNumber { get; set; }
         public string UserName { get; set; }
         public DateTime CreatedAt { get; set; }
         public int VehicleId { get; set; }
@@ -19,7 +19,7 @@ namespace TireRecords.Models
             var receipt = new ReceiptViewModel();
 
             receipt.Id = receiptDto.Id;
-            receipt.Number = receiptDto.Number;
+            receipt.RNumber = receiptDto.RNumber;
             receipt.UserName = receiptDto.UserName;
             receipt.CreatedAt = receiptDto.CreatedAt;
             receipt.VehicleId = receiptDto.VehicleId;
@@ -34,7 +34,7 @@ namespace TireRecords.Models
             var receiptDto = new ReceiptDto();
 
             receiptDto.Id = receipt.Id;
-            receiptDto.Number = receipt.Number;
+            receiptDto.RNumber = receipt.RNumber;
             receiptDto.UserName = receipt.UserName;
             receiptDto.CreatedAt = receipt.CreatedAt;
             receiptDto.VehicleId = receipt.VehicleId;

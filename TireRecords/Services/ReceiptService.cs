@@ -68,7 +68,7 @@ namespace TireRecords.Services
         {
             int lastReceiptId = _receiptDAL.GetLastReceiptId(createdAt);
 
-            if (lastReceiptId > 0)
+            if (lastReceiptId >= 0)
             {
                 int newReceiptId = lastReceiptId + 1;
                 int counter = 0;
@@ -92,7 +92,7 @@ namespace TireRecords.Services
             else
             {
                 return string.Empty;
-            }
+            }         
         }
     }
 }
