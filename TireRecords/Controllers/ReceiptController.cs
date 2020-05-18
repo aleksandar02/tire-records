@@ -28,8 +28,6 @@ namespace TireRecords.Controllers
 
             var filter = new FilterDto();
 
-            _logger.Info("{user} visited ReceiptController.Index", User.Identity.Name);
-
             filter.FirstName = "";
             filter.LastName = "";
             filter.RegistrationNumber = "";
@@ -116,12 +114,23 @@ namespace TireRecords.Controllers
                 var receiptDto = ReceiptViewModel.MapFrom(collection, User.Identity.Name);
                 var tires = GetTires(collection);
 
-                int receiptId = _receiptService.InsertReceipt(clientDto, vehicledDto, receiptDto, tires);
-                TempData["ReceiptId"] = receiptId;
+                string receiptNumber = _receiptService.GenerateReceiptNumber(receiptDto.CreatedAt);
 
-                return RedirectToAction("Index");
+                if (!string.IsNullOrEmpty(receiptNumber))
+                {
+                    receiptDto.Number = receiptNumber;
+
+                    int receiptId = _receiptService.InsertReceipt(clientDto, vehicledDto, receiptDto, tires);
+                    TempData["ReceiptId"] = receiptId;
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    throw new ArgumentException("Receipt create: Invalid receipt number!");
+                }
             }
-            catch
+            catch(Exception ex)
             {
                 TempData["ReceiptId"] = -1;
                 return RedirectToAction("Index");
@@ -185,7 +194,7 @@ namespace TireRecords.Controllers
         public async Task<ActionResult> ExportPdf(int id)
         {
             var pdf = new byte[0];
-            var imagePaths = new List<string> { Server.MapPath("~/Content/images/pdf/vulco-logo.png"), Server.MapPath("~/Content/images/pdf/logo.png") };
+            var imagePaths = new List<string> { /*Server.MapPath("~/Content/images/pdf/vulco-logo.png"),*/ Server.MapPath("~/Content/images/pdf/logo.png") };
 
             try
             {

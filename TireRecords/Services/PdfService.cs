@@ -42,16 +42,16 @@ namespace TireRecords.Services
                 // Split line
                 XPen splitLine = new XPen(XColors.Black, 1);
 
-                //gfx.DrawLine(splitLine, page.Width / 2, 10, page.Width / 2, page.Height - 10);
+                gfx.DrawLine(splitLine, page.Width / 2, 10, page.Width / 2, page.Height - 10);
 
-                //// Vulco image
+                // Vulco image
                 //XImage vulcoImage = XImage.FromFile(imagePaths.ElementAt(0));
                 //gfx.DrawImage(vulcoImage, 20, 20, 120, 50);
 
                 XTextFormatter tf = new XTextFormatter(gfx);
                 tf.Alignment = XParagraphAlignment.Center;
 
-                //// Text between images
+                // Text between images
                 //var rect = new XRect(150, 25, 150, 12);
 
                 //gfx.DrawRectangle(XBrushes.Transparent, rect);
@@ -68,22 +68,39 @@ namespace TireRecords.Services
                 //gfx.DrawRectangle(XBrushes.Transparent, rect);
                 //tf.DrawString("035 8 223 689 | 063 433 644", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-                //// Auto logo
-                //XImage logoImage = XImage.FromFile(imagePaths.ElementAt(1));
-                //gfx.DrawImage(logoImage, 315, 20, 90, 60);
+                var rect = new XRect(20, 25, 150, 12);
 
-                //// Website and gmail
+                gfx.DrawRectangle(XBrushes.Transparent, rect);
+                tf.DrawString("AUTO GUMI CENTAR STOŠIĆ", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                rect = new XRect(12, 39, 150, 12);
+                font = new XFont("Calibri", 9, XFontStyle.Regular, options);
+
+                gfx.DrawRectangle(XBrushes.Transparent, rect);
+                tf.DrawString("Kapetana Koče 47, 35000 Jagodina", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                rect = new XRect(4, 51, 150, 12);
+
+                gfx.DrawRectangle(XBrushes.Transparent, rect);
+                tf.DrawString("035 8 223 689 | 065 223 6891", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                // Auto logo
+                XImage logoImage = XImage.FromFile(imagePaths.ElementAt(1));
+                gfx.DrawImage(logoImage, 315, 20, 90, 60);
+
+                // Website and gmail
                 //rect = new XRect(20, 70, 115, 10);
 
                 //gfx.DrawRectangle(XBrushes.Transparent, rect);
-                //tf.DrawString("www.gumefelnestosic.com", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                //tf.DrawString("gumejagodina@gmail.com", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-                //rect = new XRect(20, 80, 115, 10);
+                rect = new XRect(15, 60, 115, 10);
 
-                //gfx.DrawRectangle(XBrushes.Transparent, rect);
-                //tf.DrawString("stosicgumefelne@gmail.com", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                gfx.DrawRectangle(XBrushes.Transparent, rect);
+                tf.DrawString("gumejagodina@gmail.com", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-                //// Compant info
+
+                // Compant info
                 //tf.Alignment = XParagraphAlignment.Left;
                 //rect = new XRect(305, 80, 120, 10);
 
@@ -105,12 +122,17 @@ namespace TireRecords.Services
                 //gfx.DrawRectangle(XBrushes.Transparent, rect);
                 //tf.DrawString("Br.evid PDV      131895379", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-                //font = new XFont("Calibri", 9, XFontStyle.Bold, options);
+                font = new XFont("Calibri", 9, XFontStyle.Bold, options);
 
-                //rect = new XRect(305, 122, 120, 10);
+                rect = new XRect(290, 85, 120, 10);
 
-                //gfx.DrawRectangle(XBrushes.Transparent, rect);
-                //tf.DrawString("T.R. 165-7008597683-97", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                gfx.DrawRectangle(XBrushes.Transparent, rect);
+                tf.DrawString("T.R. 170-0030020435000-28", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                rect = new XRect(280, 95, 120, 10);
+
+                gfx.DrawRectangle(XBrushes.Transparent, rect);
+                tf.DrawString("155-23599-23", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 // After header line
                 XPen afterLine = new XPen(XColors.Black, 1);
@@ -121,7 +143,7 @@ namespace TireRecords.Services
                 font = new XFont("Calibri", 13, XFontStyle.Bold, options);
                 tf.Alignment = XParagraphAlignment.Center;
 
-                var rect = new XRect(20, 146, page.Width / 2 - 40, 15);
+                rect = new XRect(20, 146, page.Width / 2 - 40, 15);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
                 tf.DrawString("Potvrda o vraćanju pneumatika sa čuvanja", font, XBrushes.Black, rect, XStringFormats.TopLeft);
@@ -329,7 +351,7 @@ namespace TireRecords.Services
                 XTextFormatter tf = new XTextFormatter(gfx);
                 tf.Alignment = XParagraphAlignment.Center;
 
-                //// Text between images
+                // Text between images
                 //var rect = new XRect(page.Width / 2 + 150, 25, 150, 12);
 
                 //gfx.DrawRectangle(XBrushes.Transparent, rect);
@@ -346,22 +368,38 @@ namespace TireRecords.Services
                 //gfx.DrawRectangle(XBrushes.Transparent, rect);
                 //tf.DrawString("035 8 223 689 | 063 433 644", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-                //// Auto logo
-                //XImage logoImage = XImage.FromFile(imagePaths.ElementAt(1));
-                //gfx.DrawImage(logoImage, page.Width / 2 + 315, 20, 90, 60);
+                var rect = new XRect(page.Width / 2 + 20, 25, 150, 12);
 
-                //// Website and gmail
-                //rect = new XRect(page.Width / 2 + 20, 70, 115, 10);
+                gfx.DrawRectangle(XBrushes.Transparent, rect);
+                tf.DrawString("AUTO GUMI CENTAR STOŠIĆ", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-                //gfx.DrawRectangle(XBrushes.Transparent, rect);
-                //tf.DrawString("www.gumefelnestosic.com", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                rect = new XRect(page.Width / 2 + 12, 39, 150, 12);
+                font = new XFont("Calibri", 9, XFontStyle.Regular, options);
+
+                gfx.DrawRectangle(XBrushes.Transparent, rect);
+                tf.DrawString("Kapetana Koče 47, 35000 Jagodina", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                rect = new XRect(page.Width / 2 + 2, 51, 150, 12);
+
+                gfx.DrawRectangle(XBrushes.Transparent, rect);
+                tf.DrawString("035 8 223 689 | 065 223 6891", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                // Auto logo
+                XImage logoImage = XImage.FromFile(imagePaths.ElementAt(1));
+                gfx.DrawImage(logoImage, page.Width / 2 + 315, 20, 90, 60);
+
+                // Website and gmail
+                rect = new XRect(page.Width / 2 + 15, 60, 115, 10);
+
+                gfx.DrawRectangle(XBrushes.Transparent, rect);
+                tf.DrawString("gumejagodina@gmail.com", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                 //rect = new XRect(page.Width / 2 + 20, 80, 115, 10);
 
                 //gfx.DrawRectangle(XBrushes.Transparent, rect);
                 //tf.DrawString("stosicgumefelne@gmail.com", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-                //// Compant info
+                // Compant info
                 //tf.Alignment = XParagraphAlignment.Left;
                 //rect = new XRect(page.Width / 2 + 305, 80, 120, 10);
 
@@ -383,12 +421,18 @@ namespace TireRecords.Services
                 //gfx.DrawRectangle(XBrushes.Transparent, rect);
                 //tf.DrawString("Br.evid PDV      131895379", font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
-                //font = new XFont("Calibri", 9, XFontStyle.Bold, options);
+                font = new XFont("Calibri", 9, XFontStyle.Bold, options);
 
-                //rect = new XRect(page.Width / 2 + 305, 122, 120, 10);
+                rect = new XRect(page.Width / 2 + 296, 85, 120, 10);
 
-                //gfx.DrawRectangle(XBrushes.Transparent, rect);
-                //tf.DrawString("T.R. 165-7008597683-97", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                gfx.DrawRectangle(XBrushes.Transparent, rect);
+                tf.DrawString("T.R. 170-0030020435000-28", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                rect = new XRect(page.Width / 2 + 287, 95, 120, 10);
+
+                gfx.DrawRectangle(XBrushes.Transparent, rect);
+                tf.DrawString("155-23599-23", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
 
                 // After header line
                 XPen afterLine = new XPen(XColors.Black, 1);
@@ -399,7 +443,7 @@ namespace TireRecords.Services
                 font = new XFont("Calibri", 13, XFontStyle.Bold, options);
                 tf.Alignment = XParagraphAlignment.Center;
 
-                var rect = new XRect(page.Width / 2 + 20, 146, page.Width / 2 - 40, 15);
+                rect = new XRect(page.Width / 2 + 20, 146, page.Width / 2 - 40, 15);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
                 tf.DrawString("Potvrda o vraćanju pneumatika sa čuvanja", font, XBrushes.Black, rect, XStringFormats.TopLeft);

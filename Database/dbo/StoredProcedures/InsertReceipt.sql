@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[InsertReceipt]
-	@Number INT,
+	@Number NVARCHAR(50),
 	@Message NVARCHAR(MAX),
 	@UserName NVARCHAR(256),
 	@CreatedAt DATETIME2(7),

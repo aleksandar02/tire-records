@@ -7,7 +7,7 @@ namespace TireRecords.Models
     public class ReceiptViewModel
     {
         public int Id { get; set; }
-        public int Number { get; set; }
+        public string Number { get; set; }
         public string UserName { get; set; }
         public DateTime CreatedAt { get; set; }
         public int VehicleId { get; set; }
@@ -47,9 +47,7 @@ namespace TireRecords.Models
         public static ReceiptDto MapFrom(FormCollection collection, string userName)
         {
             var receipt = new ReceiptDto();
-            int number = new Random().Next(1, 100);
 
-            receipt.Number = number;
             receipt.Message = Convert.ToString(collection["message"]);
             receipt.UserName = userName;
             receipt.CreatedAt = DateTime.Now;

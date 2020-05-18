@@ -63,5 +63,36 @@ namespace TireRecords.Services
         {
             return await _receiptDAL.GetClientAndVehicle(vehicleId);
         }
+
+        public string GenerateReceiptNumber(DateTime createdAt)
+        {
+            int lastReceiptId = _receiptDAL.GetLastReceiptId(createdAt);
+
+            if (lastReceiptId > 0)
+            {
+                int newReceiptId = lastReceiptId + 1;
+                int counter = 0;
+                string generatedNumber = Convert.ToString(newReceiptId);
+
+                while (newReceiptId > 0)
+                {
+                    newReceiptId = newReceiptId / 10;
+                    counter++;
+                }
+
+                for (int i = counter; i < 5; i++)
+                {
+                    generatedNumber = "0" + generatedNumber;
+                }
+
+                generatedNumber = $"{generatedNumber}/{createdAt.Year}";
+
+                return generatedNumber;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
     }
 }

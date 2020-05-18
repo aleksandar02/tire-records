@@ -259,7 +259,7 @@ aside div {
         border-color: #00c851;
     }
 .btn-small {
-    padding: 6px 16px !important;
+    padding: 6px 12px !important;
     font-size: 12px !important;
 }
 
@@ -424,6 +424,9 @@ textarea {
     border-color: #eff9f9 !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
+    font-size: 12px !important;
+    padding-left: 3px;
+    padding-right: 3px;
 }
 
 
@@ -437,6 +440,8 @@ textarea {
 
 #receiptTable tr th {
     border-color: #e3f0f0 !important;
+    padding-left: 3px;
+    padding-right: 3px;
 }
 
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {

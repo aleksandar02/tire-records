@@ -129,8 +129,8 @@
                         <th>Ime</th>
                         <th>Prezime</th>
                         <th>Telefon</th>
-                        <th>Marka vozila</th>
-                        <th>Registarski broj</th>
+                        <th>Marka</th>
+                        <th>Reg. broj</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -145,9 +145,10 @@
                             <td>@item.Vehicle.Brand</td>
                             <td>@item.Vehicle.RegistrationNumber</td>
                             <td class="last-td">
-                                <a href="/Receipt/Details/@item.Receipt.Id" target="_blank" class="btn btn-general btn-default btn-small" data-vehicleid="@item.Vehicle.Id" id="redirectToDetails"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;Detalji</a>
+                                <a href="#" data-toggle="modal" data-target="#addReceiptModal" class="btn btn-general btn-default btn-small pull-right redirectToCreateReceiptBtn" data-vehicleid="@item.Vehicle.Id" data-firstname="@item.Client.FirstName" data-lastname="@item.Client.LastName" data-vehicletype="@item.Vehicle.Type" id="redirectToCreateReceiptBtn"><i class="fa fa-plus"></i>&nbsp;&nbsp;Priznanica</a>
+                                <a href="/Receipt/Details/@item.Receipt.Id" target="_blank" class="btn btn-general btn-default btn-small pull-right" data-vehicleid="@item.Vehicle.Id" id="redirectToDetails"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;Detalji</a>
 
-                                <a href="#" data-toggle="modal" data-target="#addReceiptModal" class="btn btn-general btn-default btn-small pull-right redirectToCreateReceiptBtn" data-vehicleid="@item.Vehicle.Id" data-firstname="@item.Client.FirstName" data-lastname="@item.Client.LastName" data-vehicletype="@item.Vehicle.Type" id="redirectToCreateReceiptBtn"><i class="fa fa-paste"></i>&nbsp;&nbsp;Dodaj priznanicu</a>
+
                             </td>
                         </tr>
                     }

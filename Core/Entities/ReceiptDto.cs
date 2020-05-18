@@ -6,7 +6,7 @@ namespace Core.Entities
     public class ReceiptDto
     {
         public int Id { get; set; }
-        public int Number { get; set; }
+        public string Number { get; set; }
         public string UserName { get; set; }
         public DateTime CreatedAt { get; set; }
         public int VehicleId { get; set; }
@@ -18,7 +18,7 @@ namespace Core.Entities
             var receipt = new ReceiptDto();
 
             receipt.Id = Convert.ToInt32(reader["ReceiptId"]);
-            receipt.Number = Convert.ToInt32(reader["Number"]);
+            receipt.Number = Convert.ToString(reader["Number"]);
             receipt.UserName = Convert.ToString(reader["UserName"]);
             receipt.CreatedAt = Convert.ToDateTime(reader["CreatedAt"]);
             receipt.VehicleId = Convert.ToInt32(reader["VehicleId"]);

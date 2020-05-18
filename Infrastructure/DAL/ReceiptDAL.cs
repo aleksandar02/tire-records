@@ -13,7 +13,6 @@ namespace Infrastructure.DAL
         private readonly string _connectionString;
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
-
         public ReceiptDAL(string connectionString)
         {
             _connectionString = connectionString;
@@ -84,6 +83,41 @@ namespace Infrastructure.DAL
             }
 
             return clientAndVehicle;
+        }
+
+        public int GetLastReceiptId(DateTime createdAt)
+        {
+            int lastReceiptId = -1;
+
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    string sqlProcedure = "GetLastReceiptId";
+                    var command = new SqlCommand(sqlProcedure, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Year", createdAt.Year);
+
+                    //using (SqlDataReader reader = command.ExecuteReader())
+                    //{
+                    //    while (await reader.ReadAsync().ConfigureAwait(false))
+                    //    {
+                    //        lastReceiptId = Convert.ToInt32(reader["Id"]);
+                    //    }
+                    //}
+
+                    lastReceiptId = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+
+            return lastReceiptId;
         }
 
         public int InsertReceipt(ClientDto client, VehicleDto vehicle, ReceiptDto receipt, List<TireDto> tires)
