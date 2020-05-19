@@ -46,10 +46,54 @@ namespace Infrastructure.DAL
             }
             catch (Exception ex)
             {
+                _logger.Error(ex);
                 receiptId = 0;
             }
 
             return receiptId;
+        }
+
+        public async Task<DataCountDto> GetDataCount()
+        {
+            var dataCountDto = new DataCountDto();
+
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    string sqlProcedure = "GetDataCount";
+                    var command = new SqlCommand(sqlProcedure, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (await reader.ReadAsync().ConfigureAwait(false))
+                        {
+                            dataCountDto = MapToDataCount(reader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                string message = ex.Message;
+            }
+
+            return dataCountDto;
+        }
+
+        private DataCountDto MapToDataCount(SqlDataReader reader)
+        {
+            var dataCount = new DataCountDto();
+
+            dataCount.ReceiptsCount = Convert.ToInt32(reader["ReceiptsCount"]);
+            dataCount.VehicleType1Count = Convert.ToInt32(reader["VehicleType1Count"]);
+            dataCount.VehicleType2Count = Convert.ToInt32(reader["VehicleType2Count"]);
+
+            return dataCount;
         }
 
         public async Task<ClientAndVehicleDto> GetClientAndVehicle(int id)
@@ -79,6 +123,7 @@ namespace Infrastructure.DAL
             }
             catch (Exception ex)
             {
+                _logger.Error(ex);
                 string message = ex.Message;
             }
 
@@ -114,6 +159,7 @@ namespace Infrastructure.DAL
             }
             catch (Exception ex)
             {
+                _logger.Error(ex);
                 string message = ex.Message;
             }
 
@@ -239,6 +285,7 @@ namespace Infrastructure.DAL
                     command.Parameters.AddWithValue("@DateFrom", filter.DateFrom);
                     command.Parameters.AddWithValue("@DateTo", filter.DateTo);
                     command.Parameters.AddWithValue("@VehicleType", filter.VehicleType);
+                    command.Parameters.AddWithValue("@RNumber", filter.RNumber);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -254,6 +301,7 @@ namespace Infrastructure.DAL
             }
             catch (Exception ex)
             {
+                _logger.Error(ex);
                 string message = ex.Message;
             }
 
@@ -287,6 +335,7 @@ namespace Infrastructure.DAL
             }
             catch (Exception ex)
             {
+                _logger.Error(ex);
                 string message = ex.Message;
             }
 

@@ -44,6 +44,7 @@
     <Compile Include="Entities\ClientAndVehicleDto.cs" />
     <Compile Include="Entities\ClientDto.cs" />
     <Compile Include="Entities\ClientReceiptDto.cs" />
+    <Compile Include="Entities\DataCountDto.cs" />
     <Compile Include="Entities\FilterDto.cs" />
     <Compile Include="Entities\ReceiptDetailsDto.cs" />
     <Compile Include="Entities\ReceiptDto.cs" />

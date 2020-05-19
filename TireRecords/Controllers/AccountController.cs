@@ -58,8 +58,11 @@ namespace TireRecords.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
-
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.ReturnUrl = returnUrl ?? Url.Action("Index", "Dashboard");
             return View();
         }
 

@@ -34,6 +34,7 @@ namespace TireRecords.Controllers
             filter.DateFrom = DateTime.Now.AddDays(-30);
             filter.DateTo = DateTime.Now.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
             filter.VehicleType = string.IsNullOrEmpty(vehicleType) ? -1 : Convert.ToInt32(vehicleType);
+            filter.RNumber = "";
 
             var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
             var clientReceiptViewModels = ClientReceiptViewModel.MapTo(clientReceiptDtos);
@@ -52,11 +53,9 @@ namespace TireRecords.Controllers
             filter.FirstName = Convert.ToString(collection["firstName"]).Trim();
             filter.LastName = Convert.ToString(collection["lastName"]).Trim();
             filter.RegistrationNumber = Convert.ToString(collection["registrationNumber"]).Trim();
-
+            filter.RNumber = Convert.ToString(collection["rnumber"]).Trim();
             filter.DateFrom = DateTime.Parse(collection["dateFrom"], cultureinfo);
-
             filter.DateTo = DateTime.Parse(collection["dateTo"], cultureinfo);
-
             filter.VehicleType = Convert.ToInt32(collection["vehicleType"]);
 
             var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
@@ -219,7 +218,7 @@ namespace TireRecords.Controllers
             catch (Exception ex)
             {
                 string message = ex.Message;
-
+                _logger.Error(ex);
                 return new HttpStatusCodeResult(404);
             }
         }

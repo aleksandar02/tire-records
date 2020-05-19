@@ -10,5 +10,7 @@ namespace Core.Entities
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
         public int VehicleType { get; set; }
+        public string RNumber { get; set; }
+
     }
 }

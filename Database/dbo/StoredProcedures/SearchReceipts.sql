@@ -5,7 +5,8 @@
 	@RegistrationNumber NVARCHAR(128),
 	@DateFrom DATETIME2(7),
 	@DateTo DATETIME2(7),
-	@VehicleType INT
+	@VehicleType INT,
+	@RNumber NVARCHAR(50)
 )
 
 AS 
@@ -34,6 +35,7 @@ AS
 		WHERE (R.[CreatedAt] >= @DateFrom AND R.[CreatedAt] <= @DateTo) AND
 			  (C.[FirstName] LIKE @FirstName + '%' OR @FirstName = '') AND
 			  (C.[LastName] LIKE @LastName + '%' OR @LastName = '') AND 
+			  (R.[RNumber] LIKE @RNumber + '%' OR @RNumber = '') AND
 			  (V.[RegistrationNumber] = @RegistrationNumber OR @RegistrationNumber = '') AND
 			  (V.[Type] = @VehicleType OR @VehicleType = -1)
 

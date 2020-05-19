@@ -1,63 +1,65 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model TireRecords.Models.DataCountViewModel
+
+@{
+    ViewBag.Title = "Index";
 }
 
-<div class="content">
-    <div class="container-fluid">
-        <h1 class="page-heading">Početna</h1>
-        <div class="row">
-            <div class="col-md-4">
-                <a href="/Receipt/Index">
-                    <div class="_card receipt-card">
-                        <i class="fa fa-paste"></i>
-                        <h3>Priznanice</h3>
-                        <p>20</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="/Receipt/Index?vehicleType=1">
-                    <div class="_card vehicle-card">
-                        <i class="fa fa-car"></i>
-                        <h3>Putnička vozila</h3>
-                        <p>12</p>
-                    </div>
-                </a>
-            </div>
+    <div class="content">
+        <div class="container-fluid">
+            <h1 class="page-heading">Početna</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="/Receipt/Index">
+                        <div class="_card receipt-card">
+                            <i class="fa fa-paste"></i>
+                            <h3>Priznanice</h3>
+                            <p>@Model.ReceiptsCount</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/Receipt/Index?vehicleType=1">
+                        <div class="_card vehicle-card">
+                            <i class="fa fa-car"></i>
+                            <h3>Putnička vozila</h3>
+                            <p>@Model.VehicleType1Count</p>
+                        </div>
+                    </a>
+                </div>
 
-            <div class="col-md-4">
-                <a href="/Receipt/Index?vehicleType=2">
-                    <div class="_card client-card">
-                        <i class="fa fa-truck"></i>
-                        <h3>Teretna vozila</h3>
-                        <p>8</p>
-                    </div>
-                </a>
+                <div class="col-md-4">
+                    <a href="/Receipt/Index?vehicleType=2">
+                        <div class="_card client-card">
+                            <i class="fa fa-truck"></i>
+                            <h3>Teretna vozila</h3>
+                            <p>@Model.VehicleType2Count</p>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <a href="/Receipt/Create">
-                    <div class="_card _card-small receipt-card">
-                        <h3><i class="fa fa-plus"></i>&nbsp;&nbsp;Nova priznanica</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="/Receipt/Create?type=1">
-                    <div class="_card _card-small vehicle-card">
-                        <h3><i class="fa fa-plus"></i>&nbsp;&nbsp;Nova priznanica   </h3>
-                    </div>
-                </a>
-            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="/Receipt/Create">
+                        <div class="_card _card-small receipt-card">
+                            <h3><i class="fa fa-plus"></i>&nbsp;&nbsp;Nova priznanica</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/Receipt/Create?type=1">
+                        <div class="_card _card-small vehicle-card">
+                            <h3><i class="fa fa-plus"></i>&nbsp;&nbsp;Nova priznanica   </h3>
+                        </div>
+                    </a>
+                </div>
 
-            <div class="col-md-4">
-                <a href="/Receipt/Create?type=2">
-                    <div class="_card _card-small client-card">
-                        <h3><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;Nova priznanica</h3>
-                    </div>
-                </a>
+                <div class="col-md-4">
+                    <a href="/Receipt/Create?type=2">
+                        <div class="_card _card-small client-card">
+                            <h3><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;&nbsp;Nova priznanica</h3>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
