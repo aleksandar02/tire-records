@@ -146,14 +146,7 @@ namespace Infrastructure.DAL
 
                     command.Parameters.AddWithValue("@Year", createdAt.Year);
 
-                    //using (SqlDataReader reader = command.ExecuteReader())
-                    //{
-                    //    while (await reader.ReadAsync().ConfigureAwait(false))
-                    //    {
-                    //        lastReceiptId = Convert.ToInt32(reader["Id"]);
-                    //    }
-                    //}
-
+                 
                     lastReceiptId = Convert.ToInt32(command.ExecuteScalar());
                 }
             }

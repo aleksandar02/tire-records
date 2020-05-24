@@ -9,6 +9,7 @@
     [Message] NVARCHAR(MAX) NULL,
 
 	CONSTRAINT [FK_Receipt_Client] FOREIGN KEY ([ClientId]) REFERENCES [Client]([Id]),
-	CONSTRAINT [FK_Receipt_Vehicle] FOREIGN KEY ([VehicleId]) REFERENCES [Vehicle]([Id])
+	CONSTRAINT [FK_Receipt_Vehicle] FOREIGN KEY ([VehicleId]) REFERENCES [Vehicle]([Id]), 
+    CONSTRAINT U_RNumber UNIQUE(RNumber)
 
 )

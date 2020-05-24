@@ -81,11 +81,10 @@ namespace TireRecords.Controllers
         public async Task<ActionResult> Create()
         {
             string vehicleId = Request.QueryString["id"];
-            
             string vehicleType = Request.QueryString["type"];
 
             TempData["VehicleType"] = vehicleType;
-            
+
             var clientAndVehicle = new ClientAndVehicleViewModel();
 
             if (string.IsNullOrEmpty(vehicleId))
@@ -129,7 +128,7 @@ namespace TireRecords.Controllers
                     throw new ArgumentException("Receipt create: Invalid receipt number!");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["ReceiptId"] = -1;
                 _logger.Error(ex);
