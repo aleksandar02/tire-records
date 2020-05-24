@@ -103,20 +103,20 @@
                 </div>
                 <br />
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Ime" />
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Prezime" />
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <input type="text" name="registrationNumber" id="registrationNumber" class="form-control" placeholder="Registarski broj" />
                     </div>
-                    <div class="col-md-2">
-                        <input type="text" name="rnumber" id="rnumber" class="form-control" placeholder="Broj fakture" />
+                    <div class="col-md-3">
+                        <input type="text" name="rnumber" id="rnumber" class="form-control" placeholder="Broj priznanice" />
                     </div>
 
-                    <div class="col-md-1">
+                    <div class="col-md-3">
                         <button type="submit" class="btn btn-general btn-blue pull-right"><i class="fa fa-search"></i>&nbsp;&nbsp;Pretraži</button>
                     </div>
                 </div>
@@ -148,7 +148,8 @@
                             <td>@item.Vehicle.Brand</td>
                             <td>@item.Vehicle.RegistrationNumber</td>
                             <td class="last-td">
-                                <a href="#" data-toggle="modal" data-target="#addReceiptModal" class="btn btn-general btn-default btn-small pull-right redirectToCreateReceiptBtn" data-vehicleid="@item.Vehicle.Id" data-firstname="@item.Client.FirstName" data-lastname="@item.Client.LastName" data-vehicletype="@item.Vehicle.Type" id="redirectToCreateReceiptBtn"><i class="fa fa-plus"></i>&nbsp;&nbsp;Priznanica</a>
+                                @*<a href="#" data-toggle="modal" data-target="#addReceiptModal" class="btn btn-general btn-default btn-small pull-right redirectToCreateReceiptBtn" data-vehicleid="@item.Vehicle.Id" data-firstname="@item.Client.FirstName" data-lastname="@item.Client.LastName" data-vehicletype="@item.Vehicle.Type" id="redirectToCreateReceiptBtn"><i class="fa fa-plus"></i>&nbsp;&nbsp;Priznanica</a>*@
+
                                 <a href="/Receipt/Details/@item.Receipt.Id" target="_blank" class="btn btn-general btn-default btn-small pull-right" data-vehicleid="@item.Vehicle.Id" id="redirectToDetails"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;Detalji</a>
 
 
@@ -161,7 +162,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="addReceiptModal">
+@*<div class="modal fade" id="addReceiptModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -180,7 +181,7 @@
 
         </div>
     </div>
-</div>
+</div>*@
 
 
 @section Scripts {

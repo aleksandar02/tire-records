@@ -62,7 +62,7 @@ namespace TireRecords.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            ViewBag.ReturnUrl = returnUrl ?? Url.Action("Index", "Dashboard");
+            ViewBag.ReturnUrl = returnUrl ?? Url.Action("Index", "Home");
             return View();
         }
 

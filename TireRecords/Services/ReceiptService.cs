@@ -71,7 +71,7 @@ namespace TireRecords.Services
             if (lastReceiptId >= 0)
             {
                 int newReceiptId = lastReceiptId + 1;
-                string generatedNumber = newReceiptId.ToString("00000");
+                string generatedNumber = $"{newReceiptId.ToString("00000")}/{Convert.ToString(DateTime.Now.Year)}";
 
                 return generatedNumber;
             }
