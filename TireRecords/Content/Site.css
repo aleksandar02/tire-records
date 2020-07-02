@@ -92,13 +92,13 @@ aside div {
 
 .nav-menu li {
     margin: 3px 0;
-    padding: 10px 15px;
+    padding: 12px 16px;
     transition: all 350ms ease;
 }
 
     .nav-menu li:hover {
         background: #006FFF;
-        border-radius: 12px;
+        border-radius: 6px;
     }
 
     .nav-menu li a {
@@ -417,6 +417,15 @@ textarea {
     margin-bottom: 40px;
 }
 
+
+
+.details-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
 /* Data table */
 #receiptTable tr td {
     border: none !important;
@@ -591,6 +600,38 @@ span.ui-icon {
         border-top: 3px solid #007bff !important;
     }
 
+.closed-receipt-card {
+    padding: 30px 30px 20px 30px;
+    background: #fff;
+    border-top: 3px solid #dc3545;
+    box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin: 40px 0;
+    width: 100%;
+}
+
+.closed-receipt-text {
+    font-size: 20px;
+    color: #111113;
+    font-weight: 500;
+}
+
+.closed-receipt-info {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 24px;
+}
+
+.closed-receipt-card a {
+    text-align: right;
+}
+
+._pull-right {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 
 .vehicle-card {
     border-top: 3px solid #28a745;
@@ -744,6 +785,10 @@ span.ui-icon {
     box-shadow: none !important;
 }
 
+.btn-default.btn-close {
+    box-shadow: none !important;
+}
+
 .bootstrap-select .dropdown-menu > li > a small.muted {
     display: none;
 }
@@ -853,3 +898,4 @@ span.ui-icon {
         width: 25%;
 
     }
+

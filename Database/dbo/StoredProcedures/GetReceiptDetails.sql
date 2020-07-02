@@ -16,6 +16,9 @@ AS
 			  ,R.[UserName]
 			  ,R.[CreatedAt]
 			  ,R.[Message]
+			  ,R.[ClosedBy]
+			  ,R.[ClosedAt]
+			  ,R.[Status]
 			  ,V.[Id] AS VehicleId
 			  ,V.[Type] AS VehicleType
 			  ,V.[Brand] AS VehicleBrand

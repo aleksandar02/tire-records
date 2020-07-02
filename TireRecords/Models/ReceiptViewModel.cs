@@ -13,6 +13,9 @@ namespace TireRecords.Models
         public int VehicleId { get; set; }
         public int ClientId { get; set; }
         public string Message { get; set; }
+        public string ClosedBy { get; set; }
+        public int Status { get; set; }
+        public DateTime ClosedAt { get; set; }
 
         public static ReceiptViewModel MapTo(ReceiptDto receiptDto)
         {
@@ -25,6 +28,9 @@ namespace TireRecords.Models
             receipt.VehicleId = receiptDto.VehicleId;
             receipt.ClientId = receiptDto.ClientId;
             receipt.Message = receiptDto.Message;
+            receipt.ClosedBy = receiptDto.ClosedBy;
+            receipt.Status = receiptDto.Status;
+            receipt.ClosedAt = receiptDto.ClosedAt;
 
             return receipt;
         }
@@ -40,6 +46,9 @@ namespace TireRecords.Models
             receiptDto.VehicleId = receipt.VehicleId;
             receiptDto.ClientId = receipt.ClientId;
             receiptDto.Message = receipt.Message;
+            receiptDto.ClosedBy = receipt.ClosedBy;
+            receiptDto.Status = receipt.Status;
+            receiptDto.ClosedAt = receipt.ClosedAt;
 
             return receiptDto;
         }
@@ -51,6 +60,8 @@ namespace TireRecords.Models
             receipt.Message = Convert.ToString(collection["message"]);
             receipt.UserName = userName;
             receipt.CreatedAt = DateTime.Now;
+            receipt.ClosedAt = DateTime.Now;
+            receipt.Status = 1;
 
             return receipt;
         }

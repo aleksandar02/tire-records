@@ -65,9 +65,9 @@
                 <div class="row">
                     @if (vehicleType == "1")
                     {
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <select class="form-control" name="vehicleType" id="vehicleType">
-                                <option value="-1">Sve</option>
+                                <option value="-1">Sva vozila</option>
                                 <option value="1" selected>Putnička vozila</option>
                                 <option value="2">Teretna vozila</option>
                             </select>
@@ -75,9 +75,9 @@
                     }
                     else if (vehicleType == "2")
                     {
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <select class="form-control" name="vehicleType" id="vehicleType">
-                                <option value="-1">Sve</option>
+                                <option value="-1">Sva vozila</option>
                                 <option value="1">Putnička vozila</option>
                                 <option value="2" selected>Teretna vozila</option>
                             </select>
@@ -85,20 +85,27 @@
                     }
                     else
                     {
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <select class="form-control" name="vehicleType" id="vehicleType">
-                                <option value="-1" selected>Sve</option>
+                                <option value="-1" selected>Sva vozila</option>
                                 <option value="1">Putnička vozila</option>
                                 <option value="2">Teretna vozila</option>
                             </select>
                         </div>
                     }
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <input name="dateFrom" class="datepicker form-control dateFrom" placeholder="Od" data-provide="datepicker">
 
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <input name="dateTo" class="datepicker form-control dateTo" placeholder="Do" data-provide="datepicker">
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control" name="status" id="status">
+                            <option value="-1" selected>Sve priznanice</option>
+                            <option value="1">Otvorene priznanice</option>
+                            <option value="2">Zatvorene priznanice</option>
+                        </select>
                     </div>
                 </div>
                 <br />

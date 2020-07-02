@@ -8,7 +8,10 @@
     [CreatedAt] DATETIME2 NULL, 
     [Message] NVARCHAR(MAX) NULL,
 
-	CONSTRAINT [FK_Receipt_Client] FOREIGN KEY ([ClientId]) REFERENCES [Client]([Id]),
+	[ClosedBy] NVARCHAR(256) NULL, 
+    [Status] INT NULL, 
+    [ClosedAt] DATETIME2 NULL, 
+    CONSTRAINT [FK_Receipt_Client] FOREIGN KEY ([ClientId]) REFERENCES [Client]([Id]),
 	CONSTRAINT [FK_Receipt_Vehicle] FOREIGN KEY ([VehicleId]) REFERENCES [Vehicle]([Id]), 
     CONSTRAINT U_RNumber UNIQUE(RNumber)
 

@@ -35,6 +35,7 @@ namespace TireRecords.Controllers
             filter.DateTo = DateTime.Now.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
             filter.VehicleType = string.IsNullOrEmpty(vehicleType) ? -1 : Convert.ToInt32(vehicleType);
             filter.RNumber = "";
+            filter.Status = -1;
 
             var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
             var clientReceiptViewModels = ClientReceiptViewModel.MapTo(clientReceiptDtos);
@@ -57,6 +58,7 @@ namespace TireRecords.Controllers
             filter.DateFrom = DateTime.Parse(collection["dateFrom"], cultureinfo);
             filter.DateTo = DateTime.Parse(collection["dateTo"], cultureinfo);
             filter.VehicleType = Convert.ToInt32(collection["vehicleType"]);
+            filter.Status = Convert.ToInt32(collection["status"]);
 
             var clientReceiptDtos = await _receiptService.SearchReceipts(filter);
             var clientReceiptViewModels = ClientReceiptViewModel.MapTo(clientReceiptDtos);
@@ -195,13 +197,15 @@ namespace TireRecords.Controllers
             var pdf = new byte[0];
             var imagePaths = new List<string> { /*Server.MapPath("~/Content/images/pdf/vulco-logo.png"),*/ Server.MapPath("~/Content/images/pdf/logo.png") };
 
+            int receiptType = Convert.ToInt32(Request.QueryString["type"]);
+
             try
             {
                 var tempReceipt = TempData["Receipt"] as ReceiptDetailsViewModel;
 
                 if (tempReceipt != null)
                 {
-                    pdf = PdfService.CreatePdf(tempReceipt, imagePaths);
+                    pdf = PdfService.CreatePdf(tempReceipt, imagePaths, receiptType);
                     return File(pdf, "application/pdf");
                 }
                 else
@@ -209,10 +213,28 @@ namespace TireRecords.Controllers
                     var receiptDetailsDto = await _receiptService.GetReceiptDetails(id);
                     var receiptDetailsViewModel = ReceiptDetailsViewModel.MapTo(receiptDetailsDto);
 
-                    pdf = PdfService.CreatePdf(receiptDetailsViewModel, imagePaths);
+                    pdf = PdfService.CreatePdf(receiptDetailsViewModel, imagePaths, receiptType);
 
                     return File(pdf, "application/pdf");
                 }
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                _logger.Error(ex);
+                return new HttpStatusCodeResult(404);
+            }
+        }
+
+        [Authorize]
+        public ActionResult CloseReceipt(int id)
+        {
+            try
+            {
+                string closedBy = User.Identity.Name;
+                bool result = _receiptService.CloseReceipt(id, closedBy);
+
+                return Redirect("/Receipt/Details/" + id);
             }
             catch (Exception ex)
             {

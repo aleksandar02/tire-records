@@ -85,6 +85,36 @@ namespace Infrastructure.DAL
             return dataCountDto;
         }
 
+        public bool CloseReceipt(int id, string closedBy)
+        {
+            bool result = true;
+
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    string sqlProcedure = "CloseReceipt";
+                    var command = new SqlCommand(sqlProcedure, connection);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@ClosedBy", closedBy);
+                    command.Parameters.AddWithValue("@ClosedAt", DateTime.Now);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                result = false;
+            }
+
+            return result;
+        }
+
         private DataCountDto MapToDataCount(SqlDataReader reader)
         {
             var dataCount = new DataCountDto();
@@ -214,6 +244,7 @@ namespace Infrastructure.DAL
                     cmdReceipt.Parameters.AddWithValue("@CreatedAt", receipt.CreatedAt);
                     cmdReceipt.Parameters.AddWithValue("@VehicleId", vehicleId);
                     cmdReceipt.Parameters.AddWithValue("@ClientId", clientId);
+                    cmdReceipt.Parameters.AddWithValue("@Status", receipt.Status);
 
                     cmdReceipt.Parameters.Add("@ReceiptId", SqlDbType.Int).Direction = ParameterDirection.Output;
                     #endregion
@@ -279,6 +310,7 @@ namespace Infrastructure.DAL
                     command.Parameters.AddWithValue("@DateTo", filter.DateTo);
                     command.Parameters.AddWithValue("@VehicleType", filter.VehicleType);
                     command.Parameters.AddWithValue("@RNumber", filter.RNumber);
+                    command.Parameters.AddWithValue("@Status", filter.Status);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

@@ -6,7 +6,8 @@
 	@DateFrom DATETIME2(7),
 	@DateTo DATETIME2(7),
 	@VehicleType INT,
-	@RNumber NVARCHAR(50)
+	@RNumber NVARCHAR(50),
+	@Status INT
 )
 
 AS 
@@ -26,7 +27,10 @@ AS
 			R.[RNumber],
 			R.[UserName],
 			R.[Message],
-			R.[CreatedAt]
+			R.[CreatedAt],
+			R.[ClosedBy],
+			R.[ClosedAt],
+			R.[Status]
 		
 		FROM [Receipt] R
 		INNER JOIN [Client] C ON R.[ClientId] = C.Id
@@ -37,7 +41,8 @@ AS
 			  (C.[LastName] LIKE @LastName + '%' OR @LastName = '') AND 
 			  (R.[RNumber] LIKE @RNumber + '%' OR @RNumber = '') AND
 			  (V.[RegistrationNumber] = @RegistrationNumber OR @RegistrationNumber = '') AND
-			  (V.[Type] = @VehicleType OR @VehicleType = -1)
+			  (V.[Type] = @VehicleType OR @VehicleType = -1) AND
+			  (R.[Status] = @Status OR @Status = -1) 
 
 		ORDER BY R.[CreatedAt] DESC
 	END

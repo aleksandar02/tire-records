@@ -80,5 +80,10 @@ namespace TireRecords.Services
                 return string.Empty;
             }         
         }
+
+        public bool CloseReceipt(int id, string closedBy)
+        {
+            return _receiptDAL.CloseReceipt(id, closedBy);
+        }
     }
 }

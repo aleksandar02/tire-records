@@ -12,7 +12,7 @@ namespace TireRecords.Services
 {
     public class PdfService
     {
-        public static byte[] CreatePdf(ReceiptDetailsViewModel receiptDetailsViewModel, List<string> imagePaths)
+        public static byte[] CreatePdf(ReceiptDetailsViewModel receiptDetailsViewModel, List<string> imagePaths, int receiptType)
         {
             var fileStream = new MemoryStream();
 
@@ -25,15 +25,15 @@ namespace TireRecords.Services
             page.Orientation = PdfSharp.PageOrientation.Landscape;
             page.Size = PdfSharp.PageSize.A4;
 
-            PdfService.GenerateLeftSide(receiptDetailsViewModel, page, options, imagePaths);
-            PdfService.GenerateRightSide(receiptDetailsViewModel, page, options, imagePaths);
+            PdfService.GenerateLeftSide(receiptDetailsViewModel, page, options, imagePaths, receiptType);
+            PdfService.GenerateRightSide(receiptDetailsViewModel, page, options, imagePaths, receiptType);
 
             document.Save(fileStream);
 
             return fileStream.ToArray();
         }
 
-        public static void GenerateLeftSide(ReceiptDetailsViewModel receiptDetails, PdfPage page, XPdfFontOptions options, List<string> imagePaths)
+        public static void GenerateLeftSide(ReceiptDetailsViewModel receiptDetails, PdfPage page, XPdfFontOptions options, List<string> imagePaths, int receiptType)
         {
             XFont font = new XFont("Calibri", 12, XFontStyle.Bold, options);
 
@@ -146,7 +146,15 @@ namespace TireRecords.Services
                 rect = new XRect(20, 146, page.Width / 2 - 40, 15);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
-                tf.DrawString("Potvrda o vraćanju pneumatika sa čuvanja", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                if (receiptType == 1)
+                {
+                    tf.DrawString("Potvrda o prijemu pneumatika sa čuvanja", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                }
+                else if (receiptType == 2)
+                {
+                    tf.DrawString("Potvrda o vraćanju pneumatika sa čuvanja", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                }
 
                 rect = new XRect(20, 160, page.Width / 2 - 40, 15);
 
@@ -338,7 +346,7 @@ namespace TireRecords.Services
             }
         }
 
-        public static void GenerateRightSide(ReceiptDetailsViewModel receiptDetails, PdfPage page, XPdfFontOptions options, List<string> imagePaths)
+        public static void GenerateRightSide(ReceiptDetailsViewModel receiptDetails, PdfPage page, XPdfFontOptions options, List<string> imagePaths, int receiptType)
         {
             XFont font = new XFont("Calibri", 12, XFontStyle.Bold, options);
 
@@ -446,7 +454,15 @@ namespace TireRecords.Services
                 rect = new XRect(page.Width / 2 + 20, 146, page.Width / 2 - 40, 15);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
-                tf.DrawString("Potvrda o vraćanju pneumatika sa čuvanja", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                if (receiptType == 1)
+                {
+                    tf.DrawString("Potvrda o prijemu pneumatika sa čuvanja", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                }
+                else if (receiptType == 2)
+                {
+                    tf.DrawString("Potvrda o vraćanju pneumatika sa čuvanja", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                }
 
                 rect = new XRect(page.Width / 2 + 20, 160, page.Width / 2 - 40, 15);
 

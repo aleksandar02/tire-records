@@ -12,6 +12,9 @@ namespace Core.Entities
         public int VehicleId { get; set; }
         public int ClientId { get; set; }
         public string Message { get; set; }
+        public string ClosedBy { get; set; }
+        public int Status { get; set; }
+        public DateTime ClosedAt { get; set; }
 
         public static ReceiptDto MapTo(SqlDataReader reader)
         {
@@ -24,6 +27,9 @@ namespace Core.Entities
             receipt.VehicleId = Convert.ToInt32(reader["VehicleId"]);
             receipt.ClientId = Convert.ToInt32(reader["ClientId"]);
             receipt.Message = Convert.ToString(reader["Message"]);
+            receipt.ClosedBy = !string.IsNullOrEmpty(reader["ClosedBy"].ToString()) ? reader["ClosedBy"].ToString() : "";
+            receipt.ClosedAt = Convert.ToDateTime(reader["ClosedAt"]);
+            receipt.Status = Convert.ToInt32(reader["Status"]);
 
             return receipt;
         }

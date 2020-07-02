@@ -6,7 +6,57 @@
 
 <div class="content">
     <div class="container-fluid" id="details">
-        <h1 class="page-heading">Detalji priznanice <small>(@Model.Receipt.RNumber)</small></h1>
+        @if (Model.Receipt.Status == 1)
+        {
+            <div class="details-header">
+                <div>
+                    <h1 class="page-heading">Detalji priznanice <small>(@Model.Receipt.RNumber)</small></h1>
+                </div>
+                <div>
+                    <button data-toggle="modal" data-target="#closeReceiptModal" class="btn btn-general btn-red">Zatvori priznanicu</button>
+                </div>
+            </div>}
+        @if (Model.Receipt.Status == 2)
+        {
+            <div class="details-header">
+                <div>
+                    <h1 class="page-heading" style="margin-bottom: 0px;">Detalji priznanice <small>(@Model.Receipt.RNumber)</small></h1>
+
+                    <div class="closed-receipt-card">
+                        <p class="closed-receipt-text">Priznanica je zatvorena, gume su vracene klijentu.</p>
+                        <p class="closed-receipt-info">Zatvorio @Model.Receipt.ClosedBy &bull; @Model.Receipt.ClosedAt.ToString("dd.MM.yyyy")</p>
+                        <div class="_pull-right">
+                            <a href="/Receipt/ExportPdf/@Model.Receipt.Id?type=2" target="_blank" class="btn btn-general btn-red mt-10"><i class="fa fa-print"></i>&nbsp;&nbsp;Povratnica</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+
+        <div class="modal fade" id="closeReceiptModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Zatvori priznanicu</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        Da li ste sigurni?
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <a href="/Receipt/CloseReceipt/@Model.Receipt.Id" class="btn btn-general btn-red">Zatvori priznanicu</a>
+                        <button type="button" class="btn btn-general btn-default btn-close" data-dismiss="modal">Otkaži</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
 
         <form>
             <div class="form-section form-section-client">
@@ -77,7 +127,7 @@
             </div>
 
             <div class="pull-right">
-                <a href="/Receipt/ExportPdf/@Model.Receipt.Id" target="_blank" class="btn btn-general btn-red mt-10"><i class="fa fa-print"></i>&nbsp;&nbsp;Štampaj</a>
+                <a href="/Receipt/ExportPdf/@Model.Receipt.Id?type=1" target="_blank" class="btn btn-general btn-red mt-10"><i class="fa fa-print"></i>&nbsp;&nbsp;Priznanica</a>
             </div>
         </form>
 
