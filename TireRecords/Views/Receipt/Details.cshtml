@@ -13,19 +13,21 @@
                     <h1 class="page-heading">Detalji priznanice <small>(@Model.Receipt.RNumber)</small></h1>
                 </div>
                 <div>
-                    <button data-toggle="modal" data-target="#closeReceiptModal" class="btn btn-general btn-red">Zatvori priznanicu</button>
+                    <button data-toggle="modal" data-target="#closeReceiptModal" class="btn btn-general btn-red">Kreiraj povratnicu</button>
                 </div>
             </div>}
         @if (Model.Receipt.Status == 2)
         {
             <div class="details-header">
                 <div>
-                    <h1 class="page-heading" style="margin-bottom: 0px;">Detalji priznanice <small>(@Model.Receipt.RNumber)</small></h1>
+                    <h1 class="page-heading" style="margin-bottom: 0px;">Detalji priznanice<small>(@Model.Receipt.RNumber)</small></h1>
 
                     <div class="closed-receipt-card">
-                        <p class="closed-receipt-text">Priznanica je zatvorena, gume su vracene klijentu.</p>
-                        <p class="closed-receipt-info">Zatvorio @Model.Receipt.ClosedBy &bull; @Model.Receipt.ClosedAt.ToString("dd.MM.yyyy")</p>
-                        <div class="_pull-right">
+                        <div>
+                            <p class="closed-receipt-text">Pneumatici vraćeni klijentu</p>
+                            <p class="closed-receipt-info">@Model.Receipt.ClosedBy &bull; <span class="text-bold">@Model.Receipt.ClosedAt.ToString("dd.MM.yyyy")</span></p>
+                        </div>
+                        <div>
                             <a href="/Receipt/ExportPdf/@Model.Receipt.Id?type=2" target="_blank" class="btn btn-general btn-red mt-10"><i class="fa fa-print"></i>&nbsp;&nbsp;Povratnica</a>
                         </div>
                     </div>
@@ -40,7 +42,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h4 class="modal-title">Zatvori priznanicu</h4>
+                        <h4 class="modal-title">Kreiraj povratnicu</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
@@ -49,7 +51,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <a href="/Receipt/CloseReceipt/@Model.Receipt.Id" class="btn btn-general btn-red">Zatvori priznanicu</a>
+                        <a href="/Receipt/CloseReceipt/@Model.Receipt.Id" class="btn btn-general btn-red">Potvrdi</a>
                         <button type="button" class="btn btn-general btn-default btn-close" data-dismiss="modal">Otkaži</button>
                     </div>
 

@@ -159,7 +159,15 @@ namespace TireRecords.Services
                 rect = new XRect(20, 160, page.Width / 2 - 40, 15);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
-                tf.DrawString($"broj {receiptDetails.Receipt.RNumber} izdata dana: {receiptDetails.Receipt.CreatedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                if (receiptType == 1)
+                {
+                    tf.DrawString($"broj {receiptDetails.Receipt.RNumber} izdata dana: {receiptDetails.Receipt.CreatedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                }
+                else if (receiptType == 2)
+                {
+                    tf.DrawString($"broj {receiptDetails.Receipt.RNumber} izdata dana: {receiptDetails.Receipt.ClosedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                }
 
                 // Client and Vehicle Info
                 font = new XFont("Calibri", 11, XFontStyle.Regular, options);
@@ -467,7 +475,15 @@ namespace TireRecords.Services
                 rect = new XRect(page.Width / 2 + 20, 160, page.Width / 2 - 40, 15);
 
                 gfx.DrawRectangle(XBrushes.Transparent, rect);
-                tf.DrawString($"broj {receiptDetails.Receipt.RNumber} izdata dana: {receiptDetails.Receipt.CreatedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                if (receiptType == 1)
+                {
+                    tf.DrawString($"broj {receiptDetails.Receipt.RNumber} izdata dana: {receiptDetails.Receipt.CreatedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                }
+                else if (receiptType == 2)
+                {
+                    tf.DrawString($"broj {receiptDetails.Receipt.RNumber} izdata dana: {receiptDetails.Receipt.ClosedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                }
 
                 // Client and Vehicle Info
                 font = new XFont("Calibri", 11, XFontStyle.Regular, options);
