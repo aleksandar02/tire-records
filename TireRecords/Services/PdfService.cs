@@ -149,7 +149,7 @@ namespace TireRecords.Services
 
                 if (receiptType == 1)
                 {
-                    tf.DrawString("Potvrda o prijemu pneumatika sa čuvanja", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                    tf.DrawString("Potvrda o prijemu pneumatika na čuvanje", font, XBrushes.Black, rect, XStringFormats.TopLeft);
                 }
                 else if (receiptType == 2)
                 {
@@ -166,7 +166,8 @@ namespace TireRecords.Services
                 }
                 else if (receiptType == 2)
                 {
-                    tf.DrawString($"broj {receiptDetails.Receipt.RNumber} izdata dana: {receiptDetails.Receipt.ClosedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                    string closedAtValue = receiptDetails.Receipt.ClosedAt != null ? receiptDetails.Receipt.ClosedAt.Value.ToString("dd.MM.yyyy") : string.Empty;
+                    tf.DrawString($"broj {receiptDetails.Receipt.RNumber} izdata dana: {closedAtValue} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
                 }
 
                 // Client and Vehicle Info
@@ -465,7 +466,7 @@ namespace TireRecords.Services
 
                 if (receiptType == 1)
                 {
-                    tf.DrawString("Potvrda o prijemu pneumatika sa čuvanja", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                    tf.DrawString("Potvrda o prijemu pneumatika na čuvanje", font, XBrushes.Black, rect, XStringFormats.TopLeft);
                 }
                 else if (receiptType == 2)
                 {
@@ -482,7 +483,8 @@ namespace TireRecords.Services
                 }
                 else if (receiptType == 2)
                 {
-                    tf.DrawString($"broj {receiptDetails.Receipt.RNumber} izdata dana: {receiptDetails.Receipt.ClosedAt.ToString("dd.MM.yyyy")} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+                    string closedAtValue = receiptDetails.Receipt.ClosedAt != null ? receiptDetails.Receipt.ClosedAt.Value.ToString("dd.MM.yyyy") : string.Empty;
+                    tf.DrawString($"broj {receiptDetails.Receipt.RNumber} izdata dana: {closedAtValue} godine", font, XBrushes.Black, rect, XStringFormats.TopLeft);
                 }
 
                 // Client and Vehicle Info

@@ -6,6 +6,7 @@
 
 <div class="content">
     <div class="container-fluid" id="details">
+
         @if (Model.Receipt.Status == 1)
         {
             <div class="details-header">
@@ -25,7 +26,7 @@
                     <div class="closed-receipt-card">
                         <div>
                             <p class="closed-receipt-text">Pneumatici vraćeni klijentu</p>
-                            <p class="closed-receipt-info">@Model.Receipt.ClosedBy &bull; <span class="text-bold">@Model.Receipt.ClosedAt.ToString("dd.MM.yyyy")</span></p>
+                            <p class="closed-receipt-info">@Model.Receipt.ClosedBy &bull; <span class="text-bold">@Model.Receipt.ClosedAt.Value.ToString("dd.MM.yyyy")</span></p>
                         </div>
                         <div>
                             <a href="/Receipt/ExportPdf/@Model.Receipt.Id?type=2" target="_blank" class="btn btn-general btn-red mt-10"><i class="fa fa-print"></i>&nbsp;&nbsp;Povratnica</a>

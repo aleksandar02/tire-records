@@ -1,14 +1,14 @@
 ﻿CREATE TABLE [dbo].[Tire]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
-    [ReceiptId] INT NULL, 
-    [VehicleId] INT NULL, 
-    [Position] INT NULL, 
-    [Dimension] NVARCHAR(50) NULL, 
-    [DOT] INT NULL, 
-    [Depth] DECIMAL(8, 2) NULL, 
-    [Brand] NVARCHAR(50) NULL, 
-    [Model] NVARCHAR(50) NULL,
+    [ReceiptId] INT NOT NULL, 
+    [VehicleId] INT NOT NULL, 
+    [Position] INT NOT NULL, 
+    [Dimension] NVARCHAR(50) NOT NULL, 
+    [DOT] INT NOT NULL, 
+    [Depth] DECIMAL(8, 2) NOT NULL, 
+    [Brand] NVARCHAR(50) NOT NULL, 
+    [Model] NVARCHAR(50) NOT NULL,
 
 	[Index] NVARCHAR(50) NULL, 
     CONSTRAINT [FK_Tire_Receipt] FOREIGN KEY ([ReceiptId]) REFERENCES [Receipt]([Id]),

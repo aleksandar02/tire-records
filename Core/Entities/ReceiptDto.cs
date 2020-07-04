@@ -14,7 +14,7 @@ namespace Core.Entities
         public string Message { get; set; }
         public string ClosedBy { get; set; }
         public int Status { get; set; }
-        public DateTime ClosedAt { get; set; }
+        public DateTime? ClosedAt { get; set; }
 
         public static ReceiptDto MapTo(SqlDataReader reader)
         {
@@ -28,8 +28,11 @@ namespace Core.Entities
             receipt.ClientId = Convert.ToInt32(reader["ClientId"]);
             receipt.Message = Convert.ToString(reader["Message"]);
             receipt.ClosedBy = !string.IsNullOrEmpty(reader["ClosedBy"].ToString()) ? reader["ClosedBy"].ToString() : "";
-            receipt.ClosedAt = Convert.ToDateTime(reader["ClosedAt"]);
+            receipt.ClosedAt = string.IsNullOrEmpty(reader["ClosedAt"].ToString())
+              ? (DateTime?)null
+              : DateTime.Parse(reader["ClosedAt"].ToString());
             receipt.Status = Convert.ToInt32(reader["Status"]);
+          
 
             return receipt;
         }

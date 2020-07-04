@@ -31,7 +31,7 @@ namespace TireRecords.Controllers
             filter.FirstName = "";
             filter.LastName = "";
             filter.RegistrationNumber = "";
-            filter.DateFrom = DateTime.Now.AddDays(-30);
+            filter.DateFrom = DateTime.Now.AddDays(-120);
             filter.DateTo = DateTime.Now.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
             filter.VehicleType = string.IsNullOrEmpty(vehicleType) ? -1 : Convert.ToInt32(vehicleType);
             filter.RNumber = "";

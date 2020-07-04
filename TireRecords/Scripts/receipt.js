@@ -1,4 +1,5 @@
 ﻿$(function () {
+
     $('#receiptTable').DataTable({
         processing: true,
         language: {
@@ -26,7 +27,7 @@
         format: 'dd.mm.yyyy.'
     });
 
-    $('.dateFrom').datepicker("setDate", "-30d");
+    $('.dateFrom').datepicker("setDate", "-120d");
 
     $('.dateTo').datepicker({
         format: 'dd.mm.yyyy.'

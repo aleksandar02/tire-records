@@ -15,7 +15,7 @@ namespace TireRecords.Models
         public string Message { get; set; }
         public string ClosedBy { get; set; }
         public int Status { get; set; }
-        public DateTime ClosedAt { get; set; }
+        public DateTime? ClosedAt { get; set; }
 
         public static ReceiptViewModel MapTo(ReceiptDto receiptDto)
         {

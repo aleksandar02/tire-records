@@ -6,13 +6,12 @@
 	@VehicleId INT,
 	@ClientId INT,
 	@ReceiptId INT OUTPUT,
-	@Status INT,
-	@ClosedAt DATETIME2(7)
+	@Status INT
 
 AS
 	BEGIN
 		INSERT INTO Receipt([RNumber], [Message], [UserName], [CreatedAt], [VehicleId], [ClientId], [Status], [ClosedAt])
-					VALUES(@RNumber, @Message, @UserName, @CreatedAt, @VehicleId, @ClientId, @Status, @ClosedAt)
+					VALUES(@RNumber, @Message, @UserName, @CreatedAt, @VehicleId, @ClientId, @Status, NULL)
 
 		SELECT @ReceiptId = SCOPE_IDENTITY();
 	END
